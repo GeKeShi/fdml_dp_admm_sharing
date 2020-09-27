@@ -17,27 +17,65 @@ if config["is_parallel"] == True:
 	pool = Pool()
 
 import util
+import torch
+from torch.utils.data import Dataset, DataLoader
 # reload(util)
 np.random.seed(0)
 
 def fast_exp(x):
 	pass
 
+
+class YYB_Dataset(Dataset):
+	"""yyb dataset."""
+
+	def __init__(self, train_path, test_path, transform=None):
+		"""
+		Args:
+			data_path: str, path to data file
+			transform: None
+		"""
+		train_feature, train_label, test_feature, test_label= util.load_svmlightfile_data(train_path, test_path)
+		self.train_feature = train_feature
+		# print(train_feature[0:2,:])
+		self.train_label = train_label
+		# print(train_label[0:2])
+		self.test_feature = test_feature
+		self.test_label = test_label
+		self.size_feature = train_feature.shape[1]
+		# print("{} size feature {}".format(self.train_feature.shape[0], self.size_feature))
+		self.train_size = self.train_feature.shape[0]
+		# self.train_id = np.arange(0, self.train_size)
+		self.test_size = self.test_feature.shape[0]
+		self.transform = transform
+
+	def __len__(self):
+		return self.train_size
+
+	def __getitem__(self, idx):
+		# data_id = self.train_id[idx]
+		
+		return idx
+
 class nodes:
 	def __init__(self):
 		pass
-	def load_data(self, train_path, test_path):
+	def load_data(self, train_path, test_path, batch_size):
 		train_feature, train_label, test_feature, test_label = util.load_svmlightfile_data(train_path, test_path)
-		self.train_feature = train_feature[0:50000]
+		self.train_feature = train_feature
 		print(train_feature[0:2,:])
-		self.train_label = train_label[0:50000]
+		self.train_label = train_label
 		print(train_label[0:2])
-		self.test_feature = test_feature[0:10000]
-		self.test_label = test_label[0:10000]
+		self.test_feature = test_feature
+		self.test_label = test_label
 		self.size_feature = train_feature.shape[1]
 		print("{} size feature {}".format(self.train_feature.shape[0], self.size_feature))
-		self.train_size = self.train_feature.shape[0]
+		# self.train_size = self.train_feature.shape[0]
+		self.data_size = self.train_feature.shape[0]
+		self.train_size = batch_size
 		self.test_size = self.test_feature.shape[0]
+		self.train_batch_features = []
+
 
 class server(nodes):
 	def __init__(self, config):
@@ -45,7 +83,8 @@ class server(nodes):
 		# loading data
 		train_path = os.path.join(self.config["input_dir_path"], "raw_train-server")
 		test_path = os.path.join(self.config["input_dir_path"], "raw_test-server")
-		self.load_data(train_path, test_path)
+		self.load_data(train_path, test_path, self.config["batch_size"])
+		self.yyb_data = YYB_Dataset(train_path, test_path)
 		# initialize the parameters
 		self.z = np.zeros(self.train_size)
 		self.z_old = np.zeros(self.train_size)
@@ -53,12 +92,17 @@ class server(nodes):
 		self.s_Q = np.zeros(self.train_size)
 		self.num_iter = 0
 
-	def update(self, s_Q):
+	def update(self, s_Q, index):
+		"""
+			in sever, we use 'train_batch_features' as the batched train label
+		"""
+		self.train_batch_features = np.array([self.train_label[id] for id in index])
 		self.s_Q = s_Q
 		self.z_old = self.z[:]
 		self.update_z_onebyone()
 		self.update_y()
 		self.num_iter += 1
+
 
 	def update_z(self):
 		res = minimize(self.h, self.z, method=self.config["z_solver"], jac=self.h_der, hess=self.h_hess, options={'xtol': 1e-4, 'disp': False})
@@ -106,17 +150,17 @@ class server(nodes):
 		return l_hess + self.config["rho"]
 
 	def l(self, z):
-		zy = z*self.train_label
+		zy = z*self.train_batch_features
 		return np.sum(np.log(1+np.exp(-zy)))
 
 	def l_der(self, z):
-		zy = z*self.train_label
-		return -self.train_label / (1+np.exp(zy))
+		zy = z*self.train_batch_features
+		return -(self.train_batch_features / (1+np.exp(zy)))
 
 	def l_hess(self, z):
-		zy = z*self.train_label
+		zy = z*self.train_batch_features
 		ezy = np.exp(zy)
-		return np.diag(self.train_label**2 * ezy / (1+ezy)**2)
+		return np.diag(self.train_batch_features**2 * ezy / (1+ezy)**2)
 
 	# to speedup try to optimize one by one since zs are not correlated
 	def h_per(self, z):
@@ -147,15 +191,15 @@ class server(nodes):
 		return l - linear + aug
 
 	def l_per(self, z, i):
-		zy = z*self.train_label[i]
+		zy = z*self.train_batch_features[i]
 		return math.log(1+math.exp(-zy))
 
 	def l_der_per(self, z, i):
-		zy = z*self.train_label[i]
-		return -self.train_label[i] / (1+math.exp(zy))
+		zy = z*self.train_batch_features[i]
+		return -self.train_batch_features[i] / (1+math.exp(zy))
 
 	def l_hess_per(self, z, i):
-		zy = z*self.train_label[i]
+		zy = z*self.train_batch_features[i]
 		ezy = math.exp(zy)
 		# return self.train_label[i]**2 * ezy / (1+ezy)**2
 		return  ezy / (1+ezy)**2 # train_label is always +-1
@@ -167,10 +211,10 @@ class worker(nodes):
 		# loading data
 		train_path = os.path.join(self.config["input_dir_path"], "raw_train-part"+str(self.worker_id))
 		test_path = os.path.join(self.config["input_dir_path"], "raw_test-part"+str(self.worker_id))
-		self.load_data(train_path, test_path)
+		self.load_data(train_path, test_path, self.config["batch_size"])
 		# augenment for worker 0 to include a bias
 		if 0 == worker_id:
-			tmp = sparse.hstack([self.train_feature, np.ones([self.train_size,1])])
+			tmp = sparse.hstack([self.train_feature, np.ones([self.data_size,1])])
 			self.train_feature = sparse.csr_matrix(tmp)
 			tmp = sparse.hstack([self.test_feature, np.ones([self.test_size,1])])
 			self.test_feature = sparse.csr_matrix(tmp)
@@ -183,7 +227,6 @@ class worker(nodes):
 		self.Qx = np.zeros(self.train_size)
 		self.y = np.zeros(self.train_size)
 		self.z = np.zeros(self.train_size)
-
 		# precompute the variables for privacy evaluation
 		if "computed" == self.config["noise_eval_method"]:
 			# to save time, try load the cache
@@ -199,18 +242,20 @@ class worker(nodes):
 			# print self.i_DmTDm.dot((self.train_feature.transpose().dot(self.train_feature)).toarray())
 			self.sigma_const = np.sqrt(2*np.log(1.25/self.config["delta"])) / self.config["epsilon"]
 
-	def update_no_noise(self, s_Q, z, y):
+	def update_no_noise(self, s_Q, z, y, index):
+		# toarray convert csr matrix to 2D np array, which is then converted to 1d np array with flatten
+		self.train_batch_features = sparse.csr_matrix(np.array([self.train_feature[id].toarray().flatten() for id in index]))
 		self.s_Q = s_Q
 		self.z = z
 		self.y = y
 		res = minimize(self.g, self.x, method=self.config["x_solver"], jac=self.g_der, hess=self.g_hess, options={'gtol': 1e-5,'eps': 1e-08,'maxiter': 15000,'disp': False})
 		self.x = res.x
 		# self.Qx_old = self.Qx
-		self.Qx = self.train_feature.dot(self.x.reshape([-1,1])).flatten()
+		self.Qx = self.train_batch_features.dot(self.x.reshape([-1,1])).flatten()
 
-	def update_and_append_noise(self, s_Q, z, y, method="result"):
+	def update_and_append_noise(self, s_Q, z, y, index, method="result"):
 		assert method in ["result", "variable"]
-		self.update_no_noise(s_Q, z, y)
+		self.update_no_noise(s_Q, z, y, index)
 		# append noise
 		noise_scale = self.eval_noise_scale()
 		if "result" == method:
@@ -219,9 +264,9 @@ class worker(nodes):
 				self.Qx += np.random.normal(scale = noise_scale,size=[self.train_size])
 		if "variable" == method:
 			if "fixed" == self.config["noise_eval_method"]:
-				self.Qx += self.train_feature.dot(np.random.normal(scale = noise_scale,size=[self.size_feature]))
+				self.Qx += self.train_batch_features.dot(np.random.normal(scale = noise_scale,size=[self.size_feature]))
 			if "computed" == self.config["noise_eval_method"]:
-				self.Qx += self.train_feature.dot(np.random.multivariate_normal(np.zeros(self.size_feature), noise_scale))
+				self.Qx += self.train_batch_features.dot(np.random.multivariate_normal(np.zeros(self.size_feature), noise_scale))
 
 	def eval_noise_scale(self):	
 		if "fixed" == self.config["noise_eval_method"]:
@@ -247,7 +292,7 @@ class worker(nodes):
 
 	def g(self, x):
 		# x update optimization problem value function
-		Dx = self.train_feature.dot(x)
+		Dx = self.train_batch_features.dot(x)
 		R = self.R(x)
 		linear = np.inner(self.y, Dx)
 		aug = self.config["rho"] / 2 * np.linalg.norm(self.s_Q - self.Qx + Dx - self.z)**2
@@ -256,18 +301,18 @@ class worker(nodes):
 	def g_der(self, x):
 		# x update optimization problem derivative
 		R_der = self.R_der(x)
-		remain = self.train_feature.transpose().dot(self.y + self.config["rho"]*(self.s_Q - self.Qx + self.train_feature.dot(x)- self.z)).flatten()
+		remain = self.train_batch_features.transpose().dot(self.y + self.config["rho"]*(self.s_Q - self.Qx + self.train_batch_features.dot(x)- self.z)).flatten()
 		return self.config["lambda"] * R_der + remain
 
 	def g_hess(self, x):
 		# x update optimization problem hession matrix
 		# R_hess = self.R_hess(x) # hess is I
-		remain = self.config["rho"] * self.train_feature.transpose().dot(self.train_feature).toarray()
+		remain = self.config["rho"] * self.train_batch_features.transpose().dot(self.train_batch_features).toarray()
 		return self.config["lambda"] + remain 
 
 	def g_hess_sparse(self, x):
 		R_hess = self.R_hess_sparse(x)
-		# remain = self.config["rho"] * self.train_feature.transpose().dot(self.train_feature)
+		# remain = self.config["rho"] * self.train_batch_features.transpose().dot(self.train_batch_features)
 		return self.config["lambda"] * R_hess #+ remain
 
 	def R(self, x):
@@ -330,47 +375,55 @@ class coord:
 		s_Q = np.zeros(self.server.train_size)
 		z = np.zeros(self.server.train_size)
 		y = np.zeros(self.server.train_size)
-		time_start = time.time()
+		batchid_generator = DataLoader(self.server.yyb_data, self.config["batch_size"], shuffle=True)
 		for t in range(self.config["max_iter"]):
 			# worker iteration
 			# if True == self.config["is_parallel"]:
 				# Parallel(n_jobs=self.config["num_cpus"])(delayed(self.worker[i].update_no_noise)(s_Q, z, y) for i in range(self.config["num_workers"]))
 			# else:
-			if True == self.config["is_with_noise"]:
+			time_start = time.time()
+			for batch_index, batchid in enumerate(batchid_generator):
+				if True == self.config["is_with_noise"]:
+					for i in range(self.config["num_workers"]):
+						# time_xi_start = time.time()
+						self.worker[i].update_and_append_noise(s_Q, z, y, batchid.tolist(), method=self.config["noise_method"])
+						# self.history["train_time_x"][t, i] = time.time() - time_xi_start
+				else:
+					for i in range(self.config["num_workers"]):
+						# print("workers {} start in iter {}".format(i, t))
+						# time_xi_start = time.time()
+						self.worker[i].update_no_noise(s_Q, z, y, batchid.tolist())
+						# self.history["train_time_x"][t, i] = time.time() - time_xi_start
+						# print("workers {} done in iter {}".format(i, t))
+				# time_z_start = time.time()
+				Q = []
 				for i in range(self.config["num_workers"]):
-					time_xi_start = time.time()
-					self.worker[i].update_and_append_noise(s_Q, z, y, method=self.config["noise_method"])
-					self.history["train_time_x"][t, i] = time.time() - time_xi_start
-			else:
+					Q.append(self.worker[i].get_Dx_no_noise(is_train = True))
+				s_Q = np.sum(Q, axis=0)
+				# server iteration
+				# print("server iter {iter} start".format(iter = t))
+				self.server.update(s_Q, batchid.tolist())
+				z, y = self.server.get_z_y()
+				# print("server iter {iter} done".format(iter = t))
+				# evaluate on each iteration
+				self.history["train_logloss_no_noise"][t] = self.loss_logit_form(self.server.train_batch_features, s_Q)
+				x_l2 = 0
 				for i in range(self.config["num_workers"]):
-					print("workers {} start in iter {}".format(i, t))
-					time_xi_start = time.time()
-					self.worker[i].update_no_noise(s_Q, z, y)
-					self.history["train_time_x"][t, i] = time.time() - time_xi_start
-					print("workers {} done in iter {}".format(i, t))
-			time_z_start = time.time()
-			Q = []
-			for i in range(self.config["num_workers"]):
-				Q.append(self.worker[i].get_Dx_no_noise(is_train = True))
-			s_Q = np.sum(Q, axis=0)
-		# server iteration
-			print("server iter {iter} start".format(iter = t))
-			self.server.update(s_Q)
-			z, y = self.server.get_z_y()
-			time_epoch_end = time.time()
-			print("server iter {iter} done".format(iter = t))
+					x_l2 += self.worker[i].get_x_norm()
+				self.history["train_objective_no_noise"][t] = self.history["train_logloss_no_noise"][t] + self.config["lambda"] * x_l2
+				if batch_index%10 == 0:
+					print("--Iteration: %d, train_logloss: %6.4f, train_obj: %6.4f" % (t, self.history["train_logloss_no_noise"][t], self.history["train_objective_no_noise"][t]))
+					
 		# evaluation and print
+			time_epoch_end = time.time()
 			self.history["current_iter"] = t
-			self.history["train_time_z"][t] = time_epoch_end - time_z_start
-			self.history["train_time"][t] = self.history["train_time_z"][t] + np.max(self.history["train_time_x"][t, :]) # simulate the true case, worker calculation is parallal 
-			self.history["train_logloss_no_noise"][t] = self.loss_logit_form(self.server.train_label, s_Q)
-			x_l2 = 0
-			for i in range(self.config["num_workers"]):
-				x_l2 += self.worker[i].get_x_norm()
-			self.history["train_objective_no_noise"][t] = self.history["train_logloss_no_noise"][t] + self.config["lambda"] * x_l2
+			self.history["train_time"][t] = time_epoch_end - time_start
+			# self.history["train_time_z"][t] = time_epoch_end - time_z_start
+			# self.history["train_time"][t] = self.history["train_time_z"][t] + np.max(self.history["train_time_x"][t, :]) # simulate the true case, worker calculation is parallal 
+
 			self.history["test_logloss_no_noise"][t], _ = self.eval_test_no_privacy()
 			if 0 != self.config["is_verbose"]:
-				print("--Iteration: %d, train_logloss: %6.4f, train_obj: %6.4f, test_logloss: %6.4f, time(x, z): %4.2f/%4.2f, eplapsed: %4.2f, ETA: %4.2f" % (t, self.history["train_logloss_no_noise"][t], self.history["train_objective_no_noise"][t], self.history["test_logloss_no_noise"][t], np.max(self.history["train_time_x"][t, :]), self.history["train_time_z"][t], time_epoch_end-time_start, (time_epoch_end-time_start)/(t+1.)*(self.config["max_iter"]-t-1.)))
+				print("--Iteration: %d, train_logloss: %6.4f, train_obj: %6.4f, test_logloss: %6.4f,  eplapsed: %4.2f" % (t, self.history["train_logloss_no_noise"][t], self.history["train_objective_no_noise"][t], self.history["test_logloss_no_noise"][t], self.history["train_time"][t]))
 		if 0 != self.config["is_verbose"]:
 			print("Total elapsed time %4.2f" % np.sum(self.history["train_time"]))
 
