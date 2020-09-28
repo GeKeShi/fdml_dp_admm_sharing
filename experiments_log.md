@@ -4,8 +4,6 @@
 - epoch time:
 > eplapsed: 68323.17s
 - test loss:
-> test_logloss: 0.6847, 
---Iteration: 0, train_logloss: 0.6852
---Iteration: 1, train_logloss: 0.6852 
+> test_logloss: 0.6847, 0.6733, 0.6713, 0.6753, 0.6772, 0.6713
 - test auc:
 - training loss curve:
