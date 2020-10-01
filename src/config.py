@@ -2,11 +2,11 @@
 ## training hyper parameters
 config = {}
 
-# config["input_dir_path"] = "../data/a9a"
-config["input_dir_path"] = "/data/.yaochen/data/yyb_data"
+config["input_dir_path"] = "../data/a9a"
+# config["input_dir_path"] = "/data/.yaochen/data/yyb_data"
 # config["input_dir_path"] = "../data/gisette"
 config["batch_size"] = 256
-config["num_workers"] = 3
+config["num_workers"] = 2
 config["output_dir_path"] = "../result"
 
 # config["privacy_budget"] = 1.0
@@ -17,9 +17,9 @@ config["noise_scale"] = 0
 config["noise_method"] = "variable" # variable or result, variable adds noise to x while result adds noise to Dmxm
 config["noise_eval_method"] = "fixed" # computed or fixed, computed uses the gurantee in paper while fixed added noise directly with fixed level
 
-config["max_iter"] = 10
-config["rho"] = 10
-config["lambda"] = 0.001
+config["max_iter"] = 100
+config["rho"] = 1
+config["lambda"] = 0.01
 
 config["model"] = "lr" # lr ln svm 
 # config["z_solver"] = "BFGS"

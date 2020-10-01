@@ -18,12 +18,12 @@ def load_admm_result(result_dir,data_set, noise_level="0.0", epsilon=None, delta
 	else:
 		result_path = os.path.join(result_dir, "admm_result/result", data_set+"_epsilon_"+epsilon+"_delta_"+delta)
 	with open(result_path, "rb") as fin:
-		history = pickle.load(fin)
+		history = pickle.load(fin, encoding="latin1")
 	return history
 
 def plot_a9a_loss_vs_epoch(admm, sgd, figure_dir):
 	num_points_per_epoch = 10
-	max_epoch = 50
+	max_epoch = 100
 	x = [range(1, max_epoch+1) for i in range(4)]
 	y = []
 	y.append(admm["train_objective_no_noise"][0:max_epoch])
@@ -36,12 +36,12 @@ def plot_a9a_loss_vs_epoch(admm, sgd, figure_dir):
 	line_markers = [None, None, None, None]
 	line_widths = [2,2,2,2]
 	path_figure = os.path.join(figure_dir, "a9a_loss_vs_epoch.eps")
-	xlim=[0, 50]
+	xlim=[0, max_epoch]
 	ylim=[0.32, 0.4]
-	xticks = [10, 20, 30, 40]
+	xticks = [10, 20, 30, 40, 50, 60, 70, 80, 90]
 	x_label = "Epoch"
 	y_label = "Loss"
-	figsize=(12,6)
+	figsize=(14,6)
 	plot_plain_curves(x, y, path_figure, line_names, line_colors, line_styles, line_widths, line_markers, x_label, y_label, xlim, ylim, figsize, xticks)
 
 def plot_a9a_loss_vs_time(admm, sgd, figure_dir):
@@ -310,9 +310,9 @@ if __name__=="__main__":
 	result_dir = "./result"
 ### for normal part
 ## for a9a data set
-	# a9a_admm_history_0_0 = load_admm_result(result_dir,"a9a", "0.0")
-	# a9a_sgd = load_sgd_result(result_dir, "a9a")
-	# plot_a9a_loss_vs_epoch(a9a_admm_history_0_0, a9a_sgd, figure_dir)
+	a9a_admm_history_0_0 = load_admm_result(result_dir,"a9a", "0.0")
+	a9a_sgd = load_sgd_result(result_dir, "a9a")
+	plot_a9a_loss_vs_epoch(a9a_admm_history_0_0, a9a_sgd, figure_dir)
 	# plot_a9a_loss_vs_time(a9a_admm_history_0_0, a9a_sgd, figure_dir)
 ## for gisette data set
 	# gisette_admm_history_0_0 = load_admm_result(result_dir,"gisette", "0.0")
@@ -329,6 +329,6 @@ if __name__=="__main__":
 ## Training convergence vs noise
 	noise_level_list_str = ["0.0", "0.3", "1.0"]
 	plot_a9a_loss_vs_epoch_vary_noise(noise_level_list_str, result_dir, figure_dir)
-	noise_level_list_str = ["0.0", "1.0", "3.0"]
-	plot_gisette_loss_vs_epoch_vary_noise(noise_level_list_str, result_dir, figure_dir)
+	# noise_level_list_str = ["0.0", "1.0", "3.0"]
+	# plot_gisette_loss_vs_epoch_vary_noise(noise_level_list_str, result_dir, figure_dir)
 ## Training convergence vs noise and baselines, noise in epsilon delta
