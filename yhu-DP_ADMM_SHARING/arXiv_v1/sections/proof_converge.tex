@@ -1,0 +1,254 @@
+\subsection{Proof of Theorem~\ref{theo:convergence}}
+To help theoretical analysis, we denote the objective functions in \eqref{eq:pal_algo_x} and \eqref{eq:pal_algo_z} as
+\begin{align}
+    & g_m(x_m) = \lambda R_m(x_m) + \langle y^t, \mathcal{D}_mx_m\rangle + \frac{\rho}{2}\big\|\sum_{\substack{k=1\\k\neq m}}^{M} \mathcal{D}_kx_k^t+ \mathcal{D}_mx_m - z^t\big\|^2,\nonumber\\
+    & h(z) = l(z)  - \langle y^t, z \rangle + \frac{\rho}{2} \big\|\sum_{m=1}^{M}\mathcal{D}_mx_m^{t+1} - z\big\|^2,
+\end{align}
+correspondingly. We prove the following four lemmas to help prove the theorem. 
+\begin{lemma}\label{lemma:y_diff_bound}
+Under Assumption~\ref{theo:assumptions_pri}, we have
+\[
+    \nabla l(z^{t+1}) = y^{t+1},
+\]
+and
+\[
+    \|y^{t+1} - y^t\|^2 \le L^2\|z^{t+1} - z^{t}\|^2.
+\]
+\end{lemma}
+{\bf Proof.} By the optimality in \eqref{eq:pal_algo_z}, we have
+\begin{align}
+    \nabla l(z^{t+1}) - y^t + \rho\big(z^{t+1} - \sum_{m=1}^{M} \mathcal{D}_mx_m^{t+1}\big) = 0.\nonumber
+\end{align}
+Combined with \eqref{eq:pal_algo_y}, we can get
+\begin{align}
+    \nabla l(z^{t+1}) = y^{t+1}.
+\end{align}
+Combined with Assumption~\ref{theo:assumptions_pri}.\ref{item:assum_1_pri}, we have
+\begin{align}
+\|y^{t+1} - y^{t}\|^2 = \|\nabla l(z^{t+1}) - \nabla l(z^{t})\|^2 \le L^2\|z^{t+1} - z^t\|^2.
+\end{align}
+\hfill$\square$
+
+\begin{lemma}\label{lemma:algebra_1}
+    We have 
+    \begin{align}
+        & \big(\|\sum_{m=1}^{M} x_m^{t+1} - z\|^2 - \|\sum_{m=1}^{M} x_m^{t} - z\|^2\big) - \sum_{m=1}^{M}\big(\|\sum_{\substack{k=1\\k\neq m}}^M x_k^{t} + x_m^{t+1} - z\|^2 - \|\sum_{m=1}^{M} x_m^{t} - z\|^2\big)\nonumber\\
+        \le & \sum_{m=1}^{M} \|x_m^{t+1} - x_m^{t}\|^2.
+    \end{align}
+\end{lemma}
+{\bf Proof.}
+\begin{align}
+    \text{LHS} = & \big(\sum_{m=1}^{M}(x_m^{t+1} + x_m^{t}) - 2z\big)\top(\sum_{m=1}^{M} x_m^{t+1} - \sum_{m=1}^{M} x_m^t) - \sum_{m=1}^{M} \big(\sum_{\substack{k=1\\k\neq m}}^M2x_k^t + x_m^t + x_m^{t+1} -2z\big)\top(x_m^{t+1} - x_m^t)\nonumber\\
+    = & - \sum_{m=1}^{M} \sum_{\substack{k=1\\k\neq m}}^M(x_k^{t+1} - x_k^{t})\top(x_m^{t+1} - x_m^t)\nonumber\\
+    = & - \|\sum_{m=1}^{M} (x_m^{t+1} - x_m^{t})\|^2 + \sum_{m=1}^{M} \|x_m^{t+1} - x_m^{t}\|^2\nonumber\\
+    \le & \sum_{m=1}^{M} \|x_m^{t+1} - x_m^{t}\|^2.\nonumber
+\end{align}
+\hfill$\square$
+
+\begin{lemma}\label{lemma:L_iter_diff}
+Suppose Assumption~\ref{theo:assumptions_pri} holds. We have
+\begin{align}
+    & \mathcal{L}(\{x_m^{t+1}\},z^{t+1};y^{t+1}) - \mathcal{L}(\{x_m^{t}\},z^{t};y^{t})\nonumber\\
+    & \le \sum_{m=1}^{M} -\left(\frac{\gamma_m(\rho)}{2}-\sigma_{\text{max}}(\mathcal{D}_m^\top \mathcal{D}_m)\right)\|x_m^{t+1} - x_m^t\|^2 - \left(\frac{\gamma(\rho)}{2} - \frac{L^2}{\rho}\right)\|z^{t+1} - z^t\|^2. \nonumber
+\end{align}
+\end{lemma}
+{\bf Proof.} The LFH can be decomposed into two parts as
+\begin{align}
+    & \mathcal{L}(\{x_m^{t+1}\},z^{t+1};y^{t+1}) - \mathcal{L}(\{x_m^{t}\},z^{t};y^{t})\nonumber\\
+    = & \big(\mathcal{L}(\{x_m^{t+1}\},z^{t+1};y^{t+1}) - \mathcal{L}(\{x_m^{t+1}\},z^{t+1};y^{t})\big)\nonumber\\
+    & + \big(\mathcal{L}(\{x_m^{t+1}\},z^{t+1};y^{t}) - \mathcal{L}(\{x_m^{t}\},z^{t};y^{t})\big). \label{eq:proof_diff_L_0_pal}
+\end{align}
+For the first term, we have
+\begin{align}
+    & \mathcal{L}(\{x_j^{t+1}\},z^{t+1};y^{t+1}) - \mathcal{L}(\{x_j^{t+1}\},z^{t+1};y^{t})\nonumber\\
+    = & \langle y^{t+1} - y^t , \sum_jD_jx_j^{t+1} - z^{t+1}\rangle\nonumber\\
+    = & \frac{1}{\rho}\|y^{t+1} - y^t\|^2\quad\text{(by \eqref{eq:pal_algo_y})}\nonumber\\
+    = & \frac{L^2}{\rho}\|z^{t+1} - z^t\|^2\quad\text{(by Lemma~\ref{lemma:y_diff_bound})}\label{eq:proof_diff_L_1_pal}.
+\end{align}
+For the second term, we have
+\begin{align}
+    & \mathcal{L}(\{x_m^{t+1}\},z^{t+1};y^{t}) - \mathcal{L}(\{x_m^{t}\},z^{t};y^{t})\nonumber\\
+    = & \mathcal{L}(\{x_m^{t+1}\},z^{t+1};y^{t}) - \mathcal{L}(\{x_m^{t}\},z^{t+1};y^{t}) + \mathcal{L}(\{x_m^{t}\},z^{t+1};y^{t}) - \mathcal{L}(\{x_m^{t}\},z^{t};y^{t})\nonumber\\
+    \le & \bigg(\big(\lambda \sum_{m=1}^{M}R_m(x_m^{t+1}) + \langle y^t, \sum_{m=1}^{M}\mathcal{D}_mx_m^{t+1}\rangle + \frac{\rho}{2}\big\|\sum_{k=1}^M \mathcal{D}_kx_k^{t+1} - z^{t+1}\big\|^2\big)\nonumber\\
+    & - \big(\lambda \sum_{m=1}^{M}R_m(x_m^{t}) + \langle y^t, \sum_{m=1}^{M}\mathcal{D}_mx_m^{t}\rangle + \frac{\rho}{2}\big\|\sum_{k=1}^M \mathcal{D}_kx_k^{t} - z^{t+1}\big\|^2\big)\bigg)\nonumber\\
+    & + \bigg(\big(l(z^{t+1}) -\langle y^t, z^{t+1}\rangle + \frac{\rho}{2} \big\|\sum_{m=1}^{M} \mathcal{D}_mx_m^{t+1} - z^{t+1}\big\|^2\big)-\big(l(z^{t}) -\langle y^t, z^{t}\rangle+ \frac{\rho}{2} \big\|\sum_{m=1}^{M} \mathcal{D}_mx_m^{t+1} - z^{t}\big\|^2\big)\bigg)\nonumber\\
+    \le & \sum_{m=1}^{M} \bigg(\big(\lambda R_m(x_m^{t+1}) + \langle y^t, \mathcal{D}_mx_m^{t+1}\rangle + \frac{\rho}{2}\big\|\sum_{\substack{k=1\\k\neq m}}^M\mathcal{D}_kx_k^{t} + \mathcal{D}_mx_m^{t+1} - z^{t+1}\big\|^2\big)\nonumber\\
+    & - \big(\lambda R_m(x_m^{t}) + \langle y^t, \mathcal{D}_mx_m^{t}\rangle + \frac{\rho}{2}\big\|\sum_{k=1}^{M}\mathcal{D}_kx_k^{t} - z^{t+1}\big\|^2\big)\bigg)+\sum_{m=1}^{M} \|\mathcal{D}_m(x_m^{t+1} - x_m^t)\|^2\nonumber\\
+    & + \bigg(\big(l(z^{t+1}) -\langle y^t, z^{t+1}\rangle + \frac{\rho}{2} \big\|\sum_{m=1}^{M} \mathcal{D}_mx_m^{t+1} - z^{t+1}\big\|^2\big)\nonumber\\
+    & -\big(l(z^{t}) -\langle y^t, z^{t}\rangle+ \frac{\rho}{2} \big\|\sum_{m=1}^{M} \mathcal{D}_mx_m^{t+1} - z^{t}\big\|^2\big)\bigg)\quad\text{(by Lemma~\ref{lemma:algebra_1})}\nonumber\\
+    = & \sum_{m=1}^{M} \big(g_m(x_m^{t+1}) - g_m(x_m^t)\big) + (h(z^{t+1}) - h(z^T)))+\sum_{m=1}^{M} \|\mathcal{D}_m(x_m^{t+1} - x_m^t)\|^2\nonumber\\
+    \le & \sum_{m=1}^{M} \big(\langle \nabla g_m(x_m^{t+1}), x_m^{t+1}-x_m^t\rangle - \frac{\gamma_m(\rho)}{2}\|x_m^{t+1}-x_m^t\|^2\big) + \langle\nabla h(z^{t+1}), z^{t+1} - z^t\rangle - \frac{\gamma(\rho)}{2}\|z^{t+1} - z^t\|^2\nonumber\\
+    & +\sum_{m=1}^{M} \|\mathcal{D}_m(x_m^{t+1} - x_m^t)\|^2\quad\text{(by strongly convexity from Assumption~\ref{theo:assumptions_pri}.\ref{item:assum_2_pri})}\nonumber
+\end{align}
+\begin{align}
+    \le & -\sum_{m=1}^{M}\frac{\gamma_m(\rho)}{2}\|x_m^{t+1}-x_m^t\|^2 - \frac{\gamma(\rho)}{2}\|z^{t+1} - z^t\|^2+\sum_{m=1}^{M}\|\mathcal{D}_m(x_m^{t+1} - x_m^t)\|^2\nonumber\\
+    & \text{(by optimality condition for subproblem in \eqref{eq:pal_algo_x} and \eqref{eq:pal_algo_z})}\nonumber\\
+    \le & \sum_{m=1}^{M} -\left(\frac{\gamma_m(\rho)}{2}-\sigma_{\text{max}}(\mathcal{D}_m^\top \mathcal{D}_m)\right)\|x_m^{t+1} - x_m^t\|^2 - \frac{\gamma(\rho)}{2}\|z^{t+1} - z^t\|^2.\label{eq:proof_diff_L_2_pal}
+\end{align}
+Note that we have abused the notation $\nabla g_m(x_m)$ and denote it as the subgradient when $g$ is non-smooth but convex.
+Combining \eqref{eq:proof_diff_L_0_pal}, \eqref{eq:proof_diff_L_1_pal} and \eqref{eq:proof_diff_L_2_pal}, the lemma is proved.\hfill$\square$
+
+\begin{lemma}\label{lemma:L_lower_bound}
+    Suppose Assumption~\ref{theo:assumptions_pri} holds. Then the following limit exists and is bounded from below:
+    \begin{align}
+        \underset{t\rightarrow\infty}{\text{lim}} \mathcal{L}(\{x^{t+1}\}, z^{t+1}; y^{t+1}).
+    \end{align}
+\end{lemma}
+{\bf Proof.}
+\begin{align}
+    & \mathcal{L}(\{x^{t+1}\}, z^{t+1}; y^{t+1} )\nonumber\\
+    = & l(z^{t+1}) + \lambda\sum_{m=1}^{M} R_m(x_m^{t+1}) + \langle y^{t+1}, \sum_{m=1}^{M}\mathcal{D}_m x_m^{t+1} - z^{t+1}\rangle + \frac{\rho}{2}\|\mathcal{D}_m x_m^{t+1} - z^{t+1}\|^2\nonumber\\
+    = &\lambda\sum_{m=1}^{M} R_m(x_m^{t+1}) + l(z^{t+1}) + \langle \nabla l(z^{t+1}), \sum_{m=1}^{M}\mathcal{D}_m x_m^{t+1} - z^{t+1}\rangle + \frac{\rho}{2}\|\mathcal{D}_m x_m^{t+1} - z^{t+1}\|^2\quad\text{(by Lemma~\ref{lemma:y_diff_bound})}\nonumber\\
+    \ge & \lambda\sum_{m=1}^{M} R_m(x_m^{t+1}) + l(\sum_{m=1}^{M}\mathcal{D}_m x_m^{t+1}) + \frac{\rho-L}{2}\|\mathcal{D}_m x_m^{t+1} - z^{t+1}\|^2.\quad%\text{(from Assumption~\ref{theo:assumptions_pal}.\ref{item:assum_1_pal})}
+\end{align}
+Combined with Assumption~\ref{theo:assumptions_pri}.\ref{item:assum_3_pri}, $\mathcal{L}(\{x^{t+1}\}, z^{t+1}; y^{t+1})$ is lower bounded. Furthermore, by Assumption~\ref{theo:assumptions_pri}.\ref{item:assum_2_pri} and Lemma~\ref{lemma:L_iter_diff}, $\mathcal{L}(\{x^{t+1}\}, z^{t+1}; y^{t+1})$ is decreasing. These complete the proof. \hfill$\square$
+
+Now we are ready for the proof.
+
+{\bf Part 1. } By Assumption~\ref{theo:assumptions_pri}.\ref{item:assum_2_pri}, Lemma~\ref{lemma:L_iter_diff} and Lemma~\ref{lemma:L_lower_bound}, we have
+\begin{align}
+    & \|x_m^{t+1} - x_m^t\|\rightarrow 0\quad\forall m=1,2,\ldots, M,\nonumber\\
+    & \|z^{t+1} - z^t\|\rightarrow 0.\nonumber
+\end{align}
+Combined with Lemma~\ref{lemma:y_diff_bound}, we have
+\begin{align}
+    \|y^{t+1}-y^t\|^2\rightarrow 0.\nonumber
+\end{align}
+Combined with~\eqref{eq:pal_algo_y}, we complete the proof for Part 1.
+
+{\bf Part 2.} Due to the fact that $\|y^{t+1}-y^t\|^2\rightarrow 0$, by taking limit in \eqref{eq:pal_algo_y}, we can get \eqref{eq:cond_primal}.
+
+At each iteration $t+1$, by the optimality of the subproblem in \eqref{eq:pal_algo_z}, we have
+\begin{align}
+    \nabla l(z^{t+1}) - y^t + \rho (z^{t+1} - \sum_{m=1}^{M}\mathcal{D}_mx_m^{t+1}) = 0.
+\end{align}
+Combined with \eqref{eq:cond_primal} and taking the limit, we get \eqref{eq:cond_dual}.
+
+Similarly, by the optimality of the subproblem in \eqref{eq:pal_algo_x}, for $\forall m\in\mathcal{M}$ there exists $\eta_m^{t+1}\in\partial R_m(x_m^{t+1})$, such that
+\begin{align}
+    \big\langle x_m-x_m^{t+1}, \lambda \eta_m^{t+1} + \mathcal{D}_m^Ty^t + \rho \mathcal{D}_m^T\big(\sum_{\substack{k=1\\k\le m}}^M \mathcal{D}_kx_k^{t+1} + \sum_{\substack{k=1\\k>j}}^M \mathcal{D}_kx_k^{t} - z^{t}\big)\big\rangle \ge 0\quad \forall x_m\in X_m.
+\end{align}
+Since $R_m$ is convex, we have
+\begin{align}
+    \lambda R_m(x_m) - \lambda R_m(x_m^{t+1}) + \big\langle x-x_m^{t+1}, \mathcal{D}_m^\top y^t + \rho\big(\sum_{\substack{k=1\\k\le m}}^M \mathcal{D}_kx_k^{t+1} + \sum_{\substack{k=1\\k>j}}^M \mathcal{D}_kx_k^{t} - z^{t}\big)^T \mathcal{D}_j\big\rangle \ge 0\quad \forall x_m\in X_m.
+\end{align}
+Combined with \eqref{eq:cond_primal} and the fact $\|x_m^{t+1} - x_m^{t}\|\rightarrow 0$, by taking the limit, we get
+\begin{align}
+    \lambda R_m(x_m) - \lambda R_m(x_m^*) + \big\langle x-x_m^{*}, \mathcal{D}_m^\top y^* \big\rangle \ge 0\quad \forall x_m\in X_m, \forall m,
+\end{align}
+which is equivalent to
+\begin{align}
+    \lambda R_m(x) + \big\langle y^*, \mathcal{D}_mx \big\rangle- \lambda R_m(x_m^*) - \big\langle y^*, \mathcal{D}_mx_m^{*} \big\rangle \ge 0\quad \forall x\in X_m, \forall m.
+\end{align}
+And we can get the result in \eqref{eq:cond_x_opt_conv}. \\
+When $m\not\in\mathcal{M}$, we have
+\begin{align}
+    \big\langle x_m-x_m^{t+1}, \lambda \nabla R_m(x_m^{t+1}) + \mathcal{D}_m^\top y^t + \rho\big(\sum_{\substack{k=1\\k\le m}}^M \mathcal{D}_kx_k^{t+1} + \sum_{\substack{k=1\\k>j}}^M \mathcal{D}_kx_k^{t} - z^{t}\big)^T \mathcal{D}_m\big\rangle \ge 0\quad \forall x_m\in X_m.
+\end{align}
+Taking the limit and we can get \eqref{eq:cond_x_opt_nonconv}.
+
+{\bf Part 3.} We first show that there exists a limit point for each of the sequences $\{x_m^t\}$, $\{z^t\}$ and $\{y^t\}$. Since $X_m, \forall m$ is compact, $\{x_m^t\}$ must have a limit point. With Theorem~\ref{theo:convergence}.\ref{item:primal_cond_limit}, we can get that $\{z^t\}$ is also compact and has a limit point. Furthermore, with Lemma~\ref{lemma:y_diff_bound}, we can get $\{y^t\}$ is also compact and has a limit point.
+
+We prove Part 3 by contradiction. Since $\{x_m^t\}$, $\{z^t\}$ and $\{y^t\}$ lie in some compact set, there exists a subsequence $\{x_m^{t_k}\}$, $\{z^{t_k}\}$ and $\{y^{t_k}\}$, such that
+\begin{align}
+    (\{x_m^{t_k}\}, z^{t_k}; y^{t_k})\rightarrow (\{\hat{x}_m\}, \hat{z}; \hat{y}), \label{eq:subseq_limit}
+\end{align}
+where $(\{\hat{x}_m\}, \hat{z}; \hat{y})$ is some limit point and by part 2, we have $(\{\hat{x}_m\}, \hat{z}; \hat{y})\in Z^*$. Suppose that $\{\{x_m^t\}, z^t; y^t\}$ does not converge to $Z^*$, since $(\{x_m^{t_k}\}, z^{t_k}; y^{t_k})$ is a subsequence of it, there exists some $\gamma>0$, such that
+\begin{align}
+    \underset{k\rightarrow\infty}{\lim}\quad\text{dist}\big((\{x_m^{t_k}\}, z^{t_k}; y^{t_k});Z^*\big)=\gamma>0.\label{eq:suppose}
+\end{align}
+From \eqref{eq:subseq_limit}, there exists some $J(\gamma)>0$, such that
+\begin{align}
+        \|(\{x_m^{t_k}\}, z^{t_k}; y^{t_k})- (\{\hat{x}_m\}, \hat{z}; \hat{y})\|\le\frac{\gamma}{2}, \quad\forall k\ge J(\gamma).
+\end{align}
+Since $(\{\hat{x}_m\}, \hat{z}; \hat{y})\in Z^*$, we have
+\begin{align}
+    \text{dist}\big((\{x_m^{t_k}\}, z^{t_k}; y^{t_k});Z^*\big) \le \text{dist}\big((\{x_m^{t_k}\}, z^{t_k}; y^{t_k});  (\{\hat{x}_m\}, \hat{z}; \hat{y})\big).
+\end{align}
+From the above two inequalities, we must have
+\begin{align}
+    \text{dist}\big((\{x_m^{t_k}\}, z^{t_k}; y^{t_k});Z^*\big)\le\frac{\gamma}{2},\quad\forall k\ge J(\gamma),
+\end{align}
+which contradicts to \eqref{eq:suppose}, completing the proof.
+\hfill$\square$
+
+\subsection{Proof of Theorem~\ref{theo:iter_complexity}}
+We first show an upper bound for $V^t$.
+
+1. Bound for $\tilde{\nabla}_{x_m} \mathcal{L}(\{x_m^t\}, z^t; y^t)$. When $m\in\mathcal{M}$, from the optimality condition in \eqref{eq:pal_algo_x}, we have
+\begin{align}
+    0 \in \lambda\partial_{x_m}R_j(x_m^{t+1}) + \mathcal{D}^\top y^t + \rho \mathcal{D}_j^\top \big(\sum_{\substack{k=1\\k\neq j}}^M \mathcal{D}_kx_k^{t} + \mathcal{D}_mx_m^{t+1} - z^{t}\big).\nonumber
+\end{align}
+By some rearrangement, we have
+\begin{align}
+    \big(x_m^{t+1} - \mathcal{D}^\top y^t - \rho \mathcal{D}_m^\top \big(\sum_{\substack{k=1\\k\neq j}}^M \mathcal{D}_kx_k^{t}+ \mathcal{D}_mx_m^{t+1} - z^{t}\big)\big) - x_m^{t+1} \in \lambda\partial_{x_m}R_m(x_m^{t+1}),\nonumber
+\end{align}
+which is equivalent to
+\begin{align}
+    x_m^{t+1} = \text{prox}_{\lambda R_m}\big[x_m^{t+1} - \mathcal{D}^\top y^t - \rho \mathcal{D}_m^\top\big(\sum_{\substack{k=1\\k\neq j}}^M \mathcal{D}_kx_k^{t}+ \mathcal{D}_mx_m^{t+1} - z^{t}\big)\big].
+\end{align}
+Therefore,
+\begin{align}
+    & \|x_m^t - \text{prox}_{\lambda R_m} \big[x_m^t-\nabla_{x_m}\big(\mathcal{L}(\{x^t_m\}, z^t; y^t) - \lambda\sum_{m=1}^{M} R_m(x_m^t)\big)\big]\|\nonumber\\
+    = & \big\|x_m^t - x_m^{t+1} + x_m^{t+1} - \text{prox}_{\lambda R_m}\big[x_m^{t} - \mathcal{D}^\top y^t - \rho \mathcal{D}_m^\top \big(\sum_{k=1}^M \mathcal{D}_kx_k^{t} - z^{t}\big)\big]\big\|\nonumber\\
+    \le & \|x_m^t - x_m^{t+1}\| + \big\|  \text{prox}_{\lambda R_m}\big[x_m^{t+1} - \mathcal{D}^\top y^t - \rho \mathcal{D}_m^T\big( \sum_{\substack{k=1\\k\neq m}}^M \mathcal{D}_kx_k^{t}+ \mathcal{D}_mx_m^{t+1} - z^{t}\big)\big]\nonumber\\
+    &  - \text{prox}_{\lambda R_m}\big[x_m^{t} - \mathcal{D}^\top y^t - \rho \mathcal{D}_m^T\big(\sum_{k=1}^M \mathcal{D}_kx_k^{t} - z^{t}\big)\big]\big\|\nonumber\\
+    & \le 2\|x_m^t - x_m^{t+1}\| + \rho\|\mathcal{D}_m^\top \mathcal{D}_m(x_m^{t+1} - x_m^t)\|. \label{eq:proof_pal_bound_V_1}
+\end{align}
+When $m\not\in\mathcal{M}$, similarly, we have
+\begin{align}
+    \lambda\nabla_{x_m}R_m(x_m^{t+1}) + \mathcal{D}^\top y^t + \rho \mathcal{D}_m^\top \big(\sum_{\substack{k=1\\k\neq j}}^M \mathcal{D}_kx_k^{t}+ \mathcal{D}_mx_m^{t+1} - z^{t}\big) = 0.
+\end{align}
+Therefore,
+\begin{align}
+    & \|\nabla_{x_m} \mathcal{L}(\{x_m^t\}, z^t; y^t)\|\nonumber\\
+    = & \|\lambda\nabla_{x_m}R_m(x_m^{t}) + \mathcal{D}^\top y^t + \rho \mathcal{D}_m^\top \big( \sum_{k=1}^M \mathcal{D}_kx_k^{t} - z^{t}\big)\|\nonumber\\
+    = &  \|\lambda\nabla_{x_m}R_m(x_m^{t}) + \mathcal{D}^\top y^t + \rho \mathcal{D}_m^T\big( \sum_{k=1}^M \mathcal{D}_kx_k^{t} - z^{t}\big)\nonumber\\
+     & - \big(\lambda\nabla_{x_m}R_m(x_m^{t+1}) + \mathcal{D}^\top y^t + \rho \mathcal{D}_m^T\big(\sum_{\substack{k=1\\k\neq j}}^M \mathcal{D}_kx_k^{t}+ \mathcal{D}_mx_m^{t+1} - z^{t}\big)\big)\|\nonumber\\
+    \le &  \lambda\|\nabla_{x_m}R_m(x_m^{t}) - \nabla_{x_m}R_m(x_m^{t+1}) \| + \rho\|\mathcal{D}_m^\top \mathcal{D}_m(x_m^{t+1} - x_m^t)\|\nonumber\\
+    \le & L_m\| x_m^{t+1} - x_m^t \|  + \rho\|\mathcal{D}_m^\top \mathcal{D}_m(x_m^{t+1} - x_m^t)\|. \quad\text{(by Assumption~\ref{theo:assumptions_pri}.\ref{item:assum_4_pri})}\label{eq:proof_pal_bound_V_2}
+\end{align}
+
+2. Bound for $\|\nabla_{z} \mathcal{L}(\{x_m^t\}, z^t; y^t)\|$. By optimality condition in \eqref{eq:pal_algo_z}, we have
+\begin{align}
+    \nabla l(z^{t+1}) - y^t + \rho\big(z^{t+1} - \sum_{m=1}^M \mathcal{D}_m x_m^{t+1}\big) = 0.\nonumber
+\end{align}
+Therefore
+\begin{align}
+        & \|\nabla_{z} \mathcal{L}(\{x_m^t\}, z^t; y^t)\|\nonumber\\
+        = & \| l(z^{t}) - y^t + \rho\big(z^{t} - \sum_{m=1}^M \mathcal{D}_m x_m^{t}\big) \|\nonumber\\
+        = & \|l(z^{t}) - y^t + \rho\big(z^{t} - \sum_{m=1}^M \mathcal{D}_m x_m^{t}\big) - \big(l(z^{t+1}) - y^t + \rho\big(z^{t+1} - \sum_{m=1}^M \mathcal{D}_m x_m^{t+1}\big)\big)\|\nonumber\\
+        \le & (L+\rho)\|z^{t+1} - z^{t}\| + \rho\sum_{m=1}^M\|\mathcal{D}_m(x_m^{t+1}-x_m^{t})\|.\label{eq:proof_pal_bound_V_3}
+\end{align}
+
+3. Bound for $\|\sum_{m=1}^M \mathcal{D}_mx_m^t - z^t\|$. According to Lemma~\ref{lemma:y_diff_bound}, we have
+\begin{align}
+     \|\sum_{m=1}^M \mathcal{D}_mx_m^t - z^t\| = \frac{1}{\rho}\|y^{t+1}-y^t\| \le \frac{L}{\rho}\|z^{t+1}-z^t\|. \label{eq:proof_pal_bound_V_4}
+\end{align}
+
+Combining \eqref{eq:proof_pal_bound_V_1}, \eqref{eq:proof_pal_bound_V_2}, \eqref{eq:proof_pal_bound_V_3} and \eqref{eq:proof_pal_bound_V_4}, we can conclude that there exists some $C_1>0$, such that
+\begin{align}
+    V^t \le C_1(\|z^{t+1}-z^t\|^2 + \sum_{m=1}^M\|x_m^{t+1}-x_m^t\|^2), \label{eq:proof_pal_bound_V_5}
+\end{align}
+
+By Lemma~\ref{lemma:L_iter_diff}, there exists some constant $C_2 = \text{min}\{\sum_{m=1}^M\frac{\gamma_m(\rho)}{2}, \frac{\gamma(\rho)}{2} - \frac{L^2}{\rho}\}$, such that
+\begin{align}
+    & \mathcal{L}(\{x_m^t\}, z^t; y^t) - \mathcal{L}(\{x_m^{t+1}\}, z^{t+1}; y^{t+1})\nonumber\\
+    \ge & C_2 (\|z^{t+1}-z^t\|^2 + \sum_{m=1}^M\|x_m^{t+1}-x_m^t\|^2). \label{eq:proof_pal_bound_V_6}
+\end{align}
+
+By \eqref{eq:proof_pal_bound_V_5} and \eqref{eq:proof_pal_bound_V_6}, we have
+\begin{align}
+    V^t\le \frac{C_1}{C_2}\mathcal{L}(\{x_m^t\}, z^t; y^t) - \mathcal{L}(\{x_m^{t+1}\}, z^{t+1}; y^{t+1}).
+\end{align}
+Taking the sum over $t=1,\ldots, T$, we have
+\begin{align}
+    \sum_{t=1}^T V^t \le & \frac{C_1}{C_2} \mathcal{L}(\{x^1\}, z^1; y^1) - \mathcal{L}(\{x^{t+1}\}, z^{t+1}; y^{t+1})\nonumber\\
+    \le & \frac{C_1}{C_2} (\mathcal{L}(\{x^1\}, z^1; y^1) - \underline{f}).
+\end{align}
+By the definition of $T(\epsilon)$, we have
+\begin{align}
+    T(\epsilon)\epsilon \le \frac{C_1}{C_2} (\mathcal{L}(\{x^1\}, z^1; y^1)  - \underline{f}).
+\end{align}
+By taking $C = \frac{C_1}{C_2}$, we complete the proof. \hfill$\square$
+

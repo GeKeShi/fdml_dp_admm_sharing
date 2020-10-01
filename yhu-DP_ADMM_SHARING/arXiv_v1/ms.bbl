@@ -1,0 +1,623 @@
+%%% -*-BibTeX-*-
+%%% Do NOT edit. File created by BibTeX with style
+%%% ACM-Reference-Format-Journals [18-Jan-2012].
+
+\begin{thebibliography}{47}
+
+%%% ====================================================================
+%%% NOTE TO THE USER: you can override these defaults by providing
+%%% customized versions of any of these macros before the \bibliography
+%%% command.  Each of them MUST provide its own final punctuation,
+%%% except for \shownote{}, \showDOI{}, and \showURL{}.  The latter two
+%%% do not use final punctuation, in order to avoid confusing it with
+%%% the Web address.
+%%%
+%%% To suppress output of a particular field, define its macro to expand
+%%% to an empty string, or better, \unskip, like this:
+%%%
+%%% \newcommand{\showDOI}[1]{\unskip}   % LaTeX syntax
+%%%
+%%% \def \showDOI #1{\unskip}           % plain TeX syntax
+%%%
+%%% ====================================================================
+
+\ifx \showCODEN    \undefined \def \showCODEN     #1{\unskip}     \fi
+\ifx \showDOI      \undefined \def \showDOI       #1{#1}\fi
+\ifx \showISBNx    \undefined \def \showISBNx     #1{\unskip}     \fi
+\ifx \showISBNxiii \undefined \def \showISBNxiii  #1{\unskip}     \fi
+\ifx \showISSN     \undefined \def \showISSN      #1{\unskip}     \fi
+\ifx \showLCCN     \undefined \def \showLCCN      #1{\unskip}     \fi
+\ifx \shownote     \undefined \def \shownote      #1{#1}          \fi
+\ifx \showarticletitle \undefined \def \showarticletitle #1{#1}   \fi
+\ifx \showURL      \undefined \def \showURL       {\relax}        \fi
+% The following commands are used for tagged output and should be
+% invisible to TeX
+\providecommand\bibfield[2]{#2}
+\providecommand\bibinfo[2]{#2}
+\providecommand\natexlab[1]{#1}
+\providecommand\showeprint[2][]{arXiv:#2}
+
+\bibitem[\protect\citeauthoryear{??}{Lib}{[n.d.]}]%
+        {Liblinear:2019}
+ \bibinfo{year}{[n.d.]}\natexlab{}.
+\newblock \bibinfo{title}{LIBSVM Data: Classification (Binary Class)}.
+\newblock
+  \bibinfo{howpublished}{\url{https://www.csie.ntu.edu.tw/~cjlin/libsvmtools/datasets/binary.html}}.
+\newblock
+\newblock
+\shownote{Accessed: 2019-05-23.}
+
+
+\bibitem[\protect\citeauthoryear{Abadi, Chu, Goodfellow, McMahan, Mironov,
+  Talwar, and Zhang}{Abadi et~al\mbox{.}}{2016}]%
+        {abadi2016deep}
+\bibfield{author}{\bibinfo{person}{Martin Abadi}, \bibinfo{person}{Andy Chu},
+  \bibinfo{person}{Ian Goodfellow}, \bibinfo{person}{H~Brendan McMahan},
+  \bibinfo{person}{Ilya Mironov}, \bibinfo{person}{Kunal Talwar}, {and}
+  \bibinfo{person}{Li Zhang}.} \bibinfo{year}{2016}\natexlab{}.
+\newblock \showarticletitle{Deep learning with differential privacy}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the 2016 ACM SIGSAC Conference on
+  Computer and Communications Security}}. ACM, \bibinfo{pages}{308--318}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Bonte and Vercauteren}{Bonte and
+  Vercauteren}{2018}]%
+        {bonte2018privacy}
+\bibfield{author}{\bibinfo{person}{Charlotte Bonte} {and}
+  \bibinfo{person}{Frederik Vercauteren}.} \bibinfo{year}{2018}\natexlab{}.
+\newblock \bibinfo{booktitle}{\emph{Privacy-Preserving Logistic Regression
+  Training}}.
+\newblock \bibinfo{type}{{T}echnical {R}eport}. \bibinfo{institution}{IACR
+  Cryptology ePrint Archive 233}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Boyd, Parikh, Chu, Peleato, Eckstein,
+  et~al\mbox{.}}{Boyd et~al\mbox{.}}{2011}]%
+        {boyd2011distributed}
+\bibfield{author}{\bibinfo{person}{Stephen Boyd}, \bibinfo{person}{Neal
+  Parikh}, \bibinfo{person}{Eric Chu}, \bibinfo{person}{Borja Peleato},
+  \bibinfo{person}{Jonathan Eckstein}, {et~al\mbox{.}}}
+  \bibinfo{year}{2011}\natexlab{}.
+\newblock \showarticletitle{Distributed optimization and statistical learning
+  via the alternating direction method of multipliers}.
+\newblock \bibinfo{journal}{\emph{Foundations and Trends{\textregistered} in
+  Machine learning}} \bibinfo{volume}{3}, \bibinfo{number}{1}
+  (\bibinfo{year}{2011}), \bibinfo{pages}{1--122}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Chaudhuri and Monteleoni}{Chaudhuri and
+  Monteleoni}{2009}]%
+        {chaudhuri2009privacy}
+\bibfield{author}{\bibinfo{person}{Kamalika Chaudhuri} {and}
+  \bibinfo{person}{Claire Monteleoni}.} \bibinfo{year}{2009}\natexlab{}.
+\newblock \showarticletitle{Privacy-preserving logistic regression}. In
+  \bibinfo{booktitle}{\emph{Advances in neural information processing
+  systems}}. \bibinfo{pages}{289--296}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Chaudhuri, Monteleoni, and Sarwate}{Chaudhuri
+  et~al\mbox{.}}{2011}]%
+        {chaudhuri2011differentially}
+\bibfield{author}{\bibinfo{person}{Kamalika Chaudhuri}, \bibinfo{person}{Claire
+  Monteleoni}, {and} \bibinfo{person}{Anand~D Sarwate}.}
+  \bibinfo{year}{2011}\natexlab{}.
+\newblock \showarticletitle{Differentially private empirical risk
+  minimization}.
+\newblock \bibinfo{journal}{\emph{Journal of Machine Learning Research}}
+  \bibinfo{volume}{12}, \bibinfo{number}{Mar} (\bibinfo{year}{2011}),
+  \bibinfo{pages}{1069--1109}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Dai, Wang, Xiong, and Jiang}{Dai
+  et~al\mbox{.}}{2018}]%
+        {dai2018privacy}
+\bibfield{author}{\bibinfo{person}{Wenrui Dai}, \bibinfo{person}{Shuang Wang},
+  \bibinfo{person}{Hongkai Xiong}, {and} \bibinfo{person}{Xiaoqian Jiang}.}
+  \bibinfo{year}{2018}\natexlab{}.
+\newblock \showarticletitle{Privacy preserving federated big data analysis}.
+\newblock In \bibinfo{booktitle}{\emph{Guide to Big Data Applications}}.
+  \bibinfo{publisher}{Springer}, \bibinfo{pages}{49--82}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Dua and Graff}{Dua and Graff}{2017}]%
+        {Dua:2019}
+\bibfield{author}{\bibinfo{person}{Dheeru Dua} {and} \bibinfo{person}{Casey
+  Graff}.} \bibinfo{year}{2017}\natexlab{}.
+\newblock \bibinfo{title}{{UCI} Machine Learning Repository}.
+\newblock
+\newblock
+\urldef\tempurl%
+\url{http://archive.ics.uci.edu/ml}
+\showURL{%
+\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{Dwork}{Dwork}{2008}]%
+        {dwork2008differential}
+\bibfield{author}{\bibinfo{person}{Cynthia Dwork}.}
+  \bibinfo{year}{2008}\natexlab{}.
+\newblock \showarticletitle{Differential privacy: A survey of results}. In
+  \bibinfo{booktitle}{\emph{International Conference on Theory and Applications
+  of Models of Computation}}. Springer, \bibinfo{pages}{1--19}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Dwork and Nissim}{Dwork and Nissim}{2004}]%
+        {dwork2004privacy}
+\bibfield{author}{\bibinfo{person}{Cynthia Dwork} {and} \bibinfo{person}{Kobbi
+  Nissim}.} \bibinfo{year}{2004}\natexlab{}.
+\newblock \showarticletitle{Privacy-preserving datamining on vertically
+  partitioned databases}. In \bibinfo{booktitle}{\emph{Annual International
+  Cryptology Conference}}. Springer, \bibinfo{pages}{528--544}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Dwork, Roth, et~al\mbox{.}}{Dwork
+  et~al\mbox{.}}{2014}]%
+        {dwork2014algorithmic}
+\bibfield{author}{\bibinfo{person}{Cynthia Dwork}, \bibinfo{person}{Aaron
+  Roth}, {et~al\mbox{.}}} \bibinfo{year}{2014}\natexlab{}.
+\newblock \showarticletitle{The algorithmic foundations of differential
+  privacy}.
+\newblock \bibinfo{journal}{\emph{Foundations and Trends{\textregistered} in
+  Theoretical Computer Science}} \bibinfo{volume}{9}, \bibinfo{number}{3--4}
+  (\bibinfo{year}{2014}), \bibinfo{pages}{211--407}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Evfimievski, Srikant, Agrawal, and
+  Gehrke}{Evfimievski et~al\mbox{.}}{2004}]%
+        {evfimievski2004privacy}
+\bibfield{author}{\bibinfo{person}{Alexandre Evfimievski},
+  \bibinfo{person}{Ramakrishnan Srikant}, \bibinfo{person}{Rakesh Agrawal},
+  {and} \bibinfo{person}{Johannes Gehrke}.} \bibinfo{year}{2004}\natexlab{}.
+\newblock \showarticletitle{Privacy preserving mining of association rules}.
+\newblock \bibinfo{journal}{\emph{Information Systems}} \bibinfo{volume}{29},
+  \bibinfo{number}{4} (\bibinfo{year}{2004}), \bibinfo{pages}{343--364}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Gilad-Bachrach, Dowlin, Laine, Lauter,
+  Naehrig, and Wernsing}{Gilad-Bachrach et~al\mbox{.}}{2016}]%
+        {gilad2016cryptonets}
+\bibfield{author}{\bibinfo{person}{Ran Gilad-Bachrach}, \bibinfo{person}{Nathan
+  Dowlin}, \bibinfo{person}{Kim Laine}, \bibinfo{person}{Kristin Lauter},
+  \bibinfo{person}{Michael Naehrig}, {and} \bibinfo{person}{John Wernsing}.}
+  \bibinfo{year}{2016}\natexlab{}.
+\newblock \showarticletitle{Cryptonets: Applying neural networks to encrypted
+  data with high throughput and accuracy}. In
+  \bibinfo{booktitle}{\emph{International Conference on Machine Learning}}.
+  \bibinfo{pages}{201--210}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Gratton, KD, Arablouei, and Werner}{Gratton
+  et~al\mbox{.}}{2018}]%
+        {gratton2018distributed}
+\bibfield{author}{\bibinfo{person}{Cristiano Gratton},
+  \bibinfo{person}{Venkategowda~Naveen KD}, \bibinfo{person}{Reza Arablouei},
+  {and} \bibinfo{person}{Stefan Werner}.} \bibinfo{year}{2018}\natexlab{}.
+\newblock \showarticletitle{Distributed Ridge Regression with Feature
+  Partitioning}. In \bibinfo{booktitle}{\emph{2018 52nd Asilomar Conference on
+  Signals, Systems, and Computers}}. IEEE, \bibinfo{pages}{1423--1427}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Guyon, Gunn, Ben-Hur, and Dror}{Guyon
+  et~al\mbox{.}}{2005}]%
+        {guyon2005result}
+\bibfield{author}{\bibinfo{person}{Isabelle Guyon}, \bibinfo{person}{Steve
+  Gunn}, \bibinfo{person}{Asa Ben-Hur}, {and} \bibinfo{person}{Gideon Dror}.}
+  \bibinfo{year}{2005}\natexlab{}.
+\newblock \showarticletitle{Result analysis of the NIPS 2003 feature selection
+  challenge}. In \bibinfo{booktitle}{\emph{Advances in neural information
+  processing systems}}. \bibinfo{pages}{545--552}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Hamm, Cao, and Belkin}{Hamm
+  et~al\mbox{.}}{2016}]%
+        {hamm2016learning}
+\bibfield{author}{\bibinfo{person}{Jihun Hamm}, \bibinfo{person}{Yingjun Cao},
+  {and} \bibinfo{person}{Mikhail Belkin}.} \bibinfo{year}{2016}\natexlab{}.
+\newblock \showarticletitle{Learning privately from multiparty data}. In
+  \bibinfo{booktitle}{\emph{International Conference on Machine Learning}}.
+  \bibinfo{pages}{555--563}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Heinze-Deml, McWilliams, and
+  Meinshausen}{Heinze-Deml et~al\mbox{.}}{2018}]%
+        {heinze2017preserving}
+\bibfield{author}{\bibinfo{person}{Christina Heinze-Deml},
+  \bibinfo{person}{Brian McWilliams}, {and} \bibinfo{person}{Nicolai
+  Meinshausen}.} \bibinfo{year}{2018}\natexlab{}.
+\newblock \showarticletitle{Preserving Differential Privacy Between Features in
+  Distributed Estimation}.
+\newblock \bibinfo{journal}{\emph{stat}}  \bibinfo{volume}{7}
+  (\bibinfo{year}{2018}), \bibinfo{pages}{e189}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Ho, Cipar, Cui, Lee, Kim, Gibbons, Gibson,
+  Ganger, and Xing}{Ho et~al\mbox{.}}{2013}]%
+        {ho2013more}
+\bibfield{author}{\bibinfo{person}{Qirong Ho}, \bibinfo{person}{James Cipar},
+  \bibinfo{person}{Henggang Cui}, \bibinfo{person}{Seunghak Lee},
+  \bibinfo{person}{Jin~Kyu Kim}, \bibinfo{person}{Phillip~B Gibbons},
+  \bibinfo{person}{Garth~A Gibson}, \bibinfo{person}{Greg Ganger}, {and}
+  \bibinfo{person}{Eric~P Xing}.} \bibinfo{year}{2013}\natexlab{}.
+\newblock \showarticletitle{More effective distributed ml via a stale
+  synchronous parallel parameter server}. In \bibinfo{booktitle}{\emph{Advances
+  in neural information processing systems}}. \bibinfo{pages}{1223--1231}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Hong, Luo, and Razaviyayn}{Hong
+  et~al\mbox{.}}{2016}]%
+        {hong2016convergence}
+\bibfield{author}{\bibinfo{person}{Mingyi Hong}, \bibinfo{person}{Zhi-Quan
+  Luo}, {and} \bibinfo{person}{Meisam Razaviyayn}.}
+  \bibinfo{year}{2016}\natexlab{}.
+\newblock \showarticletitle{Convergence analysis of alternating direction
+  method of multipliers for a family of nonconvex problems}.
+\newblock \bibinfo{journal}{\emph{SIAM Journal on Optimization}}
+  \bibinfo{volume}{26}, \bibinfo{number}{1} (\bibinfo{year}{2016}),
+  \bibinfo{pages}{337--364}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Hsieh, Harlap, Vijaykumar, Konomis, Ganger,
+  Gibbons, and Mutlu}{Hsieh et~al\mbox{.}}{2017}]%
+        {hsieh2017gaia}
+\bibfield{author}{\bibinfo{person}{Kevin Hsieh}, \bibinfo{person}{Aaron
+  Harlap}, \bibinfo{person}{Nandita Vijaykumar}, \bibinfo{person}{Dimitris
+  Konomis}, \bibinfo{person}{Gregory~R Ganger}, \bibinfo{person}{Phillip~B
+  Gibbons}, {and} \bibinfo{person}{Onur Mutlu}.}
+  \bibinfo{year}{2017}\natexlab{}.
+\newblock \showarticletitle{Gaia: Geo-Distributed Machine Learning Approaching
+  LAN Speeds.}. In \bibinfo{booktitle}{\emph{NSDI}}. \bibinfo{pages}{629--647}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Hu, Niu, Yang, and Zhou}{Hu
+  et~al\mbox{.}}{2019}]%
+        {hu2019fdml}
+\bibfield{author}{\bibinfo{person}{Yaochen Hu}, \bibinfo{person}{Di Niu},
+  \bibinfo{person}{Jianming Yang}, {and} \bibinfo{person}{Shengping Zhou}.}
+  \bibinfo{year}{2019}\natexlab{}.
+\newblock \showarticletitle{FDML: A Collaborative Machine Learning Framework
+  for Distributed Features}. In \bibinfo{booktitle}{\emph{Proceedings of KDD
+  '19}}. ACM.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Huang, Hu, Gong, and Chan-Tin}{Huang
+  et~al\mbox{.}}{2018}]%
+        {huang2018dp}
+\bibfield{author}{\bibinfo{person}{Zonghao Huang}, \bibinfo{person}{Rui Hu},
+  \bibinfo{person}{Yanmin Gong}, {and} \bibinfo{person}{Eric Chan-Tin}.}
+  \bibinfo{year}{2018}\natexlab{}.
+\newblock \showarticletitle{DP-ADMM: ADMM-based Distributed Learning with
+  Differential Privacy}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:1808.10101}}
+  (\bibinfo{year}{2018}).
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Kenthapadi, Korolova, Mironov, and
+  Mishra}{Kenthapadi et~al\mbox{.}}{2012}]%
+        {kenthapadi2012privacy}
+\bibfield{author}{\bibinfo{person}{Krishnaram Kenthapadi},
+  \bibinfo{person}{Aleksandra Korolova}, \bibinfo{person}{Ilya Mironov}, {and}
+  \bibinfo{person}{Nina Mishra}.} \bibinfo{year}{2012}\natexlab{}.
+\newblock \showarticletitle{Privacy via the johnson-lindenstrauss transform}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:1204.2606}}
+  (\bibinfo{year}{2012}).
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Kenthapadi, Korolova, Mironov, and
+  Mishra}{Kenthapadi et~al\mbox{.}}{2013}]%
+        {kenthapadi2013privacy}
+\bibfield{author}{\bibinfo{person}{Krishnaram Kenthapadi},
+  \bibinfo{person}{Aleksandra Korolova}, \bibinfo{person}{Ilya Mironov}, {and}
+  \bibinfo{person}{Nina Mishra}.} \bibinfo{year}{2013}\natexlab{}.
+\newblock \showarticletitle{Privacy via the Johnson-Lindenstrauss Transform}.
+\newblock \bibinfo{journal}{\emph{Journal of Privacy and Confidentiality}}
+  \bibinfo{volume}{5} (\bibinfo{year}{2013}).
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Kikuchi, Hamanaga, Yasunaga, Matsui,
+  Hashimoto, and Fan}{Kikuchi et~al\mbox{.}}{2018}]%
+        {kikuchi2018privacy}
+\bibfield{author}{\bibinfo{person}{Hiroaki Kikuchi}, \bibinfo{person}{Chika
+  Hamanaga}, \bibinfo{person}{Hideo Yasunaga}, \bibinfo{person}{Hiroki Matsui},
+  \bibinfo{person}{Hideki Hashimoto}, {and} \bibinfo{person}{Chun-I Fan}.}
+  \bibinfo{year}{2018}\natexlab{}.
+\newblock \showarticletitle{Privacy-preserving multiple linear regression of
+  vertically partitioned real medical datasets}.
+\newblock \bibinfo{journal}{\emph{Journal of Information Processing}}
+  \bibinfo{volume}{26} (\bibinfo{year}{2018}), \bibinfo{pages}{638--647}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Li, Andersen, Park, Smola, Ahmed, Josifovski,
+  Long, Shekita, and Su}{Li et~al\mbox{.}}{2014a}]%
+        {li2014scaling}
+\bibfield{author}{\bibinfo{person}{Mu Li}, \bibinfo{person}{David~G Andersen},
+  \bibinfo{person}{Jun~Woo Park}, \bibinfo{person}{Alexander~J Smola},
+  \bibinfo{person}{Amr Ahmed}, \bibinfo{person}{Vanja Josifovski},
+  \bibinfo{person}{James Long}, \bibinfo{person}{Eugene~J Shekita}, {and}
+  \bibinfo{person}{Bor-Yiing Su}.} \bibinfo{year}{2014}\natexlab{a}.
+\newblock \showarticletitle{Scaling Distributed Machine Learning with the
+  Parameter Server.}. In \bibinfo{booktitle}{\emph{OSDI}},
+  Vol.~\bibinfo{volume}{14}. \bibinfo{pages}{583--598}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Li, Andersen, Smola, and Yu}{Li
+  et~al\mbox{.}}{2014b}]%
+        {li2014communication}
+\bibfield{author}{\bibinfo{person}{Mu Li}, \bibinfo{person}{David~G Andersen},
+  \bibinfo{person}{Alexander~J Smola}, {and} \bibinfo{person}{Kai Yu}.}
+  \bibinfo{year}{2014}\natexlab{b}.
+\newblock \showarticletitle{Communication efficient distributed machine
+  learning with the parameter server}. In \bibinfo{booktitle}{\emph{Advances in
+  Neural Information Processing Systems}}. \bibinfo{pages}{19--27}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Mohassel and Zhang}{Mohassel and
+  Zhang}{2017}]%
+        {mohassel2017secureml}
+\bibfield{author}{\bibinfo{person}{Payman Mohassel} {and}
+  \bibinfo{person}{Yupeng Zhang}.} \bibinfo{year}{2017}\natexlab{}.
+\newblock \showarticletitle{SecureML: A system for scalable privacy-preserving
+  machine learning}. In \bibinfo{booktitle}{\emph{2017 38th IEEE Symposium on
+  Security and Privacy (SP)}}. IEEE, \bibinfo{pages}{19--38}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Pathak, Rane, and Raj}{Pathak
+  et~al\mbox{.}}{2010}]%
+        {pathak2010multiparty}
+\bibfield{author}{\bibinfo{person}{Manas Pathak}, \bibinfo{person}{Shantanu
+  Rane}, {and} \bibinfo{person}{Bhiksha Raj}.} \bibinfo{year}{2010}\natexlab{}.
+\newblock \showarticletitle{Multiparty differential privacy via aggregation of
+  locally trained classifiers}. In \bibinfo{booktitle}{\emph{Advances in Neural
+  Information Processing Systems}}. \bibinfo{pages}{1876--1884}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Rajkumar and Agarwal}{Rajkumar and
+  Agarwal}{2012}]%
+        {rajkumar2012differentially}
+\bibfield{author}{\bibinfo{person}{Arun Rajkumar} {and}
+  \bibinfo{person}{Shivani Agarwal}.} \bibinfo{year}{2012}\natexlab{}.
+\newblock \showarticletitle{A differentially private stochastic gradient
+  descent algorithm for multiparty classification}. In
+  \bibinfo{booktitle}{\emph{Artificial Intelligence and Statistics}}.
+  \bibinfo{pages}{933--941}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Sarwate and Chaudhuri}{Sarwate and
+  Chaudhuri}{2013}]%
+        {sarwate2013signal}
+\bibfield{author}{\bibinfo{person}{Anand~D Sarwate} {and}
+  \bibinfo{person}{Kamalika Chaudhuri}.} \bibinfo{year}{2013}\natexlab{}.
+\newblock \showarticletitle{Signal processing and machine learning with
+  differential privacy: Algorithms and challenges for continuous data}.
+\newblock \bibinfo{journal}{\emph{IEEE signal processing magazine}}
+  \bibinfo{volume}{30}, \bibinfo{number}{5} (\bibinfo{year}{2013}),
+  \bibinfo{pages}{86--94}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Shi, Ling, Yuan, Wu, and Yin}{Shi
+  et~al\mbox{.}}{2014}]%
+        {shi2014linear}
+\bibfield{author}{\bibinfo{person}{Wei Shi}, \bibinfo{person}{Qing Ling},
+  \bibinfo{person}{Kun Yuan}, \bibinfo{person}{Gang Wu}, {and}
+  \bibinfo{person}{Wotao Yin}.} \bibinfo{year}{2014}\natexlab{}.
+\newblock \showarticletitle{On the linear convergence of the ADMM in
+  decentralized consensus optimization}.
+\newblock \bibinfo{journal}{\emph{IEEE Transactions on Signal Processing}}
+  \bibinfo{volume}{62}, \bibinfo{number}{7} (\bibinfo{year}{2014}),
+  \bibinfo{pages}{1750--1761}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Shokri and Shmatikov}{Shokri and
+  Shmatikov}{2015}]%
+        {shokri2015privacy}
+\bibfield{author}{\bibinfo{person}{Reza Shokri} {and} \bibinfo{person}{Vitaly
+  Shmatikov}.} \bibinfo{year}{2015}\natexlab{}.
+\newblock \showarticletitle{Privacy-preserving deep learning}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the 22nd ACM SIGSAC conference on
+  computer and communications security}}. ACM, \bibinfo{pages}{1310--1321}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Stolpe, Blom, and Morik}{Stolpe
+  et~al\mbox{.}}{2016}]%
+        {stolpe2016sustainable}
+\bibfield{author}{\bibinfo{person}{Marco Stolpe}, \bibinfo{person}{Hendrik
+  Blom}, {and} \bibinfo{person}{Katharina Morik}.}
+  \bibinfo{year}{2016}\natexlab{}.
+\newblock \showarticletitle{Sustainable Industrial Processes by Embedded
+  Real-Time Quality Prediction}.
+\newblock In \bibinfo{booktitle}{\emph{Computational Sustainability}}.
+  \bibinfo{publisher}{Springer}, \bibinfo{pages}{201--243}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Takabi, Hesamifard, and Ghasemi}{Takabi
+  et~al\mbox{.}}{2016}]%
+        {takabi2016privacy}
+\bibfield{author}{\bibinfo{person}{Hassan Takabi}, \bibinfo{person}{Ehsan
+  Hesamifard}, {and} \bibinfo{person}{Mehdi Ghasemi}.}
+  \bibinfo{year}{2016}\natexlab{}.
+\newblock \showarticletitle{Privacy preserving multi-party machine learning
+  with homomorphic encryption}. In \bibinfo{booktitle}{\emph{29th Annual
+  Conference on Neural Information Processing Systems (NIPS)}}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Vaidya and Clifton}{Vaidya and
+  Clifton}{2002}]%
+        {vaidya2002privacy}
+\bibfield{author}{\bibinfo{person}{Jaideep Vaidya} {and} \bibinfo{person}{Chris
+  Clifton}.} \bibinfo{year}{2002}\natexlab{}.
+\newblock \showarticletitle{Privacy preserving association rule mining in
+  vertically partitioned data}. In \bibinfo{booktitle}{\emph{Proceedings of the
+  eighth ACM SIGKDD international conference on Knowledge discovery and data
+  mining}}. ACM, \bibinfo{pages}{639--644}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Vaidya and Clifton}{Vaidya and
+  Clifton}{2003}]%
+        {vaidya2003privacy}
+\bibfield{author}{\bibinfo{person}{Jaideep Vaidya} {and} \bibinfo{person}{Chris
+  Clifton}.} \bibinfo{year}{2003}\natexlab{}.
+\newblock \showarticletitle{Privacy-preserving k-means clustering over
+  vertically partitioned data}. In \bibinfo{booktitle}{\emph{Proceedings of the
+  ninth ACM SIGKDD international conference on Knowledge discovery and data
+  mining}}. ACM, \bibinfo{pages}{206--215}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Wan, Ng, Han, and Lee}{Wan
+  et~al\mbox{.}}{2007}]%
+        {wan2007privacy}
+\bibfield{author}{\bibinfo{person}{Li Wan}, \bibinfo{person}{Wee~Keong Ng},
+  \bibinfo{person}{Shuguo Han}, {and} \bibinfo{person}{Vincent Lee}.}
+  \bibinfo{year}{2007}\natexlab{}.
+\newblock \showarticletitle{Privacy-preservation for gradient descent methods}.
+  In \bibinfo{booktitle}{\emph{Proceedings of the 13th ACM SIGKDD international
+  conference on Knowledge discovery and data mining}}. ACM,
+  \bibinfo{pages}{775--783}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Wang, Yin, and Zeng}{Wang
+  et~al\mbox{.}}{2019}]%
+        {wang2019global}
+\bibfield{author}{\bibinfo{person}{Yu Wang}, \bibinfo{person}{Wotao Yin}, {and}
+  \bibinfo{person}{Jinshan Zeng}.} \bibinfo{year}{2019}\natexlab{}.
+\newblock \showarticletitle{Global convergence of ADMM in nonconvex nonsmooth
+  optimization}.
+\newblock \bibinfo{journal}{\emph{Journal of Scientific Computing}}
+  \bibinfo{volume}{78}, \bibinfo{number}{1} (\bibinfo{year}{2019}),
+  \bibinfo{pages}{29--63}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Ying, Yuan, and Sayed}{Ying
+  et~al\mbox{.}}{2018}]%
+        {ying2018supervised}
+\bibfield{author}{\bibinfo{person}{Bicheng Ying}, \bibinfo{person}{Kun Yuan},
+  {and} \bibinfo{person}{Ali~H Sayed}.} \bibinfo{year}{2018}\natexlab{}.
+\newblock \showarticletitle{Supervised Learning Under Distributed Features}.
+\newblock \bibinfo{journal}{\emph{IEEE Transactions on Signal Processing}}
+  \bibinfo{volume}{67}, \bibinfo{number}{4} (\bibinfo{year}{2018}),
+  \bibinfo{pages}{977--992}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Zhang, Ahmad, and Wang}{Zhang
+  et~al\mbox{.}}{2019}]%
+        {zhang2019admm}
+\bibfield{author}{\bibinfo{person}{Chunlei Zhang}, \bibinfo{person}{Muaz
+  Ahmad}, {and} \bibinfo{person}{Yongqiang Wang}.}
+  \bibinfo{year}{2019}\natexlab{}.
+\newblock \showarticletitle{Admm based privacy-preserving decentralized
+  optimization}.
+\newblock \bibinfo{journal}{\emph{IEEE Transactions on Information Forensics
+  and Security}} \bibinfo{volume}{14}, \bibinfo{number}{3}
+  (\bibinfo{year}{2019}), \bibinfo{pages}{565--580}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Zhang and Zhu}{Zhang and Zhu}{2016a}]%
+        {zhang2016dual}
+\bibfield{author}{\bibinfo{person}{Tao Zhang} {and} \bibinfo{person}{Quanyan
+  Zhu}.} \bibinfo{year}{2016}\natexlab{a}.
+\newblock \showarticletitle{A dual perturbation approach for differential
+  private admm-based distributed empirical risk minimization}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the 2016 ACM Workshop on Artificial
+  Intelligence and Security}}. ACM, \bibinfo{pages}{129--137}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Zhang and Zhu}{Zhang and Zhu}{2016b}]%
+        {zhang2016dynamic}
+\bibfield{author}{\bibinfo{person}{Tao Zhang} {and} \bibinfo{person}{Quanyan
+  Zhu}.} \bibinfo{year}{2016}\natexlab{b}.
+\newblock \showarticletitle{Dynamic differential privacy for ADMM-based
+  distributed classification learning}.
+\newblock \bibinfo{journal}{\emph{IEEE Transactions on Information Forensics
+  and Security}} \bibinfo{volume}{12}, \bibinfo{number}{1}
+  (\bibinfo{year}{2016}), \bibinfo{pages}{172--187}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Zhang and Zhu}{Zhang and Zhu}{2017}]%
+        {zhang2017dynamic}
+\bibfield{author}{\bibinfo{person}{Tao Zhang} {and} \bibinfo{person}{Quanyan
+  Zhu}.} \bibinfo{year}{2017}\natexlab{}.
+\newblock \showarticletitle{Dynamic differential privacy for ADMM-based
+  distributed classification learning}.
+\newblock \bibinfo{journal}{\emph{IEEE Transactions on Information Forensics
+  and Security}} \bibinfo{volume}{12}, \bibinfo{number}{1}
+  (\bibinfo{year}{2017}), \bibinfo{pages}{172--187}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Zhang, Khalili, and Liu}{Zhang
+  et~al\mbox{.}}{2018}]%
+        {zhang2018improving}
+\bibfield{author}{\bibinfo{person}{Xueru Zhang},
+  \bibinfo{person}{Mohammad~Mahdi Khalili}, {and} \bibinfo{person}{Mingyan
+  Liu}.} \bibinfo{year}{2018}\natexlab{}.
+\newblock \showarticletitle{Improving the Privacy and Accuracy of ADMM-Based
+  Distributed Algorithms}. In \bibinfo{booktitle}{\emph{International
+  Conference on Machine Learning}}. \bibinfo{pages}{5791--5800}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Zhou, Zhang, Xie, Qian, and Zhou}{Zhou
+  et~al\mbox{.}}{2010}]%
+        {zhou2010security}
+\bibfield{author}{\bibinfo{person}{Minqi Zhou}, \bibinfo{person}{Rong Zhang},
+  \bibinfo{person}{Wei Xie}, \bibinfo{person}{Weining Qian}, {and}
+  \bibinfo{person}{Aoying Zhou}.} \bibinfo{year}{2010}\natexlab{}.
+\newblock \showarticletitle{Security and privacy in cloud computing: A survey}.
+  In \bibinfo{booktitle}{\emph{2010 Sixth International Conference on
+  Semantics, Knowledge and Grids}}. IEEE, \bibinfo{pages}{105--112}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Zhou, Yu, Dai, Liang, and Xing}{Zhou
+  et~al\mbox{.}}{2016}]%
+        {zhou2016convergence}
+\bibfield{author}{\bibinfo{person}{Yi Zhou}, \bibinfo{person}{Yaoliang Yu},
+  \bibinfo{person}{Wei Dai}, \bibinfo{person}{Yingbin Liang}, {and}
+  \bibinfo{person}{Eric Xing}.} \bibinfo{year}{2016}\natexlab{}.
+\newblock \showarticletitle{On convergence of model parallel proximal gradient
+  algorithm for stale synchronous parallel system}. In
+  \bibinfo{booktitle}{\emph{Artificial Intelligence and Statistics}}.
+  \bibinfo{pages}{713--722}.
+\newblock
+
+
+\end{thebibliography}

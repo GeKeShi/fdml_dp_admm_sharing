@@ -1,0 +1,142 @@
+\section{The ADMM Sharing Algorithm}
+We present an ADMM sharing algorithm \cite{boyd2011distributed, hong2016convergence} to solve Problem~\eqref{eq:analysis_problem} and establish a convergence guarantee for the algorithm. Our algorithm requires each party only share a single value to other parties in each iteration, thus requiring the minimum message passing. 
+In particular, Problem~\eqref{eq:analysis_problem} is equivalent to
+\begin{align}
+\underset{x}{\text{minimize}} &\quad l\left(z\right) + \lambda\sum_{m=1}^{M} R_m(x_m),\\
+\text{s.t.} &\quad \sum_{m=1}^{M} \mathcal{D}_m x_m - z = 0,\quad x_m\in X_M, m=1,\ldots,M,
+\end{align}
+where $z$ is an auxiliary variable. 
+% Define $\{x\}=\{x_1,\cdots,x_M\}$.
+The corresponding augmented Lagrangian is given by
+\begin{align}
+\mathcal{L}(\{x\}, z; y) = l(z) + \lambda\sum_{m=1}^{M} R_m(x_m) + \langle y, \sum_{m=1}^{M}\mathcal{D}_m x_m - z\rangle + \frac{\rho}{2}\|\sum_{m=1}^{M} \mathcal{D}_m x_m - z\|^2, \label{eq:lagragian}
+\end{align}
+where $y$ is the dual variable and $\rho$ is the penalty factor.
+In the $t^{th}$ iteration of the algorithm, variables are updated according to
+% {\bf the sequential updating algorithm}
+% \begin{align}
+% &x_j^{t+1}:=\underset{x_j\in X_j}{\text{argmin}}\quad\lambda R_j(x_j) + \langle y^t, D_jx_j\rangle + \frac{\rho}{2}\big\|\sum_{k<j}D_kx_k^{t+1} + \sum_{k>j}D_kx_k^t + D_jx_j - z^t\big\|^2\label{eq:seq_algo_x}\\
+% &z^{t+1}:=\underset{z}{\text{argmin}}\quad l(z) - \langle y^t, z \rangle + \frac{\rho}{2} \big\|\sum_jD_jx_j^{t+1} - z\big\|^2\label{eq:seq_algo_z}\\
+% &y^{t+1}:=y^t + \rho\big(\sum_jD_jx_j^{t+1} - z^{t+1}\big),\label{eq:seq_algo_y}
+% \end{align}
+% and  {\bf the parallel updating algorithm}
+
+\begin{align}
+&x_m^{t+1}:=\underset{x_m\in X_m}{\text{argmin}}\quad\lambda R_m(x_m) + \langle y^t, \mathcal{D}_mx_m\rangle + \frac{\rho}{2}\big\|\sum_{\substack{k=1,~k\neq m}}^{M}\mathcal{D}_kx_k^{t} + \mathcal{D}_mx_m - z^t\big\|^2, \nonumber\\&\hspace*{36pt} m=1,\cdots,M\label{eq:pal_algo_x}\\
+&z^{t+1}:=\underset{z}{\text{argmin}}\quad l(z)  - \langle y^t, z \rangle + \frac{\rho}{2} \big\|\sum_{m=1}^{M}\mathcal{D}_mx_m^{t+1} - z\big\|^2\label{eq:pal_algo_z}\\
+&y^{t+1}:=y^t + \rho\big(\sum_{m=1}^{M}\mathcal{D}_mx_m^{t+1} - z^{t+1}\big).\label{eq:pal_algo_y}
+\end{align}
+
+Formally, in a distributed and fully parallel manner, the algorithm is described in Algorithm~\ref{alg:ADMM_sharing}. Note that each party $m$ needs the value $\sum_{k\neq m}\mathcal{D}_kx_k^{t} - z^{t}$ to complete the update, and Line~\ref{alg:line_1}, \ref{alg:line_2} and \ref{alg:line_8} in Algorithm~\ref{alg:ADMM_sharing} present a trick to reduce communication overhead.
+
+\begin{algorithm}[t]
+\caption{The ADMM Sharing Algorithm}
+\begin{algorithmic}[1]
+    \STATE -----\emph{Each party $m$ performs in parallel:}
+    % \bindent
+    \FOR {$t$ in $1, \ldots, T$}
+        \STATE Pull  $\sum_k\mathcal{D}_kx_k^{t} - z^{t}$  and $y^{t}$ from central node \label{alg:line_1}
+        \STATE Obtain $\sum_{k\neq m}\mathcal{D}_kx_k^{t} - z^{t}$ by subtracting the locally cached $\mathcal{D}_mx_m^{t}$ from  the pulled value $\sum_k\mathcal{D}_kx_k^{t} - z^{t}$ \label{alg:line_2}
+        \STATE Compute $x_m^{t+1}$ according to \eqref{eq:pal_algo_x} \label{alg:line_3}
+        \STATE Push $\mathcal{D}_mx_m^{t+1}$ to the central node \label{alg:line_4}
+    \ENDFOR
+    % \eindent
+    \STATE -----\emph{Central node:}
+    % \bindent
+    \FOR{$t$ in $1, \ldots, T$}
+        \STATE Collect $\mathcal{D}_mx_m^{t+1}$ for all $m=1,\ldots,M$\label{alg:line_5}
+        \STATE Compute $z^{t+1}$ according to \eqref{eq:pal_algo_z}\label{alg:line_6}
+        \STATE Compute $y^{t+1}$ according to \eqref{eq:pal_algo_y}\label{alg:line_7}
+        \STATE Distribute $\sum_k\mathcal{D}_kx_k^{t+1} - z^{t+1}$  and $y^{t+1}$ to all the parties. \label{alg:line_8}
+    \ENDFOR
+    % \eindent
+\end{algorithmic}
+\label{alg:ADMM_sharing}
+\end{algorithm}
+
+% \subsection{Privacy Concern and Differential Privacy}
+
+% Random noise added to the query. Variance is correlated to the DP guarantee.
+% {\bf Laplace Mechanism}
+% \begin{align}
+% \eta\sim\text{Lap}(\frac{\Delta f}{\epsilon})
+% \end{align}
+
+% ADMM sharing with differential privacy.
+% \begin{align}
+% &x_m^{t+1}:=\underset{x_m\in X_m}{\text{argmin}}\quad\lambda R_m(x_m) + \langle y^t, \mathcal{D}_mx_m\rangle + \frac{\rho}{2}\big\|\sum_{\substack{k=1\\k\neq m}}^M\mathcal{D}_kx_k + \mathcal{D}_mx_m - z^t\big\|^2\text{~for~all}~ m=1,\cdots,M\label{eq:pri_algo_x}\\
+% & \text{Generate~} \xi_m^{t+1}\sim\mathcal{N}(0, \sigma^2_{m, t+1})\text{~for~all}~ m=1,\cdots,M\label{eq:pri_algo_xi}\\
+% %%%&Q_m^{t+1} = \mathcal{D}_mx_m^{t+1} + \xi_m^{t+1} \text{~for~all}~ m=1,\cdots,M\label{eq:pri_algo_M} \\
+% &\tilde{x}_m^{t+1}\leftarrow x_m^{t+1}+\xi_m^{t+1}\text{~for~all}~ m=1,\cdots,M\label{eq:pri_algo_M} \\
+% &z^{t+1}:=\underset{z}{\text{argmin}}\quad l(z)  - \langle y^t, z \rangle + \frac{\rho}{2} \big\|\sum_{m=1}^{M}\mathcal{D}_m\tilde{x}_m^{t+1} - z\big\|^2\label{eq:pri_algo_z}\\
+% &y^{t+1}:=y^t + \rho\big(\sum_{m=1}^{M}\mathcal{D}_m\tilde{x}_m^{t+1} - z^{t+1}\big).\label{eq:pri_algo_y}
+% \end{align}
+
+\subsection{Convergence Analysis}
+We follow Hong et al. \cite{hong2016convergence} to establish the convergence guarantee of the proposed algorithm under mild assumptions. Note that \cite{hong2016convergence} provides convergence analysis for the Gauss-Seidel version of the ADMM sharing, where $x_1,\ldots,x_M$ are updated sequentially, which is not naturally suitable to parallel implementation.
+In~\eqref{eq:pal_algo_x} of our algorithm, $x_m$'s can be updated by different parties in parallel in each iteration.
+We establish convergence as well as iteration complexity results for this parallel scenario, which is more realistic in distributed learning. We need the following set of common assumptions. 
+\begin{assume}\label{theo:assumptions_pri}
+% \newline
+\begin{enumerate}
+    \item There exists a positive constant $L>0$ such that
+        \[
+            \|\nabla l(x)-\nabla l(z)\| \le L\|x-z\|\quad \forall x, z.
+        \]
+        Moreover, for all $m\in\{1,2,\cdots,M\}$, $X_m$'s are closed convex sets; each $\mathcal{D}_m$ is of full column rank so that the minimum eigenvalue $\sigma_{\text{min}}(\mathcal{D}_m^\top \mathcal{D}_m)$ of matrix $\mathcal{D}_m^\top \mathcal{D}_m$ is positive.\label{item:assum_1_pri}
+    \item The penalty parameter $\rho$ is chosen large enough such that
+    \begin{enumerate}
+        \item each $x_m$ subproblem~\eqref{eq:pal_algo_x} as well as the $z$ subproblem~\eqref{eq:pal_algo_z} is strongly convex, with modulus $\{\gamma_m(\rho)\}_{m=1}^M$ and $\gamma(\rho)$, respectively. \label{item:asusum_2_1_pri}
+        \item $\gamma_m(\rho)\ge 2\sigma_{\text{max}}(\mathcal{D}_m^\top \mathcal{D}_m), \forall m$, where $\sigma_{\text{max}}(\mathcal{D}_m^\top \mathcal{D}_m)$ is the maximum eigenvalue for matrix $\mathcal{D}_m^\top \mathcal{D}_m$.
+        \item$\rho\gamma(\rho)>2L^2$ and $\rho\ge L$.
+    \end{enumerate}
+    \label{item:assum_2_pri}
+    \item The objective function $l\left(\sum_{m=1}^{M} \mathcal{D}_mx_m\right) + \lambda\sum_{m=1}^{M} R_m(x_m)$ in Problem~\ref{eq:analysis_problem} is lower bounded over $\Pi_{m=1}^MX_m$ and we denote the lower bound as $\underline{f}$.\label{item:assum_3_pri}
+    \item $R_m$ is either smooth nonconvex or convex (possibly nonsmooth). For the former case, there exists $L_m>0$ such that $\|\nabla R_m(x_m) - \nabla R_m(z_m)\|\le L_m\|x_m-z_m\|$ for all $x_m, z_m\in X_m$.\label{item:assum_4_pri}
+\end{enumerate}
+\end{assume}
+Specifically, \ref{item:assum_1_pri}, \ref{item:assum_3_pri} and \ref{item:assum_4_pri} in Assumptions~\ref{theo:assumptions_pri} are common settings in the literature. Assumptions~\ref{theo:assumptions_pri}.\ref{item:assum_2_pri} is achievable if the $\rho$ is chosen large enough.
+
+Denote $\mathcal{M}\subset\{1,2,\ldots, M\}$ as the index set, such that when $ m\in\mathcal{M}$, $R_m$ is convex, otherwise, $R_m$ is nonconvex but smooth. Our convergence results show that under mild assumptions, the iteratively updated variables eventually converge to the set of primal-dual stationary solutions. 
+\begin{theorem}\label{theo:convergence}
+Suppose Assumption~\ref{theo:assumptions_pri} holds true, we have the following results:
+\begin{enumerate}
+    \item $\lim_{t\rightarrow\infty}\|\sum_{m=1}^{M} \mathcal{D}_mx_m^{t+1} - z^{t+1}\|$=0.\label{item:primal_cond_limit}
+    \item Any limit point $\{\{x^*\}, z^*; y^*\}$ of the sequence $\{\{x^{t+1}\}, z^{t+1}; y^{t+1}\}$ is a stationary solution of problem~\eqref{eq:analysis_problem} in the sense that
+    \begin{align}
+        & x_m^* \in \underset{x_m\in X_m}{\text{argmin}}\quad \lambda R_m(x_m) + \langle y^*, \mathcal{D}_mx_m\rangle, m\in\mathcal{M},\label{eq:cond_x_opt_conv}\\
+        & \langle x_m - x_m^*, \lambda\nabla l(x_m^*) - \mathcal{D}_m^T y^* \rangle\le 0\quad\forall x_m\in X_m, m\not\in\mathcal{M}, \label{eq:cond_x_opt_nonconv}\\
+        & \nabla l(z^*) - y^* = 0,\label{eq:cond_dual}\\
+        & \sum_{m=1}^{M}\mathcal{D}_mx_m^* = z^*.\label{eq:cond_primal}
+    \end{align}
+    \item If $\mathcal{D}_m$ is a compact set for all $m$, then $\{\{x_m^t\}, z^t; y^t\}$ converges to the set of stationary solutions of problem~\eqref{eq:analysis_problem}, i.e.,
+    \begin{align}
+        \underset{t\rightarrow\infty}{\lim}\quad\text{dist}\big((\{x^t\}, z^t; y^t);Z^*\big) = 0,\nonumber
+    \end{align}
+    where $Z^*$ is the set of primal-dual stationary solutions for problem~\eqref{eq:analysis_problem}.
+\end{enumerate}
+\end{theorem}
+
+\subsection{Iteration Complexity Analysis}
+We evaluate the iteration complexity over a \emph{Lyapunov function}. More specifically, we define $V^t$ as
+\begin{align}
+    V^t:=\sum_{m=1}^{M} \|\tilde{\nabla}_{x_m} \mathcal{L}(\{x_m^t\}, z^t; y^t)\|^2 + \|\nabla_z \mathcal{L}(\{x_m^t\}, z^t; y^t)\|^2 + \|\sum_{m=1}^{M} \mathcal{D}_mx_m^t - z^t\|^2,\label{eq:Lyapunov}
+\end{align}
+where
+\begin{align}
+    & \tilde{\nabla}_{x_m} \mathcal{L}(\{x_m^t\}, z^t; y^t) = \nabla_{x_m} \mathcal{L}(\{x_m^t\}, z^t; y^t)\quad\hfill\text{when}~ m\not\in\mathcal{M},\nonumber\\
+    & \tilde{\nabla}_{x_m} \mathcal{L}(\{x_m^t\}, z^t; y^t) = x_m^t - \text{prox}_{\lambda R_m} \big[x_m^t-\nabla_{x_m}\big(\mathcal{L}(\{x_m^t\}, z^t; y^t) - \lambda\sum_{m=1}^{M} R_m(x_m^t)\big)\big]\nonumber\\ 
+    &\quad\hfill \text{when} ~m\in\mathcal{M},\nonumber
+\end{align}
+with $\text{prox}_h[z] := \text{argmin}_x h(x)+\frac{1}{2}\|x-z\|^2$. It is easy to verify that when $V^t\rightarrow 0$, a stationary solution is achieved due to the properties. The result for the iteration complexity is stated in the following theorem, which provides a quantification of how fast our algorithm converges. Theorem~\ref{theo:iter_complexity} shows that the algorithm converges in the sense that the \emph{Lyapunov function} $V^t$ will be less than any $\epsilon>0$ within $O(1/\epsilon)$ iterations. 
+\begin{theorem}\label{theo:iter_complexity}
+    Suppose Assumption~\ref{theo:assumptions_pri} holds. Let $T(\epsilon)$ denote the iteration index in which:
+    \begin{align}
+        T(\epsilon):=\text{min}\{t|V^t\le\epsilon, t\ge0\},\nonumber
+    \end{align}
+    for any $\epsilon>0$. Then there exists a constant $C>0$, such that
+    \begin{align}
+        T(\epsilon)\epsilon\le C(\mathcal{L}(\{x^1\}, z^1; y^1 - \underline{f}),
+    \end{align}
+    where $\underline{f}$ is the lower bound defined in Assumption~\ref{theo:assumptions_pri}.%\ref{item:assum_3_pri}.
+\end{theorem} 

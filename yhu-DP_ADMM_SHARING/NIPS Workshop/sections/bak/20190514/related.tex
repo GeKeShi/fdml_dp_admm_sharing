@@ -1,0 +1,27 @@
+\section{Related Works}
+
+{\bf Differential Privacy Machine Learnings}\\
+\cite{abadi2016deep} utilizes the momentum accountant method which yield a strong privacy bound. 
+
+{\bf Distributed Machine Learning for Distributed Features}
+\cite{heinze2017preserving} aims for linear based models, which projects and compress the original features and adds Gaussian noise to the projected features. Those features are distributed to other parties and each party train their own model with the provided features. (Information leakage is large. Need to justify this claim.)
+
+{\bf DP+ADMM}
+\cite{zhang2018improving} latest result for DP ADMM work. In this work, a modified version of ADMM where the penalty and the dual variable step size is decoupled as long as the penalty is increasing over the iterations and the penalty is greater than the dual variable step size. It is shown to converge in this modified ADMM. Further more, perturbation is applied on the penalty to guarantee the privacy. 
+
+{\bf ADMM}
+
+{\bf Important references}\\
+\cite{huang2018dp} sublinear convergence rate. Due to linear approximation with a increasing strength for the quadratic term, convergence is guaranteed. Sensitivity is also decreasing. In the end, a decreased matching strength of noise is added. 
+
+\cite{nishihara2015general} linear convergence rate. Strong assumption on the constraint matrix. One part should be invertible and the other part should be left-invertable. 
+
+\cite{bellet2017personalized} Optimized noise budget. Not admm. 
+
+\cite{shi2014linear}
+
+
+
+{\bf Related works}\\
+ADMM+DP\cite{zhang2016dual}
+

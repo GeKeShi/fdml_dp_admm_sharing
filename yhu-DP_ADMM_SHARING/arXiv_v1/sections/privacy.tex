@@ -1,0 +1,143 @@
+\section{Differentially Private ADMM Sharing}
+% The data we have is
+
+% \begin{eqnarray*}
+% \left[
+% % \nonumber % Remove numbering (before each equation)
+%   \begin{array}{cccc}
+%     \mathcal{D}_1^1 & \mathcal{D}_2^1 & \cdots & \mathcal{D}_M^1 \\
+%     \mathcal{D}_1^2 & \mathcal{D}_2^2 &\cdots & \mathcal{D}_M^2 \\
+%     \vdots & \vdots & \ddots & \vdots \\
+%     \mathcal{D}_1^N & \mathcal{D}_2^N & \cdots & \mathcal{D}_M^N
+%   \end{array}
+% \right]
+% \end{eqnarray*}
+% where $\mathcal{D}_m^i\in\mathcal{A}_m\subset\mathbb{R}^{d_m}$, $i=1,\cdots,N, m=1,\cdots,M$.
+
+% Rewrite the object function
+% \begin{eqnarray}
+% % \nonumber % Remove numbering (before each equation)
+%    &&\sum_{m^{\prime}=1}^{M}l_{m^{\prime}}(\sum_{m=1}^{M}\mathcal{D}_mx_m;Y)
+%    +\lambda\sum_{m=1}^{M}R_m(x_m)\label{objtotal} \\
+%    &&\text{subject~to}~\sum_{m=1}^{M}\mathcal{D}_mx_m-z=0,z\in\mathbb{R}^N,x_m\in\mathbb{R}^{d_m}, \mathcal{D}_m\in\mathbb{R}^{N\times d_m}, m=1,\cdots, M\nonumber
+% \end{eqnarray}
+
+% The augmented Lagrangian for object function (\ref{objtotal}) is:
+% \begin{eqnarray*}
+% % \nonumber % Remove numbering (before each equation)
+%    &&\mathcal{L}_{\rho}(x,z,y) \\
+%   &&=\sum_{m=1}^{M}l_m(z;Y)+\lambda\sum_{m=1}^{M}R_m(x_m)\\
+%   &&~~+\langle y,\sum_{m=1}^{M}\mathcal{D}_mx_m-z\rangle+\frac{\rho}{2}\|\sum_{m=1}^{M}\mathcal{D}_mx_m-z\|^2
+% \end{eqnarray*}
+
+%%%In the following, we employ the first order approximation of the with a scalar $l_2$-norm
+%%%prox-function:
+%%%\begin{eqnarray*}
+%%%% \nonumber % Remove numbering (before each equation)
+%%%  &&\hat{\mathcal{L}}_{\rho,t}(x_m,\tilde{x}_m^t,z^t,y^t) \\
+%%%  &&=\sum_{m=1}^{M}l_m(z^t;Y)+\lambda\sum_{m=1}^{M}R_m(\tilde{x}_m^t)
+%%%  +\langle \lambda\sum_{m=1}^{M}R_m^{\prime}(\tilde{x}_m^t),x_m-\tilde{x}_m^t\rangle \\
+%%%  &&+\langle y^t,\sum_{m=1}^{M}\mathcal{D}_mx_m-z^t\rangle+\frac{\rho}{2}\|\sum_{m=1}^{M}
+%%%  \mathcal{D}_mx_m-z\|^2+\frac{\|x_m-\tilde{x}_m^t\|^2}{2\eta_m^{t+1}}.
+%%%\end{eqnarray*}
+%%%where $\eta_m^{t+1}\in\mathbb{R}$ is a time varying step size and decreases with increasing $k$.
+
+Differential privacy \cite{dwork2014algorithmic, zhou2010security} is a notion that ensures a strong guarantee for data privacy. The intuition is to keep the query results from a dataset relatively close if one of the entries in the dataset changes, by adding some well designed random noise into the query, so that little information on the raw data can be inferred from the query. Formally, the definition of differential privacy is given in Definition~\ref{defi:DP}.
+% The novelty of our proof is that we provide a differential privacy guarantee of
+% $\mathcal{D}_m x^{t+1}_m$ --- the value shared to other parties, instead of $x^{t+1}_m$ itself.
+\begin{defi}\label{defi:DP}
+A randomized algorithm $\mathcal{M}$ is $(\varepsilon, \delta)-$differentially private if for all $S\subset\text{range}(\mathcal{M})$, and for all $x$ and $y$, such that $|x-y|_1\le 1$:
+\begin{align}
+\text{Pr}(\mathcal{M}(x))\le \exp(\varepsilon)\text{Pr}(\mathcal{M}(y))+\delta.
+\end{align}
+\end{defi}
+%%%\begin{defi}
+%%%$l_1-$sensitivity of function $f$ is
+%%%\begin{align}
+%%%\Delta f = \underset{\|x-y\|_1\le1}{\max}\|f(x)-f(y)\|_1.
+%%%\end{align}
+%%%\end{defi}
+In our ADMM algorithm, the shared messages $\{\mathcal{D}_mx_m^{t+1}\}_{t=0,1,\cdots,T-1}$ may reveal sensitive information from the data entry in $D_m$ of Party $m$. We perturb the shared value $\mathcal{D}_mx^{t+1}_m$ in Algorithm~\ref{alg:ADMM_sharing} with a carefully designed random noise to provide differential privacy. The resulted perturbed ADMM sharing algorithm is the following updates:
+\begin{align}
+% \nonumber % Remove numbering (before each equation)
+  &x_{m}^{t+1}:=\underset{x_m\in X_m}{\text{argmin}}\quad\lambda R_m(x_m) + \langle y^t, \mathcal{D}_mx_m\rangle + \frac{\rho}{2}\big\|\sum_{\substack{k=1,~k\neq m}}^{M}\mathcal{D}_k\tilde{x}_k^{t} + \mathcal{D}_mx_m - z^t\big\|^2, \nonumber\\&\hspace*{36pt} m=1,\cdots,M
+%%%  \arg\min_{x_m}\hat{\mathcal{L}}_{\rho,t}(x_m,\tilde{x}_m^t,z^t,y^t).
+  \nonumber\\
+  &\xi_m^{t+1}:=\mathcal{N}(0,\sigma_{m,t+1}^2
+  (\mathcal{D}_m^\top\mathcal{D}_m)^{-1}
+  )\nonumber\\
+  &\tilde{x}_m^{t+1}:= x_m^{t+1}+\xi_m^{t+1}\label{admmstepsdp}\\
+  &z^{t+1}:=\underset{z}{\text{argmin}}\quad l(z)  - \langle y^t, z \rangle + \frac{\rho}{2} \big\|\sum_{m=1}^{M}\mathcal{D}_m\tilde{x}_m^{t+1} - z\big\|^2\nonumber\\
+&y^{t+1}:=y^t + \rho\big(\sum_{m=1}^{M}\mathcal{D}_m\tilde{x}_m^{t+1} - z^{t+1}\big). \nonumber
+\end{align}
+%\textbf{where $x_{m,\textcolor{red}{\mathcal{D}_m}}^{t+1}$ is to emphasize that $x_{m}^{t+1}$
+%is relied on data $\textcolor{red}{\mathcal{D}_m}$, however, in the following, with a slight abuse of notation, we will write $x_{m,\textcolor{red}{\mathcal{D}_m}}^{t+1}$ as $x_{m}^{t+1}$ in
+%the case of no ambiguity.}
+In the remaining part of this section, we demonstrate that (\ref{admmstepsdp}) guarantees $(\varepsilon, \delta)$~differential privacy with outputs $\{\mathcal{D}_m\tilde{x}_m^{t+1}\}_{t=0,1,\cdots,T-1}$ for some carefully selected $\sigma_{m,t+1}$. Beside Assumption~\ref{theo:assumptions_pri}, we introduce another set of assumptions widely used by the literature.
+\begin{assume}\label{theo:assumptions_pri_added}
+  \begin{enumerate}
+    \item The feasible set $\{x,y\}$ and the dual variable $z$ are bounded; their $l_2$ norms have an upper bound $b_1$.\label{item:assum_5_pri}
+    \item The regularizer $R_m(\cdot)$ is doubly differentiable
+    with $|R_m^{\prime\prime}(\cdot)|\leq c_1$, where $c_1$ is a finite constant.\label{item:assum_6_pri}
+    \item Each row of $\mathcal{D}_m$ is normalized and has an $l_2$ norm of 1.\label{item:assum_7_pri}
+  \end{enumerate}
+\end{assume}
+Note that Assumption \ref{theo:assumptions_pri_added}.\ref{item:assum_5_pri} is adopted in \cite{sarwate2013signal} and \cite{wang2019global}. Assumption \ref{theo:assumptions_pri_added}.\ref{item:assum_6_pri} comes from \cite{zhang2016dynamic} and Assumption \ref{theo:assumptions_pri_added}.\ref{item:assum_7_pri} comes from \cite{zhang2016dynamic}
+and \cite{sarwate2013signal}. As a typical method in differential privacy analysis, we first study the $l_2$ sensitivity of
+$\mathcal{D}_mx_m^{t+1}$, which is defined by:
+\begin{defi}
+The $l_2$-norm sensitivity of $\mathcal{D}_mx_m^{t+1}$ is defined by:
+  \begin{eqnarray*}
+  % \nonumber % Remove numbering (before each equation)
+\Delta_{m,2}=\max_{\substack{\mathcal{D}_m,D_m^{\prime}\\
+\|\mathcal{D}_m-D_m^{\prime}\|\leq1
+}}\|\mathcal{D}_mx_{m,\mathcal{D}_m}^{t+1}
+-\mathcal{D}_m^{\prime}x_{m,\mathcal{D}_m^{\prime}}^{t+1}\|.
+  \end{eqnarray*}
+  where $\mathcal{D}_m$ and $\mathcal{D}_m^{\prime}$ are two neighbouring datasets differing in 
+  only one feature column, and 
+  $x_{m,\mathcal{D}_m}^{t+1}$ is the $x_m^{t+1}$ derived from the first line of equation 
+  (\ref{admmstepsdp}) under dataset $\mathcal{D}_m$.
+\end{defi}
+We have Lemma~\ref{lemma:privacy} to state the upper bound of the $l_2$-norm sensitivity of $\mathcal{D}_mx_m^{t+1}$.
+\begin{lemma}
+\label{lemma:privacy}
+  Assume that Assumption~\ref{theo:assumptions_pri} and Assumption~\ref{theo:assumptions_pri_added} hold.
+  %  the $l_2$-norm sensitivity of $x_m^{t+1}$ is defined by:
+%  \begin{eqnarray*}
+%  % \nonumber % Remove numbering (before each equation)
+%\Delta_{m,2}=\max_{\substack{\mathcal{D}_m,D_m^{\prime}\\
+%\|\mathcal{D}_m-D_m^{\prime}\|\leq1
+%}}\|\mathcal{D}_mx_{m,\mathcal{D}_m}^{t+1}
+%-\mathcal{D}_m^{\prime}x_{m,\mathcal{D}_m^{\prime}}^{t+1}\|
+%  \end{eqnarray*}
+Then the $l_2$-norm sensitivity of $\mathcal{D}_mx_{m,\mathcal{D}_m}^{t+1}$ is upper bounded by $\mathbb{C}=\frac{3}{d_m\rho}\left[\lambda c_1+(1+M\rho)b_1\right]$.
+\end{lemma}
+
+\begin{theorem}\label{theo:DP}
+  Assume assumptions \ref{theo:assumptions_pri_added}.\ref{item:assum_1_pri}-\ref{theo:assumptions_pri_added}.\ref{item:assum_7_pri} hold and $\mathbb{C}$ is the 
+  upper bound of $\Delta_{m,2}$. Let $\varepsilon\in(0,1]$ be an arbitrary constant and let
+  $\mathcal{D}_m\xi_m^{t+1}$ be sampled from zero-mean Gaussian distribution with variance $\sigma_{m,t+1}^2$,
+  where
+  \begin{eqnarray*}
+  % \nonumber % Remove numbering (before each equation)
+    \sigma_{m,t+1}=\frac{\sqrt{2\text{ln}(1.25/\delta)}\mathbb{C}}{\varepsilon}.
+  \end{eqnarray*}
+  Then each iteration guarantees $(\varepsilon,\delta)$-differential privacy. Specifically,
+  for any neighboring datasets $\mathcal{D}_m$ and $\mathcal{D}_m^{\prime}$, for any output
+  $\mathcal{D}_m\tilde{x}_{m,\mathcal{D}_m}^{t+1}$ and $\mathcal{D}_m^{\prime}\tilde{x}_{m,\mathcal{D}_m^{\prime}}^{t+1}$, the following inequality always holds:
+  \begin{eqnarray*}
+  % \nonumber % Remove numbering (before each equation)
+    P(\mathcal{D}_m\tilde{x}_{m,\mathcal{D}_m}^{t+1}|\mathcal{D}_m)\leq e^{\varepsilon}
+    P(\mathcal{D}_m^{\prime}\tilde{x}_{m,\mathcal{D}_m^{\prime}}^{t+1}|\mathcal{D}_m^{\prime})
+    +\delta.
+  \end{eqnarray*}
+\end{theorem}
+
+With an application of the composition theory in \cite{dwork2014algorithmic}, we come to a result stating the overall privacy guarantee for the whole training procedure.
+\begin{coro}
+  For any $\delta^{\prime}>0$, the algorithm described in \eqref{admmstepsdp} satisfies $(\varepsilon^{\prime}, T\delta+\delta^{\prime})-$differential privacy within $T$ epochs of updates, where
+  \begin{equation}
+    \varepsilon^{\prime}=\sqrt{2T\text{ln}(1/\delta^{\prime})}\varepsilon+T\varepsilon(e^\varepsilon - 1).
+  \end{equation}
+\end{coro}

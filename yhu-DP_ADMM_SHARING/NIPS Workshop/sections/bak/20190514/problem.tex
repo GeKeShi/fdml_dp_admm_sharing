@@ -1,0 +1,37 @@
+\section{Machine Learning over Distributed Features}
+Consider feature data for $N$ samples are distributed on $m$ parties. On each party $j$, $D^j\in\mathbb{R}^N\times\mathbb{R}^{d_j}$ is the feature dataset where $d_j$ is the feature dimension on party $j$ and we denote $d=\sum_id_i$ the total feature dimension. We denote the $i^{th}$ row of $D_j$ as $D_j^i$. We denote the concatenated features as $D$. $Y\in\{-1, 1\}^N$ is the label for the samples with $Y^i$ denoting the $i^{th}$ label. $(D_1, D_2, \ldots, D_m, Y)$ is the total training data. We need to find a model $f(D_1^i, D_2^i, \ldots, D_m^i, x)$ with parameters $x$ to predict the labels that minimizes some predefined loss $l(f, Y)$ between the predicted labels and the true labels. 
+\begin{align}
+\underset{x}{\text{minimize}}&\quad\frac{1}{N}\sum_i l_i(f(D_1^i, D_2^i, \ldots, D_m^i; x), Y^i) + \lambda R(x), \label{eq:ori_problem}\\
+\text{s.t.}&\quad x \in X,
+\end{align}
+where $X\subset\mathbb{R}^d$ is a closed convex set; $R(\cdot)$ is some regularizor; $\lambda$ is some tunable coefficient. 
+% We consider \emph{generalized additive models}
+We consider models that linearly depends on the features
+% \begin{align}
+% f(D_1^i, D_2^i, \ldots, D_m^i, x) = \sigma(\sum_j h_j(D_j^i, x_j)),
+% \end{align}
+\begin{align}
+f(D_1^i, D_2^i, \ldots, D_m^i, x) = \sigma(\sum_j D_j^i, x_j),
+\end{align}
+% where $h_j(\cdot, \cdot)$ is some local aggregation function for the features on party $j$
+where $\sigma(\cdot)$ is some activation function. This class of functions include a wide range of realistic models such as lasso, logistic regression, SVM, etc. 
+Taking logistic regress as example, we have
+\begin{align}
+f(D_1^i, D_2^i, \ldots, D_m^i, x) = 1/(1+\text{exp}(-\sum_j D_j^ix_j)),
+\end{align}
+and 
+\begin{align}
+l_i(f^i, Y^i) = & 1/(1+\text{exp}(-Y^i\sum_j D_j^ix_j)).
+\end{align}
+
+Considering separable regularizor where
+\begin{align}
+R(x) = \sum_j R_j(x_j),
+\end{align}
+and rewriting it in a more compact format, the problem is 
+\begin{align}
+\underset{x}{\text{minimize}}&\quad l\left(\sum_j D_jx_j\right) + \lambda\sum_j R_j(x_j), \label{eq:analysis_problem}\\
+\text{s.t.}&\quad x_j\in X_j, j=1,\ldots,m,
+\end{align}
+where  $X_j\subset\mathbb{R}^{d_j}, \forall j$ are closed convex sets. 
+

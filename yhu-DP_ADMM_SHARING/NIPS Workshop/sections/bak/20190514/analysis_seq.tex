@@ -1,0 +1,291 @@
+\section{Analysis for Sequential Update Algorithm}
+\subsection{Convergence for Non-privacy ADMM Sharing Sequential Algorithm}
+\begin{assume}\label{theo:assumptions_seq}
+Assumptions to guarantee the convergence. 
+\begin{enumerate}
+    \item There exists a positive constant $L>0$ such that 
+        \[
+            \|\nabla l(x)-\nabla l(z)\| \le L\|x-z\|\quad \forall x, z.
+        \]
+        Moreover, $X_j$'s are closed convex sets; each $D_j$ is full column rank so that the minimum eigenvalue $\sigma_{\text{min}}(D^T_jD_j)$ of matrix $D^T_jD_j$ is positive.\label{item:assum_1_seq}
+    \item The penalty parameter $\rho$ is chosen large enough such that
+    \begin{enumerate}
+        \item each $x_j$ subproblem~\eqref{eq:seq_algo_x} as well as the $z$ subproblem~\eqref{eq:seq_algo_z} is strongly convex, with modulus $\{\gamma_j(\rho)\}_{j=1}^m$ and $\gamma(\rho)$, respectively. \label{item:asusum_2_1_seq}
+        \item $\rho\gamma(\rho)>2L^2$ and that $\rho\ge L$.
+    \end{enumerate}
+    \label{item:assum_2_seq}
+    \item The objective function $l\left(\sum_j D_jx_j\right) + \lambda\sum_j R_j(x_j)$ in Problem~\ref{eq:analysis_problem} is lower bounded over $\Pi_{i=1}^mX_i$, and we denote the lower bound as $\underline{f}$.\label{item:assum_3_seq}
+    \item $R_j$ is either smooth nonconvex or convex (possibly nonsmooth). For the former case, there exists $L_j>0$ such that $\|\nabla R_j(x_j) - \nabla R_j(z_j)\|\le L_j\|x_j-z_j\|$ for all $x_j, z_j\in X_j$.\label{item:asssum_4_seq}
+\end{enumerate}
+\end{assume}
+To help analyzing, we denote the objective functions in \eqref{eq:seq_algo_x} and \eqref{eq:seq_algo_z} as 
+\begin{align}
+    & g_j(x_j) = \lambda R_j(x_j) + \langle y^t, D_jx_j\rangle + \frac{\rho}{2}\big\|\sum_{k<j}D_kx_k^{t+1} + \sum_{k>j}D_kx_k^t + D_jx_j - z^t\big\|^2,\nonumber\\
+    & h(z) = l(z)  - \langle y^t, z \rangle + \frac{\rho}{2} \big\|\sum_jD_jx_j^{t+1} - z\big\|^2,
+\end{align}
+correspondingly. 
+
+The convergence result is a direct consequence of the following three lemmas. 
+\begin{lemma}\label{lemma:y_diff_bound}
+Suppose Assumption~\ref{theo:assumptions_seq} holds true. We have 
+\[
+    \nabla l(z^{t+1}) = y^{t+1},
+\]
+and 
+\[
+    \|y^{t+1} - y^t\|^2 \le L^2\|z^{t+1} - z^{t}\|^2.
+\]
+\end{lemma}
+{\bf Proof.} By the optimality in \eqref{eq:seq_algo_z}, we have 
+\begin{align}
+    \nabla l(z^{t+1}) - y^t + \rho\big(z^{t+1} - \sum_j D_j x_j^{t+1}\big) = 0.\nonumber
+\end{align}
+Combined with \eqref{eq:seq_algo_y}, we can get 
+\begin{align}
+    \nabla l(z^{t+1}) = y^{t+1}.
+\end{align}
+Combined with Assumption~\ref{theo:assumptions_seq}.\ref{item:assum_1_seq}, we have
+\begin{align}
+\|y^{t+1} - y^{t}\|^2 = \|\nabla l(z^{t+1}) - \nabla l(z^{t})\|^2 \le L^2\|z^{t+1} - z^t\|^2.
+\end{align}
+\hfill$\square$
+
+\begin{lemma}\label{lemma:L_iter_diff}
+Suppose Assumption~\ref{theo:assumptions_seq} holds true. We have
+\begin{align}
+    & L(\{x_j^{t+1}\},z^{t+1};y^{t+1}) - L(\{x_j^{t}\},z^{t};y^{t})\nonumber\\
+    & \le \sum_j -\frac{\gamma_j(\rho)}{2}\|x_j^{t+1} - x_j^t\|^2 - \left(\frac{\gamma(\rho)}{2} - \frac{L^2}{\rho}\right)\|z^{t+1} - z^t\|^2. \nonumber
+\end{align}
+\end{lemma}
+{\bf Proof.} The LFH can be decomposed into two parts as
+\begin{align}
+    & L(\{x_j^{t+1}\},z^{t+1};y^{t+1}) - L(\{x_j^{t}\},z^{t};y^{t})\nonumber\\
+    = & \big(L(\{x_j^{t+1}\},z^{t+1};y^{t+1}) - L(\{x_j^{t+1}\},z^{t+1};y^{t})\big)\nonumber\\
+    & + \big(L(\{x_j^{t+1}\},z^{t+1};y^{t}) - L(\{x_j^{t}\},z^{t};y^{t})\big). \label{eq:proof_diff_L_0_seq}
+\end{align}
+For the first term, we have
+\begin{align}
+    & L(\{x_j^{t+1}\},z^{t+1};y^{t+1}) - L(\{x_j^{t+1}\},z^{t+1};y^{t})\nonumber\\
+    = & \langle y^{t+1} - y^t , \sum_jD_jx_j^{t+1} - z^{t+1}\rangle\nonumber\\
+    = & \frac{1}{\rho}\|y^{t+1} - y^t\|^2\quad\text{(by \eqref{eq:seq_algo_y})}\nonumber\\
+    \le & \frac{L^2}{\rho}\|z^{t+1} - z^t\|^2\quad\text{(Lemma~\ref{lemma:y_diff_bound})}\label{eq:proof_diff_L_1_seq}.
+\end{align}
+For the second term, we have
+\begin{align}
+    & L(\{x_j^{t+1}\},z^{t+1};y^{t}) - L(\{x_j^{t}\},z^{t};y^{t})\nonumber\\
+    = & L(\{x_j^{t+1}\},z^{t+1};y^{t}) - L(\{x_j^{t}\},z^{t+1};y^{t}) + L(\{x_j^{t}\},z^{t+1};y^{t}) - L(\{x_j^{t}\},z^{t};y^{t})\nonumber\\
+    = & \sum_j\bigg(\big(\lambda R_j(x_j^{t+1}) + \langle y^t, D_jx_j^{t+1}\rangle + \frac{\rho}{2}\big\|\sum_{k\le j}D_kx_k^{t+1} + \sum_{k>j}D_kx_k^t - z^{t+1}\big\|^2\big)\nonumber\\
+    & - \big(\lambda R_j(x_j^{t}) + \langle y^t, D_jx_j^{t}\rangle + \frac{\rho}{2}\big\|\sum_{k< j}D_kx_k^{t+1} + \sum_{k\ge j}D_kx_k^t - z^{t+1}\big\|^2\big)\bigg)\nonumber\\
+    & + \bigg(\big(l(z^{t+1}) -\langle y^t, z^{t+1}\rangle + \frac{\rho}{2} \big\|\sum_jD_jx_j^{t+1} - z^{t+1}\big\|^2\big)\nonumber\\
+    & -\big(l(z^{t}) -\langle y^t, z^{t}\rangle+ \frac{\rho}{2} \big\|\sum_jD_jx_j^{t+1} - z^{t}\big\|^2\big)\bigg)\\
+    = & \sum_j\big(g_j(x_j^{t+1}) - g_j(x_j^t)\big) + (h(z^{t+1}) - h(z^T))\nonumber\\
+    \le & \sum_j \big(\langle \nabla g_j(x_j^{t+1}), x_j^{t+1}-x_j^t\rangle - \frac{\gamma_j(\rho)}{2}\|x_j^{t+1}-x_j^t\|^2\big) + \langle\nabla h(z^{t+1}, z^{t+1} - z^t)\rangle - \frac{\gamma(\rho)}{2}\|z^{t+1} - z^t\|^2\nonumber\\
+    & \text{(by strongly convexity from Assumption~\ref{theo:assumptions_seq}.\ref{item:assum_2_seq})}\nonumber\\
+    \le & -\sum_j\frac{\gamma_j(\rho)}{2}\|x_j^{t+1}-x_j^t\|^2 - \frac{\gamma(\rho)}{2}\|z^{t+1} - z^t\|^2\quad\text{(by optimality condition for subproblem in \eqref{eq:seq_algo_x} and \eqref{eq:seq_algo_z})}.\label{eq:proof_diff_L_2_seq}
+\end{align}
+Note that we abuse the notation $\nabla g_j(x_j)$ and denote it as the subgradient when $g$ is nonsmooth but convex. 
+Combining \eqref{eq:proof_diff_L_0_seq}, \eqref{eq:proof_diff_L_1_seq} and \eqref{eq:proof_diff_L_2_seq}, the lemma is proved.\hfill$\square$
+
+\begin{lemma}\label{lemma:L_lower_bound}
+    Suppose Assumption~\ref{theo:assumptions_seq} holds true. Then the following limit exists and is bounded from below: 
+    \begin{align}
+        \underset{t\rightarrow\infty}{\text{lim}} L(\{x_j^{t+1}\}, z^{t+1}; y^{t+1}). 
+    \end{align}
+\end{lemma}
+{\bf Proof.} 
+\begin{align}
+    & L(\{x_i^{t+1}\}, z^{t+1}; y^{t+1} )\nonumber\\
+    = & l(z^{t+1}) + \lambda\sum_j R_j(x_j^{t+1}) + \langle y^{t+1}, \sum_jD_j x_j^{t+1} - z^{t+1}\rangle + \frac{\rho}{2}\|D_j x_j^{t+1} - z^{t+1}\|^2\nonumber\\
+    = &\lambda\sum_j R_j(x_j^{t+1}) + l(z^{t+1}) + \langle \nabla l(z^{t+1}), \sum_jD_j x_j^{t+1} - z^{t+1}\rangle + \frac{\rho}{2}\|D_j x_j^{t+1} - z^{t+1}\|^2\quad\text{(by Lemma~\ref{lemma:y_diff_bound})}\nonumber\\
+    \ge & \lambda\sum_j R_j(x_j^{t+1}) + l(\sum_jD_j x_j^{t+1}) + \frac{\rho-L}{2}\|D_j x_j^{t+1} - z^{t+1}\|^2.\quad\text{(from Assumption~\ref{theo:assumptions_seq}.\ref{item:assum_1_seq})}
+\end{align}
+Combined with Assumption~\ref{theo:assumptions_seq}.\ref{item:assum_3_seq}, $L(\{x_j^{t+1}\}, z^{t+1}; y^{t+1})$ is lower bounded. Furthermore, by Assumption~\ref{theo:assumptions_seq}.\ref{item:assum_2_seq} and Lemma~\ref{lemma:L_iter_diff}, $L(\{x_j^{t+1}\}, z^{t+1}; y^{t+1})$ is deceasing. These complete the proof. \hfill$\square$
+
+Denote $\mathcal{J}\subset\{1,2,\ldots, m\}$ as the index set, such that when $ j\in\mathcal{J}$, $R_j$ is convex, otherwise, $R_j$ is nonconvex but smooth. Now we are ready for the main convergence theorem. 
+\begin{theorem}\label{theo:convergence}
+Suppose Assumption~\ref{theo:assumptions_seq} holds true, We have the following results:
+\begin{enumerate}
+    \item $\text{lim}_{t\rightarrow\infty}\|\sum_j D_jx_j^{t+1} - z^{t+1}\|$=0.\label{item:primal_cond_limit}
+    \item Any limit point $\{\{x_j^*\}, z^*; y^*\}$ of the sequence $\{\{x_j^{t+1}\}, z^{t+1}; y^{t+1}\}$ is a stationary solution of problem~\eqref{eq:analysis_problem} in the sense that
+    \begin{align}
+        & x_j^* \in \underset{x_j\in X_j}{\text{argmin}}\quad \lambda R_j(x_j) + \langle y^*, D_jx_j\rangle, j\not\in\mathcal{J},\label{eq:cond_x_opt_conv}\\
+        & \langle x_j - x_j^*, \lambda\nabla l(x_j^*) - D_j^T y^* \rangle\le 0\quad\forall x_j\in X_j, j\in\mathcal{J}, \label{eq:cond_x_opt_nonconv}\\
+        & \nabla l(z^*) - y^* = 0,\label{eq:cond_dual}\\
+        & \sum_jD_jx_j^* = z^*.\label{eq:cond_primal}
+    \end{align}
+    \item if $D_j$ is a compact set for all $j$, then $\{\{x_j^t\}, z^t; y^t\}$ converges to the set of stationary solutions of problem~\eqref{eq:analysis_problem}, i.e., 
+    \begin{align}
+        \underset{t\rightarrow\infty}{\text{lim}}\quad\text{dist}\big((\{x_j^t\}, z^t; y^t);Z^*\big) = 0,\nonumber
+    \end{align}
+    where $Z^*$ is the set of primal-dual stationary solutions for problem~\eqref{eq:analysis_problem}.
+\end{enumerate}
+\end{theorem}
+{\bf Proof.} \\
+{\bf Part 1. } By Assumption~\ref{theo:assumptions_seq}.\ref{item:assum_2_seq}, Lemma~\ref{lemma:L_iter_diff} and Lemma~\ref{lemma:L_lower_bound}, we have 
+\begin{align}
+    & \|x_j^{t+1} - x_j^t\|\rightarrow 0\quad\forall j=1,2,\ldots, m,\nonumber\\
+    & \|z^{t+1} - z^t\|\rightarrow 0.\nonumber
+\end{align}
+Combined with Lemma~\ref{lemma:y_diff_bound}, we have 
+\begin{align}
+    \|y^{t+1}-y^t\|^2\rightarrow 0.\nonumber
+\end{align}
+Combined with~\eqref{eq:seq_algo_y}, we complete the proof for Part 1. 
+
+{\bf Part 2.} Due to the fact that $\|y^{t+1}-y^t\|^2\rightarrow 0$, by taking limit in \eqref{eq:seq_algo_y}, we can get \eqref{eq:cond_primal}.
+
+At each iteration $t+1$, by the optimality of the subproblem in \eqref{eq:seq_algo_z}, we have
+\begin{align}
+    \nabla l(z^{t+1}) - y^t + \rho (z^{t+1} - \sum_jD_jx_j^{t+1}) = 0.
+\end{align}
+Combined with \eqref{eq:cond_primal} and taking limit, we can get \eqref{eq:cond_dual}.
+
+Similarly, by the optimality of the subproblem in \eqref{eq:seq_algo_x}, for $\forall j\in\mathcal{J}$ there exist $\eta_j^{t+1}\in\partial R_j(x_j^{t+1})$, such that\red{
+\begin{align}
+    \big\langle x_j-x_j^{t+1}, \lambda \eta_j^{t+1} + D_j^Ty^t + \rho D_j^T\big(\sum_{k\le j} D_kx_k^{t+1} + \sum_{k>j} D_kx_k^{t} - z^{t}\big)\big\rangle \ge 0\quad \forall x_j\in X_j.
+\end{align}
+[[?? I am not sure whether the differential computation is correct for matrix. ]]}
+Since $R_j$ is convex, we have 
+\begin{align}
+    \lambda R_j(x_j) - \lambda R_j(x_j^{t+1}) + \big\langle x-x_j^{t+1}, D_j^Ty^t + \rho\big(\sum_{k\le j} D_kx_k^{t+1} + \sum_{k>j} D_kx_k^{t} - z^{t}\big)^T D_j\big\rangle \ge 0\quad \forall x_j\in X_j.
+\end{align}
+Combined with \eqref{eq:cond_primal} and the fact $\|x_j^{t+1} - x_j^{t}\|\rightarrow 0$, by taking limit, we can get
+\begin{align}
+    \lambda R_j(x_j) - \lambda R_j(x_j^*) + \big\langle x-x_j^{*}, D_j^Ty^* \big\rangle \ge 0\quad \forall x_j\in X_j, \forall j,
+\end{align}
+which is equivalent to 
+\begin{align}
+    \lambda R_j(x) + \big\langle y^*, D_jx \big\rangle- \lambda R_j(x_j^*) - \big\langle y^*, D_jx_j^{*} \big\rangle \ge 0\quad \forall x\in X_j, \forall j. 
+\end{align}
+And we can get the result in \eqref{eq:cond_x_opt_conv}. \\
+When $j\not\in\mathcal{J}$, we have 
+\begin{align}
+    \big\langle x_j-x_j^{t+1}, \lambda \nabla R_j(x_j^{t+1}) + D_j^Ty^t + \rho\big(\sum_{k\le j} D_kx_k^{t+1} + \sum_{k>j} D_kx_k^{t} - z^{t}\big)^T D_j\big\rangle \ge 0\quad \forall x_j\in X_j.
+\end{align}
+Taking the limit and we can get \eqref{eq:cond_x_opt_nonconv}.
+
+{\bf Part 3.} We first show that there exists a limit point for each of the sequences $\{x_j^t\}$, $\{z^t\}$ and $\{y^t\}$. Since $X_j, \forall j$ is compact, $\{x_j^t\}$ must have a limit point. With Theorem~\ref{theo:convergence}.\ref{item:primal_cond_limit}, we can get that $\{z^t\}$ is also compact and has a limit point. Furthermore, with Lemma~\ref{lemma:y_diff_bound}, we can get $\{y^t\}$ is also compact and has a limit point. 
+
+We prove Part 3 by contradiction. \red{Since $\{x_j^t\}$, $\{z^t\}$ and $\{y^t\}$ lie in some compact set, there exists a subsequence $\{x_j^{t_k}\}$, $\{z^{t_k}\}$ and $\{y^{t_k}\}$, such that
+\begin{align}
+    (\{x_j^{t_k}\}, z^{t_k}; y^{t_k})\rightarrow (\{\hat{x}_j\}, \hat{z}; \hat{y}), \label{eq:subseq_limit}
+\end{align}
+where $(\{\hat{x}_j\}, \hat{z}; \hat{y})$ is some limit point and by part 2, we have $(\{\hat{x}_j\}, \hat{z}; \hat{y})\in Z^*$.} Suppose that $\{\{x_j^t\}, z^t; y^t\}$ does not converge to $Z^*$, since $(\{x_j^{t_k}\}, z^{t_k}; y^{t_k})$ is a subsequence of it, there exists some $\gamma>0$, such that
+\begin{align}
+    \underset{k\rightarrow\infty}{\text{lim}}\quad\text{dist}\big((\{x_j^{t_k}\}, z^{t_k}; y^{t_k});Z^*\big)=\gamma>0.\label{eq:suppose}
+\end{align}
+From \eqref{eq:subseq_limit}, there exists some $J(\gamma)>0$, such that
+\begin{align}
+        \|(\{x_j^{t_k}\}, z^{t_k}; y^{t_k})- (\{\hat{x}_j\}, \hat{z}; \hat{y})\|\le\frac{\gamma}{2}, \quad\forall k\ge J(\gamma).
+\end{align}
+Since $(\{\hat{x}_j\}, \hat{z}; \hat{y})\in Z^*$, we have
+\begin{align}
+    \text{dist}\big((\{x_j^{t_k}\}, z^{t_k}; y^{t_k});Z^*\big) \le \text{dist}\big((\{x_j^{t_k}\}, z^{t_k}; y^{t_k});  (\{\hat{x}_j\}, \hat{z}; \hat{y})\big).
+\end{align}
+From the above two inequalities, we must have
+\begin{align}
+    \text{dist}\big((\{x_j^{t_k}\}, z^{t_k}; y^{t_k});Z^*\big)\le\frac{\gamma}{2},\quad\forall k\ge J(\gamma),
+\end{align}
+which contradicts to \eqref{eq:suppose}, completing the proof.
+\hfill$\square$
+
+\subsection{Iteration Complexity Analysis for Sequential Update Algorithm}
+We evaluate the iteration complexity over a \emph{Lyapunov function}. We define $V^t$ as
+\begin{align}
+    V^t:=\sum_j \|\tilde{\nabla}_{x_j} L(\{x^t_j\}, z^t; y^t)\|^2 + \|\nabla_z L(\{x^t_j\}, z^t; y^t)\|^2 + \|\sum_j D_jx_j^t - z^t\|^2,\label{eq:Lyapunov}
+\end{align}
+where
+\begin{align}
+    & \tilde{\nabla}_{x_j} L(\{x^t_j\}, z^t; y^t) = \nabla_{x_j} L(\{x^t_j\}, z^t; y^t)\quad &\text{when} j\not\in\mathcal{J},\nonumber\\
+    & \tilde{\nabla}_{x_j} L(\{x^t_j\}, z^t; y^t) = x_j^t - \text{prox}_{\lambda R_j} \big[x_j^t-\nabla_{x_j}\big(L(\{x^t_j\}, z^t; y^t) - \lambda\sum_j R_j(x_j^t)\big)\big] \quad &\text{when} j\in\mathcal{J},\nonumber
+\end{align}
+where $\text{prox}_h[z] := \text{argmin}_x h(x)+\frac{1}{2}\|x-z\|^2$. \red{We can verify that when $V^t\rightarrow 0$, a stationary solution is achieved.} We have the result for the iteration complexity in the following sense: 
+\begin{theorem}\label{theo:iter_complexity}
+    Suppose Assumption~\ref{theo:assumptions_pal} holds true,. Let $T(\epsilon)$ denote the iteration index in which:
+    \begin{align}
+        T(\epsilon):=\text{min}\{t|V^t\le\epsilon, t\ge0\},\nonumber
+    \end{align}
+    for some $\epsilon>0$. Then there exists some constant $C>0$, such that 
+    \begin{align}
+        T(\epsilon)\epsilon\le C(L(\{x^1\}, z^1; y^1 - \underline{f}),
+    \end{align} 
+    where $\underline{f}$ is defined in Assumption~\ref{theo:assumptions_seq}.\ref{item:assum_3_seq} or Assumption~\ref{theo:assumptions_pal}.\ref{item:assum_3_pal}.
+\end{theorem}
+{\bf Proof.} We first show an upper bound for $V^t$. 
+
+1. Bound for $\tilde{\nabla}_{x_j} L(\{x^t_j\}, z^t; y^t)$. When $j\in\mathcal{J}$, from the optimality condition in \eqref{eq:seq_algo_x}, we have 
+\begin{align}
+    0 \in \lambda\partial_{x_j}R_j(x_j^{t+1}) + D^Ty^t + \rho D_j^T\big(\sum_{k\le j} D_kx_k^{t+1} + \sum_{k>j} D_kx_k^{t} - z^{t}\big).\nonumber
+\end{align}
+By some rearrangement, we have
+\begin{align}
+    \big(x_j^{t+1} - D^Ty^t - \rho D_j^T\big(\sum_{k\le j} D_kx_k^{t+1} + \sum_{k>j} D_kx_k^{t} - z^{t}\big)\big) - x_j^{t+1} \in \lambda\partial_{x_j}R_j(x_j^{t+1}),\nonumber
+\end{align}
+which is equivalent to 
+\begin{align}
+    x_j^{t+1} = \text{prox}_{\lambda R_j}\big[x_j^{t+1} - D^Ty^t - \rho D_j^T\big(\sum_{k\le j} D_kx_k^{t+1} + \sum_{k>j} D_kx_k^{t} - z^{t}\big)\big]. 
+\end{align}
+Therefore,
+\begin{align}
+    & \|x_j^t - \text{prox}_{\lambda R_j} \big[x_j^t-\nabla_{x_j}\big(L(\{x^t_j\}, z^t; y^t) - \lambda\sum_j R_j(x_j^t)\big)\big]\|\nonumber\\
+    = & \big\|x_j^t - x_j^{t+1} + x_j^{t+1} - \text{prox}_{\lambda R_j}\big[x_j^{t} - D^Ty^t - \rho D_j^T\big(\sum_{k} D_kx_k^{t} - z^{t}\big)\big]\big\|\nonumber\\
+    \le & \|x_j^t - x_j^{t+1}\| + \big\|  \text{prox}_{\lambda R_j}\big[x_j^{t+1} - D^Ty^t - \rho D_j^T\big(\sum_{k\le j} D_kx_k^{t+1} + \sum_{k>j} D_kx_k^{t} - z^{t}\big)\big]\nonumber\\
+    &  - \text{prox}_{\lambda R_j}\big[x_j^{t} - D^Ty^t - \rho D_j^T\big(\sum_{k} D_kx_k^{t} - z^{t}\big)\big]\big\|\nonumber\\
+    & \le 2\|x_j^t - x_j^{t+1}\| + \rho\sum_{k\le j}\|D_j^TD_k(x_k^{t+1} - x_k^t)\|. \label{eq:proof_seq_bound_V_1}
+\end{align}
+When $j\not\in\mathcal{J}$, similarly, we have
+\begin{align}
+    \lambda\nabla_{x_j}R_j(x_j^{t+1}) + D^Ty^t + \rho D_j^T\big(\sum_{k\le j} D_kx_k^{t+1} + \sum_{k>j} D_kx_k^{t} - z^{t}\big) = 0.
+\end{align}
+Therefore,
+\begin{align}
+    & \|\nabla_{x_j} L(\{x^t_j\}, z^t; y^t)\|\nonumber\\
+    = & \|\lambda\nabla_{x_j}R_j(x_j^{t}) + D^Ty^t + \rho D_j^T\big( \sum_{k} D_kx_k^{t} - z^{t}\big)\|\nonumber\\
+    = &  \|\lambda\nabla_{x_j}R_j(x_j^{t}) + D^Ty^t + \rho D_j^T\big( \sum_{k} D_kx_k^{t} - z^{t}\big)\nonumber\\
+     & - \big(\lambda\nabla_{x_j}R_j(x_j^{t+1}) + D^Ty^t + \rho D_j^T\big(\sum_{k\le j} D_kx_k^{t+1} + \sum_{k>j} D_kx_k^{t} - z^{t}\big)\big)\|\nonumber\\
+    \le &  \lambda\|\nabla_{x_j}R_j(x_j^{t}) - \nabla_{x_j}R_j(x_j^{t+1}) \| + \rho\sum_{k\le j}\|D_j^TD_k(x_k^{t+1} - x_k^t)\|\nonumber\\
+    \le & L_j\| x_k^{t+1} - x_k^t \|  + \rho\sum_{k\le j}\|D_j^TD_k(x_k^{t+1} - x_k^t)\| \quad\text{(by Assumption~\ref{theo:assumptions_seq}.\ref{item:asssum_4_seq})}\label{eq:proof_seq_bound_V_2}
+\end{align}
+
+2. Bound for $\|\nabla_{z} L(\{x^t_j\}, z^t; y^t)\|$. By optimality condition in \eqref{eq:seq_algo_z}, we have
+\begin{align}
+    \nabla l(z^{t+1}) - y^t + \rho\big(z^{t+1} - \sum_j D_j x_j^{t+1}\big) = 0.\nonumber
+\end{align}
+Therefore
+\begin{align}
+        & \|\nabla_{z} L(\{x^t_j\}, z^t; y^t)\|\nonumber\\
+        = & \| l(z^{t}) - y^t + \rho\big(z^{t} - \sum_j D_j x_j^{t}\big) \|\nonumber\\
+        = & \|l(z^{t}) - y^t + \rho\big(z^{t} - \sum_j D_j x_j^{t}\big) - \big(l(z^{t+1}) - y^t + \rho\big(z^{t+1} - \sum_j D_j x_j^{t+1}\big)\big)\|\nonumber\\
+        \le & (L+\rho)\|z^{t+1} - z^{t}\| + \rho\sum_j\|D_j(x_j^{t+1}-x_j^{t})\|\label{eq:proof_seq_bound_V_3}
+\end{align}
+
+3. Bound for $\|\sum_j D_jx_j^t - z^t\|$. According to Lemma~\ref{lemma:y_diff_bound}, we have
+\begin{align}
+     \|\sum_j D_jx_j^t - z^t\| = \frac{1}{\rho}\|y^{t+1}-y^t\| \le \frac{L}{\rho}\|z^{t+1}-z^t\|. \label{eq:proof_seq_bound_V_4}
+\end{align}
+
+Combining \eqref{eq:proof_seq_bound_V_1}, \eqref{eq:proof_seq_bound_V_2}, \eqref{eq:proof_seq_bound_V_3} and \eqref{eq:proof_seq_bound_V_4}, we can conclude that there exists some $C_1>0$, such that
+\begin{align}
+    V^t \le C_1(\|z^{t+1}-z^t\|^2 + \sum_j\|x_j^{t+1}-x_j^t\|^2), \label{eq:proof_seq_bound_V_5}
+\end{align}
+
+By Lemma~\ref{lemma:L_iter_diff}, there exists some constant $C_2 = \text{min}\{\sum_j\frac{\gamma_j(\rho)}{2}, \frac{\gamma(\rho)}{2} - \frac{L^2}{\rho}\}$, such that
+\begin{align}
+    & L(\{x_j^t\}, z^t; y^t) - L(\{x_j^{t+1}\}, z^{t+1}; y^{t+1})\nonumber\\
+    \ge & C_2 (\|z^{t+1}-z^t\|^2 + \sum_j\|x_j^{t+1}-x_j^t\|^2). \label{eq:proof_seq_bound_V_6}
+\end{align}
+
+By \eqref{eq:proof_seq_bound_V_5} and \eqref{eq:proof_seq_bound_V_6}, we have
+\begin{align}
+    V^t\le \frac{C_1}{C_2}L(\{x_j^t\}, z^t; y^t) - L(\{x_j^{t+1}\}, z^{t+1}; y^{t+1}).
+\end{align}
+Taking the sum over $t=1,\ldots, T$, we have
+\begin{align}
+    \sum_{t=1}^T V^t \le & \frac{C_1}{C_2} L(\{x_j^1\}, z^1; y^1) - L(\{x_j^{t+1}\}, z^{t+1}; y^{t+1})\nonumber\\
+    \le & \frac{C_1}{C_2} (L(\{x_j^1\}, z^1; y^1) - \underline{f}).
+\end{align}
+By the definition of $T(\epsilon)$, we have 
+\begin{align}
+    T(\epsilon)\epsilon \le \frac{C_1}{C_2} (L(\{x_j^1\}, z^1; y^1)  - \underline{f}).
+\end{align}
+By taking $C = \frac{C_1}{C_2}$, we complete the proof. \hfill$\square$

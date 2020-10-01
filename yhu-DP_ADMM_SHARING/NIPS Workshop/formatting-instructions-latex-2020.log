@@ -1,0 +1,198 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=latex 2020.8.20)  29 SEP 2020 16:38
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**formatting-instructions-latex-2020.tex
+(./formatting-instructions-latex-2020.tex
+LaTeX2e <2020-02-02> patch level 5
+L3 programming layer <2020-03-06>
+(/usr/local/texlive/2020/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2019/12/20 v1.4l Standard LaTeX document class
+(/usr/local/texlive/2020/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2019/12/20 v1.4l Standard LaTeX file (size option)
+)
+\c@part=\count167
+\c@section=\count168
+\c@subsection=\count169
+\c@subsubsection=\count170
+\c@paragraph=\count171
+\c@subparagraph=\count172
+\c@figure=\count173
+\c@table=\count174
+\abovecaptionskip=\skip47
+\belowcaptionskip=\skip48
+\bibindent=\dimen134
+) (./aaai20.sty
+Conference Style for AAAI for LaTeX 2e -- version for the AAAI-20 conference
+\titlebox=\skip49
+) (/usr/local/texlive/2020/texmf-dist/tex/latex/psnfss/times.sty
+Package: times 2005/04/12 PSNFSS-v9.2a (SPQR) 
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/psnfss/helvet.sty
+Package: helvet 2005/04/12 PSNFSS-v9.2a (WaS) 
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks15
+))
+(/usr/local/texlive/2020/texmf-dist/tex/latex/psnfss/courier.sty
+Package: courier 2005/04/12 PSNFSS-v9.2a (WaS) 
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip16
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2019/11/30 v1.2a Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2019/11/30 v1.4a Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: dvips.def on input line 105.
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/graphics-def/dvips.def
+File: dvips.def 2017/06/20 v3.1d Graphics/color driver for dvips
+))
+\Gin@req@height=\dimen135
+\Gin@req@width=\dimen136
+)
+pdfTeX warning (\pdfinfo): not allowed in DVI mode (\pdfoutput <= 0); ignoring 
+it
+(/usr/local/texlive/2020/texmf-dist/tex/latex/l3backend/l3backend-dvips.def
+File: l3backend-dvips.def 2020-03-12 L3 backend support: dvips
+\l__pdf_internal_box=\box45
+\g__pdf_backend_object_int=\count175
+\l__pdf_backend_content_box=\box46
+\l__pdf_backend_model_box=\box47
+\g__pdf_backend_annotation_int=\count176
+\g__pdf_backend_link_int=\count177
+\g__pdf_backend_link_sf_int=\count178
+)
+(./formatting-instructions-latex-2020.aux)
+\openout1 = `formatting-instructions-latex-2020.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 95.
+LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 95.
+LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 95.
+LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 95.
+LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 95.
+LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 95.
+LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 95.
+LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 9
+5.
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/psnfss/ot1ptm.fd
+File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
+)
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <14.4> on input line 97.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 97.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 97.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 97.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 97.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 97.
+LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 9
+7.
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/psnfss/ts1ptm.fd
+File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
+)
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <9> on input line 97.
+ [1
+
+
+
+] [2]
+LaTeX Font Info:    Trying to load font information for OMS+ptm on input line 1
+89.
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/psnfss/omsptm.fd
+File: omsptm.fd 
+)
+LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 189.
+
+Underfull \hbox (badness 1776) in paragraph at lines 189--190
+\OT1/ptm/m/n/10 fit within the spec-i-fied height al-lowed, put \OMS/cmsy/m/n/1
+0 n\OT1/ptm/m/n/10 setlength
+ []
+
+LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 1
+93.
+(/usr/local/texlive/2020/texmf-dist/tex/latex/psnfss/ot1pcr.fd
+File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
+)
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <10.95> on input line 275.
+
+
+LaTeX Warning: Reference `table1' on page 3 undefined on input line 345.
+
+
+LaTeX Warning: Reference `table2' on page 3 undefined on input line 345.
+
+[3]
+Underfull \hbox (badness 2035) in paragraph at lines 372--373
+\OT1/ptm/m/n/10 in-clude \OMS/cmsy/m/n/10 n\OT1/ptm/m/n/10 columnsep, \OMS/cmsy
+/m/n/10 n\OT1/ptm/m/n/10 topmargin, \OMS/cmsy/m/n/10 n\OT1/ptm/m/n/10 topskip, 
+\OMS/cmsy/m/n/10 n\OT1/ptm/m/n/10 textheight,
+ []
+
+
+LaTeX Warning: Reference `fig1' on page 4 undefined on input line 377.
+
+
+LaTeX Warning: Reference `fig2' on page 4 undefined on input line 377.
+
+
+! LaTeX Error: File `figure1' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.383 ...egraphics[width=0.9\columnwidth]{figure1}
+                                                   % Reduce the figure size ...
+
+? 
+! Emergency stop.
+ ...                                              
+                                                  
+l.383 ...egraphics[width=0.9\columnwidth]{figure1}
+                                                   % Reduce the figure size ...
+
+I could not locate the file with any of these extensions:
+.eps,.ps,.eps.gz,.ps.gz,.eps.Z,.mps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+ 
+Here is how much of TeX's memory you used:
+ 1035 strings out of 480609
+ 15825 string characters out of 5903656
+ 263183 words of memory out of 5000000
+ 16942 multiletter control sequences out of 15000+600000
+ 546486 words of font info for 61 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 30i,14n,25p,935b,345s stack positions out of 5000i,500n,10000p,200000b,80000s
+Output written on formatting-instructions-latex-2020.dvi (3 pages, 20928 bytes)
+.
