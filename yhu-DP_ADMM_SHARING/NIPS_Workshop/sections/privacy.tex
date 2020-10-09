@@ -77,29 +77,29 @@ In our ADMM algorithm, the shared messages $\{\mathcal{D}_mx_m^{t+1}\}_{t=0,1,\c
 %\textbf{where $x_{m,\textcolor{red}{\mathcal{D}_m}}^{t+1}$ is to emphasize that $x_{m}^{t+1}$
 %is relied on data $\textcolor{red}{\mathcal{D}_m}$, however, in the following, with a slight abuse of notation, we will write $x_{m,\textcolor{red}{\mathcal{D}_m}}^{t+1}$ as $x_{m}^{t+1}$ in
 %the case of no ambiguity.}
-In the remaining part of this section, we demonstrate that (\ref{admmstepsdp}) guarantees $(\varepsilon, \delta)$~differential privacy with outputs $\{\mathcal{D}_m\tilde{x}_m^{t+1}\}_{t=0,1,\cdots,T-1}$ for some carefully selected $\sigma_{m,t+1}$. Beside Assumption~\ref{theo:assumptions_pri}, we introduce two sets of assumptions widely used by the literature.
+In the remaining part of this section, we demonstrate that (\ref{admmstepsdp}) guarantees $(\varepsilon, \delta)$~differential privacy with outputs $\{\mathcal{D}_m\tilde{x}_m^{t+1}\}_{t=0,1,\cdots,T-1}$ for some carefully selected $\sigma_{m,t+1}$. We introduce a set of assumptions widely used by the literature.
 % workshop change
-\begin{assume}\label{theo:assumptions_pri}
-% \newline
-\begin{enumerate}
-    \item There exists a positive constant $L>0$ such that
-        \[
-            \|\nabla l(x)-\nabla l(z)\| \le L\|x-z\|\quad \forall x, z.
-        \]
-        Moreover, for all $m\in\{1,2,\cdots,M\}$, $X_m$'s are closed convex sets; each $\mathcal{D}_m$ is of full column rank so that the minimum eigenvalue $\sigma_{\text{min}}(\mathcal{D}_m^\top \mathcal{D}_m)$ of matrix $\mathcal{D}_m^\top \mathcal{D}_m$ is positive.\label{item:assum_1_pri}
-    \item The penalty parameter $\rho$ is chosen large enough such that
-    \begin{enumerate}
-        \item each $x_m$ subproblem~\eqref{eq:pal_algo_x} as well as the $z$ subproblem~\eqref{eq:pal_algo_z} is strongly convex, with modulus $\{\gamma_m(\rho)\}_{m=1}^M$ and $\gamma(\rho)$, respectively. \label{item:asusum_2_1_pri}
-        \item $\gamma_m(\rho)\ge 2\sigma_{\text{max}}(\mathcal{D}_m^\top \mathcal{D}_m), \forall m$, where $\sigma_{\text{max}}(\mathcal{D}_m^\top \mathcal{D}_m)$ is the maximum eigenvalue for matrix $\mathcal{D}_m^\top \mathcal{D}_m$.
-        \item$\rho\gamma(\rho)>2L^2$ and $\rho\ge L$.
-    \end{enumerate}
-    \label{item:assum_2_pri}
-    \item The objective function $l\left(\sum_{m=1}^{M} \mathcal{D}_mx_m\right) + \lambda\sum_{m=1}^{M} R_m(x_m)$ in Problem~\ref{eq:analysis_problem} is lower bounded over $\Pi_{m=1}^MX_m$ and we denote the lower bound as $\underline{f}$.\label{item:assum_3_pri}
-    \item $R_m$ is either smooth nonconvex or convex (possibly nonsmooth). For the former case, there exists $L_m>0$ such that $\|\nabla R_m(x_m) - \nabla R_m(z_m)\|\le L_m\|x_m-z_m\|$ for all $x_m, z_m\in X_m$.\label{item:assum_4_pri}
-\end{enumerate}
-\end{assume}
+% \begin{assume}\label{theo:assumptions_pri}
+% % \newline
+% \begin{enumerate}
+%     \item There exists a positive constant $L>0$ such that
+%         \[
+%             \|\nabla l(x)-\nabla l(z)\| \le L\|x-z\|\quad \forall x, z.
+%         \]
+%         Moreover, for all $m\in\{1,2,\cdots,M\}$, $X_m$'s are closed convex sets; each $\mathcal{D}_m$ is of full column rank so that the minimum eigenvalue $\sigma_{\text{min}}(\mathcal{D}_m^\top \mathcal{D}_m)$ of matrix $\mathcal{D}_m^\top \mathcal{D}_m$ is positive.\label{item:assum_1_pri}
+%     \item The penalty parameter $\rho$ is chosen large enough such that
+%     \begin{enumerate}
+%         \item each $x_m$ subproblem~\eqref{eq:pal_algo_x} as well as the $z$ subproblem~\eqref{eq:pal_algo_z} is strongly convex, with modulus $\{\gamma_m(\rho)\}_{m=1}^M$ and $\gamma(\rho)$, respectively. \label{item:asusum_2_1_pri}
+%         \item $\gamma_m(\rho)\ge 2\sigma_{\text{max}}(\mathcal{D}_m^\top \mathcal{D}_m), \forall m$, where $\sigma_{\text{max}}(\mathcal{D}_m^\top \mathcal{D}_m)$ is the maximum eigenvalue for matrix $\mathcal{D}_m^\top \mathcal{D}_m$.
+%         \item$\rho\gamma(\rho)>2L^2$ and $\rho\ge L$.
+%     \end{enumerate}
+%     \label{item:assum_2_pri}
+%     \item The objective function $l\left(\sum_{m=1}^{M} \mathcal{D}_mx_m\right) + \lambda\sum_{m=1}^{M} R_m(x_m)$ in Problem~\ref{eq:analysis_problem} is lower bounded over $\Pi_{m=1}^MX_m$ and we denote the lower bound as $\underline{f}$.\label{item:assum_3_pri}
+%     \item $R_m$ is either smooth nonconvex or convex (possibly nonsmooth). For the former case, there exists $L_m>0$ such that $\|\nabla R_m(x_m) - \nabla R_m(z_m)\|\le L_m\|x_m-z_m\|$ for all $x_m, z_m\in X_m$.\label{item:assum_4_pri}
+% \end{enumerate}
+% \end{assume}
 
-Specifically, \ref{item:assum_1_pri}, \ref{item:assum_3_pri} and \ref{item:assum_4_pri} in Assumptions~\ref{theo:assumptions_pri} are common settings in the literature. Assumptions~\ref{theo:assumptions_pri}.\ref{item:assum_2_pri} is achievable if the $\rho$ is chosen large enough.
+% Specifically, \ref{item:assum_1_pri}, \ref{item:assum_3_pri} and \ref{item:assum_4_pri} in Assumptions~\ref{theo:assumptions_pri} are common settings in the literature. Assumptions~\ref{theo:assumptions_pri}.\ref{item:assum_2_pri} is achievable if the $\rho$ is chosen large enough.
 
 \begin{assume}\label{theo:assumptions_pri_added}
   \begin{enumerate}
@@ -129,7 +129,7 @@ The $l_2$-norm sensitivity of $\mathcal{D}_mx_m^{t+1}$ is defined by:
 We have Lemma~\ref{lemma:privacy} state the upper bound of the $l_2$-norm sensitivity of $\mathcal{D}_mx_m^{t+1}$.
 \begin{lemma}
 \label{lemma:privacy}
-  Assume that Assumption~\ref{theo:assumptions_pri} and Assumption~\ref{theo:assumptions_pri_added} hold.
+  Assume that Assumption~\ref{theo:assumptions_pri_added} hold.
   %  the $l_2$-norm sensitivity of $x_m^{t+1}$ is defined by:
 %  \begin{eqnarray*}
 %  % \nonumber % Remove numbering (before each equation)
@@ -143,7 +143,7 @@ Then the $l_2$-norm sensitivity of $\mathcal{D}_mx_{m,\mathcal{D}_m}^{t+1}$ is u
 
 We have Theorem~\ref{theo:DP} for differential privacy guarantee in each iteration.
 \begin{theorem}\label{theo:DP}
-  Assume assumptions \ref{theo:assumptions_pri_added}.\ref{item:assum_1_pri}-\ref{theo:assumptions_pri_added}.\ref{item:assum_7_pri} hold and $\mathbb{C}$ is the 
+  Assume assumptions \ref{theo:assumptions_pri_added}.\ref{item:assum_5_pri}-\ref{theo:assumptions_pri_added}.\ref{item:assum_7_pri} hold and $\mathbb{C}$ is the 
   upper bound of $\Delta_{m,2}$. Let $\varepsilon\in(0,1]$ be an arbitrary constant and let
   $\mathcal{D}_m\xi_m^{t+1}$ be sampled from zero-mean Gaussian distribution with variance $\sigma_{m,t+1}^2$,
   where

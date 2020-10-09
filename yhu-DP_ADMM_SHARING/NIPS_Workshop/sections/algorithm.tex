@@ -1,6 +1,6 @@
 \section{The ADMM Sharing Algorithm}
 \label{sec:admmSharing}
-We present an ADMM sharing algorithm \cite{boyd2011distributed,hong2016convergence} to solve Problem~\eqref{eq:analysis_problem} \emph{and establish a convergence guarantee for the algorithm.} Our algorithm requires each party only share a single value to other parties in each iteration, thus requiring the minimum message passing. 
+We present an ADMM sharing algorithm \cite{boyd2011distributed,hong2016convergence} to solve Problem~\eqref{eq:analysis_problem}. Our algorithm requires each party only share a single value to other parties in each iteration, thus requiring the minimum message passing. 
 In particular, Problem~\eqref{eq:analysis_problem} is equivalent to
 \begin{align}
 \underset{x}{\text{minimize}} &\quad l\left(z\right) + \lambda\sum_{m=1}^{M} R_m(x_m),\\
