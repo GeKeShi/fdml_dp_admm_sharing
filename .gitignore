@@ -109,4 +109,4 @@ venv.bak/
 .mypy_cache/
 # yhu-DP_ADMM_SHARING/*
 
-.vscode/*
+.vscode/settings.json
