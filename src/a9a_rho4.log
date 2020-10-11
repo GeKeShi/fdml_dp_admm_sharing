@@ -1,0 +1,356 @@
+Using default parameters in config
+Initializing...
+32561 size feature 1
+32561 size feature 66
+32561 size feature 57
+workers 0 start in iter 0
+workers 0 done in iter 0
+workers 1 start in iter 0
+workers 1 done in iter 0
+server iter 0 start
+server iter 0 done
+--Iteration: 0, train_logloss: 0.6931, train_obj: 0.6931, test_logloss: 0.6931, time(x, z): 0.05/3.82, eplapsed: 3.88, ETA: 190.13
+workers 0 start in iter 1
+workers 0 done in iter 1
+workers 1 start in iter 1
+workers 1 done in iter 1
+server iter 1 start
+server iter 1 done
+--Iteration: 1, train_logloss: 0.6656, train_obj: 0.6656, test_logloss: 0.6654, time(x, z): 1.52/4.05, eplapsed: 10.86, ETA: 260.59
+workers 0 start in iter 2
+workers 0 done in iter 2
+workers 1 start in iter 2
+workers 1 done in iter 2
+server iter 2 start
+server iter 2 done
+--Iteration: 2, train_logloss: 0.6345, train_obj: 0.6346, test_logloss: 0.6342, time(x, z): 1.90/4.18, eplapsed: 18.64, ETA: 292.09
+workers 0 start in iter 3
+workers 0 done in iter 3
+workers 1 start in iter 3
+workers 1 done in iter 3
+server iter 3 start
+server iter 3 done
+--Iteration: 3, train_logloss: 0.6029, train_obj: 0.6031, test_logloss: 0.6025, time(x, z): 2.67/4.23, eplapsed: 27.16, ETA: 312.37
+workers 0 start in iter 4
+workers 0 done in iter 4
+workers 1 start in iter 4
+workers 1 done in iter 4
+server iter 4 start
+server iter 4 done
+--Iteration: 4, train_logloss: 0.5728, train_obj: 0.5732, test_logloss: 0.5723, time(x, z): 3.13/4.11, eplapsed: 36.01, ETA: 324.06
+workers 0 start in iter 5
+workers 0 done in iter 5
+workers 1 start in iter 5
+workers 1 done in iter 5
+server iter 5 start
+server iter 5 done
+--Iteration: 5, train_logloss: 0.5453, train_obj: 0.5460, test_logloss: 0.5446, time(x, z): 2.53/4.05, eplapsed: 44.15, ETA: 323.73
+workers 0 start in iter 6
+workers 0 done in iter 6
+workers 1 start in iter 6
+workers 1 done in iter 6
+server iter 6 start
+server iter 6 done
+--Iteration: 6, train_logloss: 0.5208, train_obj: 0.5218, test_logloss: 0.5200, time(x, z): 2.04/4.00, eplapsed: 51.48, ETA: 316.25
+workers 0 start in iter 7
+workers 0 done in iter 7
+workers 1 start in iter 7
+workers 1 done in iter 7
+server iter 7 start
+server iter 7 done
+--Iteration: 7, train_logloss: 0.4994, train_obj: 0.5007, test_logloss: 0.4985, time(x, z): 1.96/3.84, eplapsed: 58.79, ETA: 308.66
+workers 0 start in iter 8
+workers 0 done in iter 8
+workers 1 start in iter 8
+workers 1 done in iter 8
+server iter 8 start
+server iter 8 done
+--Iteration: 8, train_logloss: 0.4808, train_obj: 0.4825, test_logloss: 0.4799, time(x, z): 0.88/4.15, eplapsed: 64.69, ETA: 294.69
+workers 0 start in iter 9
+workers 0 done in iter 9
+workers 1 start in iter 9
+workers 1 done in iter 9
+server iter 9 start
+server iter 9 done
+--Iteration: 9, train_logloss: 0.4650, train_obj: 0.4671, test_logloss: 0.4640, time(x, z): 0.59/4.03, eplapsed: 69.83, ETA: 279.31
+workers 0 start in iter 10
+workers 0 done in iter 10
+workers 1 start in iter 10
+workers 1 done in iter 10
+server iter 10 start
+server iter 10 done
+--Iteration: 10, train_logloss: 0.4516, train_obj: 0.4541, test_logloss: 0.4505, time(x, z): 1.52/3.93, eplapsed: 76.53, ETA: 271.35
+workers 0 start in iter 11
+workers 0 done in iter 11
+workers 1 start in iter 11
+workers 1 done in iter 11
+server iter 11 start
+server iter 11 done
+--Iteration: 11, train_logloss: 0.4402, train_obj: 0.4431, test_logloss: 0.4391, time(x, z): 0.93/3.84, eplapsed: 81.84, ETA: 259.15
+workers 0 start in iter 12
+workers 0 done in iter 12
+workers 1 start in iter 12
+workers 1 done in iter 12
+server iter 12 start
+server iter 12 done
+--Iteration: 12, train_logloss: 0.4305, train_obj: 0.4339, test_logloss: 0.4295, time(x, z): 1.40/4.23, eplapsed: 88.56, ETA: 252.05
+workers 0 start in iter 13
+workers 0 done in iter 13
+workers 1 start in iter 13
+workers 1 done in iter 13
+server iter 13 start
+server iter 13 done
+--Iteration: 13, train_logloss: 0.4224, train_obj: 0.4261, test_logloss: 0.4213, time(x, z): 1.03/4.02, eplapsed: 94.46, ETA: 242.90
+workers 0 start in iter 14
+workers 0 done in iter 14
+workers 1 start in iter 14
+workers 1 done in iter 14
+server iter 14 start
+server iter 14 done
+--Iteration: 14, train_logloss: 0.4154, train_obj: 0.4195, test_logloss: 0.4143, time(x, z): 1.10/3.67, eplapsed: 100.02, ETA: 233.37
+workers 0 start in iter 15
+workers 0 done in iter 15
+workers 1 start in iter 15
+workers 1 done in iter 15
+server iter 15 start
+server iter 15 done
+--Iteration: 15, train_logloss: 0.4095, train_obj: 0.4140, test_logloss: 0.4084, time(x, z): 1.07/3.59, eplapsed: 105.06, ETA: 223.26
+workers 0 start in iter 16
+workers 0 done in iter 16
+workers 1 start in iter 16
+workers 1 done in iter 16
+server iter 16 start
+server iter 16 done
+--Iteration: 16, train_logloss: 0.4044, train_obj: 0.4093, test_logloss: 0.4034, time(x, z): 1.08/3.68, eplapsed: 110.52, ETA: 214.55
+workers 0 start in iter 17
+workers 0 done in iter 17
+workers 1 start in iter 17
+workers 1 done in iter 17
+server iter 17 start
+server iter 17 done
+--Iteration: 17, train_logloss: 0.4001, train_obj: 0.4053, test_logloss: 0.3991, time(x, z): 1.34/3.95, eplapsed: 117.08, ETA: 208.15
+workers 0 start in iter 18
+workers 0 done in iter 18
+workers 1 start in iter 18
+workers 1 done in iter 18
+server iter 18 start
+server iter 18 done
+--Iteration: 18, train_logloss: 0.3964, train_obj: 0.4019, test_logloss: 0.3954, time(x, z): 0.86/3.76, eplapsed: 122.32, ETA: 199.58
+workers 0 start in iter 19
+workers 0 done in iter 19
+workers 1 start in iter 19
+workers 1 done in iter 19
+server iter 19 start
+server iter 19 done
+--Iteration: 19, train_logloss: 0.3932, train_obj: 0.3990, test_logloss: 0.3923, time(x, z): 1.08/4.26, eplapsed: 128.10, ETA: 192.15
+workers 0 start in iter 20
+workers 0 done in iter 20
+workers 1 start in iter 20
+workers 1 done in iter 20
+server iter 20 start
+server iter 20 done
+--Iteration: 20, train_logloss: 0.3905, train_obj: 0.3966, test_logloss: 0.3896, time(x, z): 1.50/3.99, eplapsed: 134.63, ETA: 185.91
+workers 0 start in iter 21
+workers 0 done in iter 21
+workers 1 start in iter 21
+workers 1 done in iter 21
+server iter 21 start
+server iter 21 done
+--Iteration: 21, train_logloss: 0.3881, train_obj: 0.3945, test_logloss: 0.3872, time(x, z): 1.22/4.04, eplapsed: 140.82, ETA: 179.23
+workers 0 start in iter 22
+workers 0 done in iter 22
+workers 1 start in iter 22
+workers 1 done in iter 22
+server iter 22 start
+server iter 22 done
+--Iteration: 22, train_logloss: 0.3860, train_obj: 0.3926, test_logloss: 0.3852, time(x, z): 1.15/3.98, eplapsed: 147.01, ETA: 172.58
+workers 0 start in iter 23
+workers 0 done in iter 23
+workers 1 start in iter 23
+workers 1 done in iter 23
+server iter 23 start
+server iter 23 done
+--Iteration: 23, train_logloss: 0.3842, train_obj: 0.3911, test_logloss: 0.3835, time(x, z): 1.21/4.06, eplapsed: 153.35, ETA: 166.13
+workers 0 start in iter 24
+workers 0 done in iter 24
+workers 1 start in iter 24
+workers 1 done in iter 24
+server iter 24 start
+server iter 24 done
+--Iteration: 24, train_logloss: 0.3826, train_obj: 0.3897, test_logloss: 0.3819, time(x, z): 1.43/3.93, eplapsed: 160.03, ETA: 160.03
+workers 0 start in iter 25
+workers 0 done in iter 25
+workers 1 start in iter 25
+workers 1 done in iter 25
+server iter 25 start
+server iter 25 done
+--Iteration: 25, train_logloss: 0.3812, train_obj: 0.3886, test_logloss: 0.3806, time(x, z): 1.21/3.88, eplapsed: 165.96, ETA: 153.20
+workers 0 start in iter 26
+workers 0 done in iter 26
+workers 1 start in iter 26
+workers 1 done in iter 26
+server iter 26 start
+server iter 26 done
+--Iteration: 26, train_logloss: 0.3800, train_obj: 0.3876, test_logloss: 0.3794, time(x, z): 0.71/3.97, eplapsed: 171.20, ETA: 145.84
+workers 0 start in iter 27
+workers 0 done in iter 27
+workers 1 start in iter 27
+workers 1 done in iter 27
+server iter 27 start
+server iter 27 done
+--Iteration: 27, train_logloss: 0.3789, train_obj: 0.3867, test_logloss: 0.3784, time(x, z): 1.46/3.95, eplapsed: 177.75, ETA: 139.66
+workers 0 start in iter 28
+workers 0 done in iter 28
+workers 1 start in iter 28
+workers 1 done in iter 28
+server iter 28 start
+server iter 28 done
+--Iteration: 28, train_logloss: 0.3780, train_obj: 0.3860, test_logloss: 0.3775, time(x, z): 1.40/4.13, eplapsed: 184.28, ETA: 133.44
+workers 0 start in iter 29
+workers 0 done in iter 29
+workers 1 start in iter 29
+workers 1 done in iter 29
+server iter 29 start
+server iter 29 done
+--Iteration: 29, train_logloss: 0.3771, train_obj: 0.3853, test_logloss: 0.3767, time(x, z): 1.05/3.87, eplapsed: 190.07, ETA: 126.71
+workers 0 start in iter 30
+workers 0 done in iter 30
+workers 1 start in iter 30
+workers 1 done in iter 30
+server iter 30 start
+server iter 30 done
+--Iteration: 30, train_logloss: 0.3764, train_obj: 0.3848, test_logloss: 0.3759, time(x, z): 0.99/3.97, eplapsed: 195.62, ETA: 119.89
+workers 0 start in iter 31
+workers 0 done in iter 31
+workers 1 start in iter 31
+workers 1 done in iter 31
+server iter 31 start
+server iter 31 done
+--Iteration: 31, train_logloss: 0.3757, train_obj: 0.3843, test_logloss: 0.3753, time(x, z): 0.74/4.16, eplapsed: 201.20, ETA: 113.17
+workers 0 start in iter 32
+workers 0 done in iter 32
+workers 1 start in iter 32
+workers 1 done in iter 32
+server iter 32 start
+server iter 32 done
+--Iteration: 32, train_logloss: 0.3751, train_obj: 0.3839, test_logloss: 0.3747, time(x, z): 0.50/3.86, eplapsed: 205.96, ETA: 106.10
+workers 0 start in iter 33
+workers 0 done in iter 33
+workers 1 start in iter 33
+workers 1 done in iter 33
+server iter 33 start
+server iter 33 done
+--Iteration: 33, train_logloss: 0.3745, train_obj: 0.3835, test_logloss: 0.3742, time(x, z): 0.72/3.85, eplapsed: 211.17, ETA: 99.37
+workers 0 start in iter 34
+workers 0 done in iter 34
+workers 1 start in iter 34
+workers 1 done in iter 34
+server iter 34 start
+server iter 34 done
+--Iteration: 34, train_logloss: 0.3740, train_obj: 0.3832, test_logloss: 0.3737, time(x, z): 0.82/3.62, eplapsed: 216.23, ETA: 92.67
+workers 0 start in iter 35
+workers 0 done in iter 35
+workers 1 start in iter 35
+workers 1 done in iter 35
+server iter 35 start
+server iter 35 done
+--Iteration: 35, train_logloss: 0.3735, train_obj: 0.3829, test_logloss: 0.3733, time(x, z): 1.12/3.81, eplapsed: 222.16, ETA: 86.40
+workers 0 start in iter 36
+workers 0 done in iter 36
+workers 1 start in iter 36
+workers 1 done in iter 36
+server iter 36 start
+server iter 36 done
+--Iteration: 36, train_logloss: 0.3731, train_obj: 0.3827, test_logloss: 0.3729, time(x, z): 1.24/4.01, eplapsed: 228.42, ETA: 80.26
+workers 0 start in iter 37
+workers 0 done in iter 37
+workers 1 start in iter 37
+workers 1 done in iter 37
+server iter 37 start
+server iter 37 done
+--Iteration: 37, train_logloss: 0.3727, train_obj: 0.3825, test_logloss: 0.3725, time(x, z): 0.60/3.96, eplapsed: 233.49, ETA: 73.73
+workers 0 start in iter 38
+workers 0 done in iter 38
+workers 1 start in iter 38
+workers 1 done in iter 38
+server iter 38 start
+server iter 38 done
+--Iteration: 38, train_logloss: 0.3723, train_obj: 0.3823, test_logloss: 0.3721, time(x, z): 1.73/3.84, eplapsed: 239.92, ETA: 67.67
+workers 0 start in iter 39
+workers 0 done in iter 39
+workers 1 start in iter 39
+workers 1 done in iter 39
+server iter 39 start
+server iter 39 done
+--Iteration: 39, train_logloss: 0.3719, train_obj: 0.3821, test_logloss: 0.3718, time(x, z): 0.62/3.88, eplapsed: 244.88, ETA: 61.22
+workers 0 start in iter 40
+workers 0 done in iter 40
+workers 1 start in iter 40
+workers 1 done in iter 40
+server iter 40 start
+server iter 40 done
+--Iteration: 40, train_logloss: 0.3716, train_obj: 0.3820, test_logloss: 0.3715, time(x, z): 2.55/3.82, eplapsed: 252.48, ETA: 55.42
+workers 0 start in iter 41
+workers 0 done in iter 41
+workers 1 start in iter 41
+workers 1 done in iter 41
+server iter 41 start
+server iter 41 done
+--Iteration: 41, train_logloss: 0.3713, train_obj: 0.3818, test_logloss: 0.3712, time(x, z): 2.12/3.85, eplapsed: 259.33, ETA: 49.40
+workers 0 start in iter 42
+workers 0 done in iter 42
+workers 1 start in iter 42
+workers 1 done in iter 42
+server iter 42 start
+server iter 42 done
+--Iteration: 42, train_logloss: 0.3710, train_obj: 0.3817, test_logloss: 0.3709, time(x, z): 0.75/3.87, eplapsed: 264.68, ETA: 43.09
+workers 0 start in iter 43
+workers 0 done in iter 43
+workers 1 start in iter 43
+workers 1 done in iter 43
+server iter 43 start
+server iter 43 done
+--Iteration: 43, train_logloss: 0.3707, train_obj: 0.3816, test_logloss: 0.3706, time(x, z): 1.03/3.88, eplapsed: 270.11, ETA: 36.83
+workers 0 start in iter 44
+workers 0 done in iter 44
+workers 1 start in iter 44
+workers 1 done in iter 44
+server iter 44 start
+server iter 44 done
+--Iteration: 44, train_logloss: 0.3704, train_obj: 0.3815, test_logloss: 0.3704, time(x, z): 1.07/3.84, eplapsed: 275.41, ETA: 30.60
+workers 0 start in iter 45
+workers 0 done in iter 45
+workers 1 start in iter 45
+workers 1 done in iter 45
+server iter 45 start
+server iter 45 done
+--Iteration: 45, train_logloss: 0.3701, train_obj: 0.3814, test_logloss: 0.3701, time(x, z): 1.98/3.89, eplapsed: 282.08, ETA: 24.53
+workers 0 start in iter 46
+workers 0 done in iter 46
+workers 1 start in iter 46
+workers 1 done in iter 46
+server iter 46 start
+server iter 46 done
+--Iteration: 46, train_logloss: 0.3698, train_obj: 0.3814, test_logloss: 0.3699, time(x, z): 0.78/3.86, eplapsed: 287.47, ETA: 18.35
+workers 0 start in iter 47
+workers 0 done in iter 47
+workers 1 start in iter 47
+workers 1 done in iter 47
+server iter 47 start
+server iter 47 done
+--Iteration: 47, train_logloss: 0.3696, train_obj: 0.3813, test_logloss: 0.3696, time(x, z): 1.45/3.88, eplapsed: 293.85, ETA: 12.24
+workers 0 start in iter 48
+workers 0 done in iter 48
+workers 1 start in iter 48
+workers 1 done in iter 48
+server iter 48 start
+server iter 48 done
+--Iteration: 48, train_logloss: 0.3693, train_obj: 0.3813, test_logloss: 0.3694, time(x, z): 2.50/3.85, eplapsed: 301.00, ETA: 6.14
+workers 0 start in iter 49
+workers 0 done in iter 49
+workers 1 start in iter 49
+workers 1 done in iter 49
+server iter 49 start
+server iter 49 done
+--Iteration: 49, train_logloss: 0.3691, train_obj: 0.3812, test_logloss: 0.3692, time(x, z): 1.99/3.71, eplapsed: 308.02, ETA: 0.00
+Total elapsed time 262.90

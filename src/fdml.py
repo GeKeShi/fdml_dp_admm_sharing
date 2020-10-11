@@ -28,12 +28,12 @@ class nodes:
 		pass
 	def load_data(self, train_path, test_path):
 		train_feature, train_label, test_feature, test_label = util.load_svmlightfile_data(train_path, test_path)
-		self.train_feature = train_feature[0:50000]
-		print(train_feature[0:2,:])
-		self.train_label = train_label[0:50000]
-		print(train_label[0:2])
-		self.test_feature = test_feature[0:10000]
-		self.test_label = test_label[0:10000]
+		self.train_feature = train_feature
+		#print(train_feature[0:2,:])
+		self.train_label = train_label
+		#print(train_label[0:2])
+		self.test_feature = test_feature
+		self.test_label = test_label
 		self.size_feature = train_feature.shape[1]
 		print("{} size feature {}".format(self.train_feature.shape[0], self.size_feature))
 		self.train_size = self.train_feature.shape[0]

@@ -439,7 +439,7 @@ class coord:
 		fpr, tpr, threshholds = roc_curve(self.server.test_label, predict_proba)
 		fig = plt.figure(figsize=(10,10))
 		fdml_auc = plt.plot(fpr, tpr, 'b-', label='fdml ROC')
-		fig.savefig('epoch_'+str(t)+'_ROC.png')
+		fig.savefig('4096epoch_'+str(t)+'_ROC.png')
 		
 		loss = self.loss_logit_form(self.server.test_label, sum_Dx)
 		return loss, predict_proba

@@ -1,0 +1,265 @@
+Using default parameters in config
+Initializing...
+
+[0. 0.]
+4765979 size feature 1
+  (0, 0)	1.0
+  (1, 1)	1.0
+  (1, 2)	1.0
+  (1, 3)	1.0
+  (1, 4)	1.0
+  (1, 5)	1.0
+  (1, 6)	1.0
+  (1, 7)	1.0
+  (1, 8)	1.0
+  (1, 9)	1.0
+  (1, 10)	1.0
+  (1, 11)	1.0
+  (1, 12)	1.0
+  (1, 13)	1.0
+  (1, 14)	1.0
+  (1, 15)	1.0
+  (1, 16)	1.0
+  (1, 17)	1.0
+  (1, 18)	1.0
+  (1, 19)	1.0
+  (1, 20)	1.0
+  (1, 21)	1.0
+  (1, 22)	1.0
+  (1, 23)	1.0
+  (1, 24)	1.0
+  :	:
+  (1, 960)	1.0
+  (1, 961)	1.0
+  (1, 962)	1.0
+  (1, 963)	1.0
+  (1, 964)	1.0
+  (1, 965)	1.0
+  (1, 966)	1.0
+  (1, 967)	1.0
+  (1, 968)	1.0
+  (1, 969)	1.0
+  (1, 970)	1.0
+  (1, 971)	1.0
+  (1, 972)	1.0
+  (1, 973)	1.0
+  (1, 974)	1.0
+  (1, 975)	1.0
+  (1, 976)	1.0
+  (1, 977)	1.0
+  (1, 978)	1.0
+  (1, 979)	1.0
+  (1, 980)	1.0
+  (1, 981)	1.0
+  (1, 982)	1.0
+  (1, 983)	1.0
+  (1, 984)	1.0
+[0. 0.]
+4765979 size feature 177554
+  (0, 0)	1.0
+  (0, 1)	1.0
+  (1, 2)	1.0
+  (1, 3)	1.0
+  (1, 4)	1.0
+  (1, 5)	1.0
+  (1, 6)	1.0
+  (1, 7)	1.0
+  (1, 8)	1.0
+  (1, 9)	1.0
+  (1, 10)	1.0
+  (1, 11)	1.0
+  (1, 12)	1.0
+  (1, 13)	1.0
+  (1, 14)	1.0
+  (1, 15)	1.0
+  (1, 16)	1.0
+  (1, 17)	1.0
+  (1, 18)	1.0
+  (1, 19)	1.0
+  (1, 20)	1.0
+  (1, 21)	1.0
+  (1, 22)	1.0
+  (1, 23)	1.0
+  (1, 24)	1.0
+  (1, 25)	1.0
+  (1, 26)	1.0
+  (1, 27)	1.0
+  (1, 28)	1.0
+  (1, 29)	1.0
+  (1, 30)	1.0
+  (1, 31)	1.0
+  (1, 32)	1.0
+  (1, 33)	1.0
+  (1, 34)	1.0
+[0. 0.]
+4765979 size feature 19033
+  (0, 0)	1.0
+  (1, 1)	1.0
+  (1, 2)	1.0
+  (1, 3)	1.0
+  (1, 4)	1.0
+  (1, 5)	1.0
+  (1, 6)	1.0
+  (1, 7)	1.0
+  (1, 8)	1.0
+  (1, 9)	1.0
+  (1, 10)	1.0
+  (1, 11)	1.0
+  (1, 12)	1.0
+  (1, 13)	1.0
+  (1, 14)	1.0
+  (1, 15)	1.0
+  (1, 16)	1.0
+  (1, 17)	1.0
+  (1, 18)	1.0
+  (1, 19)	1.0
+  (1, 20)	1.0
+  (1, 21)	1.0
+  (1, 22)	1.0
+  (1, 23)	1.0
+  (1, 24)	1.0
+  :	:
+  (1, 70)	1.0
+  (1, 71)	1.0
+  (1, 72)	1.0
+  (1, 73)	1.0
+  (1, 74)	1.0
+  (1, 75)	1.0
+  (1, 76)	1.0
+  (1, 77)	1.0
+  (1, 78)	1.0
+  (1, 79)	1.0
+  (1, 80)	1.0
+  (1, 81)	1.0
+  (1, 82)	1.0
+  (1, 83)	1.0
+  (1, 84)	1.0
+  (1, 85)	1.0
+  (1, 86)	1.0
+  (1, 87)	1.0
+  (1, 88)	1.0
+  (1, 89)	1.0
+  (1, 90)	1.0
+  (1, 91)	1.0
+  (1, 92)	1.0
+  (1, 93)	1.0
+  (1, 94)	1.0
+[0. 0.]
+4765979 size feature 63973
+--Iteration: 0, train_logloss: 0.6931, train_obj: 0.6931
+--Iteration: 0, train_logloss: 0.6927, train_obj: 0.6933
+--Iteration: 0, train_logloss: 0.6922, train_obj: 0.6932
+--Iteration: 0, train_logloss: 0.6919, train_obj: 0.6929
+--Iteration: 0, train_logloss: 0.6909, train_obj: 0.6920
+--Iteration: 0, train_logloss: 0.6910, train_obj: 0.6920
+--Iteration: 0, train_logloss: 0.6905, train_obj: 0.6915
+--Iteration: 0, train_logloss: 0.6897, train_obj: 0.6908
+--Iteration: 0, train_logloss: 0.6901, train_obj: 0.6910
+--Iteration: 0, train_logloss: 0.6896, train_obj: 0.6907
+--Iteration: 0, train_logloss: 0.6893, train_obj: 0.6903
+--Iteration: 0, train_logloss: 0.6882, train_obj: 0.6891
+--Iteration: 0, train_logloss: 0.6878, train_obj: 0.6891
+--Iteration: 0, train_logloss: 0.6876, train_obj: 0.6888
+--Iteration: 0, train_logloss: 0.6878, train_obj: 0.6889
+--Iteration: 0, train_logloss: 0.6873, train_obj: 0.6884
+--Iteration: 0, train_logloss: 0.6867, train_obj: 0.6879
+--Iteration: 0, train_logloss: 0.6855, train_obj: 0.6865
+--Iteration: 0, train_logloss: 0.6870, train_obj: 0.6879
+--Iteration: 0, train_logloss: 0.6867, train_obj: 0.6878
+--Iteration: 0, train_logloss: 0.6858, train_obj: 0.6869
+--Iteration: 0, train_logloss: 0.6865, train_obj: 0.6876
+--Iteration: 0, train_logloss: 0.6850, train_obj: 0.6865
+--Iteration: 0, train_logloss: 0.6852, train_obj: 0.6866
+--Iteration: 0, train_logloss: 0.6852, train_obj: 0.6862
+--Iteration: 0, train_logloss: 0.6859, train_obj: 0.6869
+--Iteration: 0, train_logloss: 0.6856, train_obj: 0.6865
+--Iteration: 0, train_logloss: 0.6860, train_obj: 0.6868
+--Iteration: 0, train_logloss: 0.6854, train_obj: 0.6863
+--Iteration: 0, train_logloss: 0.6835, train_obj: 0.6846
+--Iteration: 0, train_logloss: 0.6838, train_obj: 0.6847
+--Iteration: 0, train_logloss: 0.6830, train_obj: 0.6841
+--Iteration: 0, train_logloss: 0.6836, train_obj: 0.6845
+--Iteration: 0, train_logloss: 0.6839, train_obj: 0.6848
+--Iteration: 0, train_logloss: 0.6841, train_obj: 0.6853
+--Iteration: 0, train_logloss: 0.6843, train_obj: 0.6851
+--Iteration: 0, train_logloss: 0.6847, train_obj: 0.6857
+--Iteration: 0, train_logloss: 0.6844, train_obj: 0.6854
+--Iteration: 0, train_logloss: 0.6820, train_obj: 0.6830
+--Iteration: 0, train_logloss: 0.6830, train_obj: 0.6845
+--Iteration: 0, train_logloss: 0.6833, train_obj: 0.6846
+--Iteration: 0, train_logloss: 0.6846, train_obj: 0.6859
+--Iteration: 0, train_logloss: 0.6831, train_obj: 0.6843
+--Iteration: 0, train_logloss: 0.6833, train_obj: 0.6846
+--Iteration: 0, train_logloss: 0.6834, train_obj: 0.6846
+--Iteration: 0, train_logloss: 0.6842, train_obj: 0.6857
+--Iteration: 0, train_logloss: 0.6832, train_obj: 0.6847
+--Iteration: 0, train_logloss: 0.6832, train_obj: 0.6847
+--Iteration: 0, train_logloss: 0.6834, train_obj: 0.6849
+--Iteration: 0, train_logloss: 0.6838, train_obj: 0.6852
+--Iteration: 0, train_logloss: 0.6833, train_obj: 0.6845
+--Iteration: 0, train_logloss: 0.6834, train_obj: 0.6845
+--Iteration: 0, train_logloss: 0.6823, train_obj: 0.6836
+--Iteration: 0, train_logloss: 0.6838, train_obj: 0.6853
+--Iteration: 0, train_logloss: 0.6839, train_obj: 0.6852
+--Iteration: 0, train_logloss: 0.6841, train_obj: 0.6854
+--Iteration: 0, train_logloss: 0.6828, train_obj: 0.6841
+--Iteration: 0, train_logloss: 0.6838, train_obj: 0.6852
+--Iteration: 0, train_logloss: 0.6836, train_obj: 0.6851
+--Iteration: 0, train_logloss: 0.6817, train_obj: 0.6833
+--Iteration: 0, train_logloss: 0.6834, train_obj: 0.6848
+--Iteration: 0, train_logloss: 0.6830, train_obj: 0.6842
+--Iteration: 0, train_logloss: 0.6823, train_obj: 0.6834
+--Iteration: 0, train_logloss: 0.6813, train_obj: 0.6827
+--Iteration: 0, train_logloss: 0.6822, train_obj: 0.6833
+--Iteration: 0, train_logloss: 0.6833, train_obj: 0.6846
+--Iteration: 0, train_logloss: 0.6822, train_obj: 0.6835
+--Iteration: 0, train_logloss: 0.6842, train_obj: 0.6857
+--Iteration: 0, train_logloss: 0.6835, train_obj: 0.6846
+--Iteration: 0, train_logloss: 0.6840, train_obj: 0.6851
+--Iteration: 0, train_logloss: 0.6823, train_obj: 0.6836
+--Iteration: 0, train_logloss: 0.6808, train_obj: 0.6819
+--Iteration: 0, train_logloss: 0.6839, train_obj: 0.6852
+--Iteration: 0, train_logloss: 0.6829, train_obj: 0.6845
+--Iteration: 0, train_logloss: 0.6828, train_obj: 0.6843
+--Iteration: 0, train_logloss: 0.6840, train_obj: 0.6854
+--Iteration: 0, train_logloss: 0.6820, train_obj: 0.6831
+--Iteration: 0, train_logloss: 0.6820, train_obj: 0.6838
+--Iteration: 0, train_logloss: 0.6829, train_obj: 0.6841
+--Iteration: 0, train_logloss: 0.6828, train_obj: 0.6842
+--Iteration: 0, train_logloss: 0.6825, train_obj: 0.6837
+--Iteration: 0, train_logloss: 0.6827, train_obj: 0.6841
+--Iteration: 0, train_logloss: 0.6833, train_obj: 0.6846
+--Iteration: 0, train_logloss: 0.6840, train_obj: 0.6854
+--Iteration: 0, train_logloss: 0.6825, train_obj: 0.6838
+--Iteration: 0, train_logloss: 0.6833, train_obj: 0.6846
+--Iteration: 0, train_logloss: 0.6825, train_obj: 0.6839
+--Iteration: 0, train_logloss: 0.6850, train_obj: 0.6863
+--Iteration: 0, train_logloss: 0.6817, train_obj: 0.6830
+--Iteration: 0, train_logloss: 0.6843, train_obj: 0.6857
+--Iteration: 0, train_logloss: 0.6825, train_obj: 0.6839
+--Iteration: 0, train_logloss: 0.6839, train_obj: 0.6851
+--Iteration: 0, train_logloss: 0.6832, train_obj: 0.6845
+--Iteration: 0, train_logloss: 0.6836, train_obj: 0.6849
+--Iteration: 0, train_logloss: 0.6833, train_obj: 0.6844
+--Iteration: 0, train_logloss: 0.6849, train_obj: 0.6863
+--Iteration: 0, train_logloss: 0.6832, train_obj: 0.6844
+--Iteration: 0, train_logloss: 0.6845, train_obj: 0.6857
+--Iteration: 0, train_logloss: 0.6820, train_obj: 0.6833
+--Iteration: 0, train_logloss: 0.6832, train_obj: 0.6844
+--Iteration: 0, train_logloss: 0.6838, train_obj: 0.6849
+--Iteration: 0, train_logloss: 0.6822, train_obj: 0.6836
+--Iteration: 0, train_logloss:    nan, train_obj:    nan
+--Iteration: 0, train_logloss: 0.6826, train_obj: 0.6840
+--Iteration: 0, train_logloss: 0.6837, train_obj: 0.6850
+--Iteration: 0, train_logloss: 0.6827, train_obj: 0.6841
+--Iteration: 0, train_logloss: 0.6855, train_obj: 0.6869
+--Iteration: 0, train_logloss: 0.6828, train_obj: 0.6842
+--Iteration: 0, train_logloss: 0.6830, train_obj: 0.6844
+--Iteration: 0, train_logloss: 0.6816, train_obj: 0.6830
+--Iteration: 0, train_logloss: 0.6813, train_obj: 0.6827
+--Iteration: 0, train_logloss: 0.6830, train_obj: 0.6844
+--Iteration: 0, train_logloss: 0.6842, train_obj: 0.6856
+--Iteration: 0, train_logloss: 0.6819, train_obj: 0.6833
+--Iteration: 0, train_logloss: 0.6832, train_obj: 0.6846
+--Iteration: 0, train_logloss: 0.6843, train_obj: 0.6857
+--Iteration: 0, train_logloss: 0.6821, train_obj: 0.6835
