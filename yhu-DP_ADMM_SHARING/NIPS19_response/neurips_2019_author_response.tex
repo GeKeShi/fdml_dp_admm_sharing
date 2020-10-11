@@ -1,0 +1,39 @@
+\documentclass{article}
+
+\usepackage{neurips_2019_author_response}
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+
+\usepackage{lipsum}
+
+\begin{document}
+% \lipsum
+Thanks so much for your valuable reviews and suggestions. The initial motivation of this work is to provide a solution to bridge the distributed features. After a few searches and experiments, we found that the ADMM-sharing based method is a good candidate. We believe there is much research potential in our scenario in this paper and submitted this initial version. 
+
+We are still working on this problem and we agree that the theoretical analysis in this version needs to be improved. Thanks so much again for your suggestions. They are helpful. We will definitely revisit our method and other existing works (especially against the variations from Frank-Wolfe algorithm) and try to bring out a better solution next time. 
+
+The following part is response to the specific reviewers. 
+
+\textbf{Response to Reviewer \#1}
+
+Thanks for your suggestions. We agree that the theoretical analysis of our current version needs to be improved, but the specific combination of ADMM sharing methods and differential privacy seems to be a good solution to the distributed feature scenario. 
+
+As for the provided references, [1] is indeed an important reference we were missing. Thanks for pointing it out. We will compare the ADMM method against it in the next version. [2] is a totally different line, where they transform the original features by linear projection and perturb the features with noise added. They share those transformed features, and some information might be lost. [3-9] including [3] is all about the ADMM plus data parallel version. We have reviewed most of them. As suggested in [1], the feature parallel version is very different. 
+
+\textbf{Response to Reviewer \#4}
+
+Thanks for your suggestions. It is really challenging to bound some variables tightly in this scenario. We will try to work on it. At least, instead of a fully tight bound, we can account some statistics in experiment. Thanks for pointing out the related works on Frank-Wolfe algorithm. Those are important related works and we will compare against those methods in next version. 
+
+\textbf{Response to Reviewer \#5}
+
+Thanks for your suggestions. The proof to Lemma~1 is in supplementary material Sec. 7.3. We agree that we need to bring out a complete analysis for the DP version. For the delta, epsilon, it seems to be challenging to bound some variables tightly. We will try to improve it in next version. 
+
+
+\end{document}

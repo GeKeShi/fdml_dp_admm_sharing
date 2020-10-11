@@ -3,9 +3,9 @@
 config = {}
 
 config["input_dir_path"] = "../data/a9a"
-#config["input_dir_path"] = "/data/.yaochen/data/yyb_data"
+# config["input_dir_path"] = "/data/.yaochen/data/yyb_data"
 # config["input_dir_path"] = "../data/gisette"
-config["batch_size"] = 4096
+config["batch_size"] = 256
 config["num_workers"] = 2
 config["output_dir_path"] = "../result"
 

@@ -1,0 +1,157 @@
+\documentclass{article}
+% if you need to pass options to natbib, use, e.g.:
+%     \PassOptionsToPackage{numbers, compress}{natbib}
+% before loading neurips_2018
+
+% ready for submission
+%\usepackage{nips_2018}
+\usepackage[preprint]{neurips_2019}
+% to compile a preprint version, e.g., for submission to arXiv, add add the
+% [preprint] option:
+%     \usepackage[preprint]{neurips_2018}
+
+% to compile a camera-ready version, add the [final] option, e.g.:
+      % \usepackage[final]{nips_2018}
+
+% to avoid loading the natbib package, add option nonatbib:
+    % \usepackage[nonatbib]{neurips_2018}
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+
+% customized packages and commands
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
+% \usepackage[noend]{algpseudocode}
+\usepackage{algorithm}
+\usepackage[noend]{algorithmic}
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+\newcommand{\bs}[1]{\boldsymbol{#1}}
+\newtheorem{defi}{Definition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}
+\newtheorem{assume}{Assumption}
+\newtheorem{coro}{Corollary}
+
+\usepackage{mdframed}
+\usepackage{lipsum}
+\newmdtheoremenv{algo}{Algorithm}
+
+% for algorithm indentation
+\newlength\myindent
+\setlength\myindent{1.5em}
+\newcommand\bindent{%
+  \begingroup
+  \setlength{\itemindent}{\myindent}
+  \addtolength{\algorithmicindent}{\myindent}
+}
+\newcommand\eindent{\endgroup}
+
+%\title{Privacy Preserving Risk Minimization for Distributed Features}
+\title{Learning Privately over Distributed Features:\\An ADMM Sharing Approach}
+
+% The \author macro works with any number of authors. There are two commands
+% used to separate the names and addresses of multiple authors: \And and \AND.
+%
+% Using \And between authors leaves it to LaTeX to determine where to break the
+% lines. Using \AND forces a line break at that point. So, if LaTeX puts 3 of 4
+% authors names on the first line, and the last on the second line, try using
+% \AND instead of \And before the third author name.
+
+
+%%\author{%
+%%  David S.~Hippocampus\thanks{Use footnote for providing further information
+%%    about author (webpage, alternative address)---\emph{not} for acknowledging
+%%    funding agencies.} \\
+%%  Department of Computer Science\\
+%%  Cranberry-Lemon University\\
+%%  Pittsburgh, PA 15213 \\
+%%  \texttt{hippo@cs.cranberry-lemon.edu} \\
+%%  % examples of more authors
+%%  % \And
+%%  % Coauthor \\
+%%  % Affiliation \\
+%%  % Address \\
+%%  % \texttt{email} \\
+%%  % \AND
+%%  % Coauthor \\
+%%  % Affiliation \\
+%%  % Address \\
+%%  % \texttt{email} \\
+%%  % \And
+%%  % Coauthor \\
+%%  % Affiliation \\
+%%  % Address \\
+%%  % \texttt{email} \\
+%%  % \And
+%%  % Coauthor \\
+%%  % Affiliation \\
+%%  % Address \\
+%%  % \texttt{email} \\
+%%}
+
+
+
+
+
+
+
+
+
+\author{
+ Yaochen Hu\\
+ University of Alberta\\
+ yaochen@ualberta.ca\\
+ \And
+ Peng Liu\\
+ University of Kent\\
+ P.Liu@kent.ac.uk
+ \And
+ Linglong Kong\\
+ University of Alberta\\
+ lkong@ualberta.ca\\
+ \And
+ Di Niu\\
+ University of Alberta\\
+ dniu@ualberta.ca
+}
+
+\begin{document}
+% \nipsfinalcopy is no longer used
+
+\maketitle
+
+\begin{abstract}
+Distributed machine learning has been widely studied in order to handle exploding amount of data.
+In this paper, we study an important yet less visited distributed learning problem where features are inherently distributed or vertically partitioned among multiple parties, and sharing of raw data or model parameters among parties is prohibited due to privacy concerns.
+We propose an ADMM sharing framework to approach risk minimization over distributed features, where each party only needs to share a single value for each sample in the training process, thus minimizing the data leakage risk.
+We establish convergence and iteration complexity results for the proposed parallel ADMM algorithm under non-convex loss. We further introduce a novel differentially private ADMM sharing algorithm and bound the privacy guarantee with carefully designed noise perturbation. The experiments based on a prototype system shows that the proposed ADMM algorithms converge efficiently in a robust fashion, demonstrating advantage over gradient based methods especially for data set with high dimensional feature spaces.
+\end{abstract}
+
+\input{sections/intro}
+\input{sections/problem}
+\input{sections/algorithm}
+\input{sections/privacy}
+\input{sections/experiment}
+\input{sections/conclude}
+
+\newpage
+% \bibliographystyle{unsrt}
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{ms}
+
+\input{sections/supplement}
+
+\end{document}

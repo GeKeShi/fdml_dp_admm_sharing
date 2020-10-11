@@ -1,0 +1,58 @@
+\section{Algorithm}
+
+\subsection{Non-private preserving ADMM sharing algorithm}
+Problem~\eqref{eq:analysis_problem} can be solved by ADMM sharing \cite{boyd2011distributed, hong2016convergence}. By introducing secondary variables $z$, Problem~\eqref{eq:analysis_problem} is equivalent to
+\begin{align}
+\underset{x}{\text{minimize}} &\quad l\left(z\right) + \lambda\sum_j R_j(x_j),\\
+\text{s.t.} &\quad \sum_j D_j x_j - z = ,\quad x_j\in X_j, j=1,\ldots,m,. 
+\end{align}
+The augmented Lagrangian is 
+\begin{align}
+L(\{x_j\}, z; y) = l(z) + \lambda\sum_j R_j(x_j) + \langle y, \sum_jD_j x_j - z\rangle + \frac{\rho}{2}\|\sum_j D_j x_j - z\|^2, \label{eq:lagragian}
+\end{align}
+where $y$ is the dual variable and $\rho$ is the penalty factor.  
+In $t^{th}$ iteration of the algorithm, {\bf the sequential updating algorithm}
+\begin{align}
+&x_j^{t+1}:=\underset{x_j\in X_j}{\text{argmin}}\quad\lambda R_j(x_j) + \langle y^t, D_jx_j\rangle + \frac{\rho}{2}\big\|\sum_{k<j}D_kx_k^{t+1} + \sum_{k>j}D_kx_k^t + D_jx_j - z^t\big\|^2\label{eq:seq_algo_x}\\
+&z^{t+1}:=\underset{z}{\text{argmin}}\quad l(z) - \langle y^t, z \rangle + \frac{\rho}{2} \big\|\sum_jD_jx_j^{t+1} - z\big\|^2\label{eq:seq_algo_z}\\
+&y^{t+1}:=y^t + \rho\big(\sum_jD_jx_j^{t+1} - z^{t+1}\big),\label{eq:seq_algo_y}
+\end{align}
+and  {\bf the parallel updating algorithm}
+\begin{align}
+&x_j^{t+1}:=\underset{x_j\in X_j}{\text{argmin}}\quad\lambda R_j(x_j) + \langle y^t, D_jx_j\rangle + \frac{\rho}{2}\big\|\sum_{k\neq j}D_kx_k^{t} + D_jx_j - z^t\big\|^2\label{eq:pal_algo_x}\\
+&z^{t+1}:=\underset{z}{\text{argmin}}\quad l(z)  - \langle y^t, z \rangle + \frac{\rho}{2} \big\|\sum_jD_jx_j^{t+1} - z\big\|^2\label{eq:pal_algo_z}\\
+&y^{t+1}:=y^t + \rho\big(\sum_jD_jx_j^{t+1} - z^{t+1}\big).\label{eq:pal_algo_y}
+\end{align}
+
+\subsection{Privacy Concern and Differential Privacy}
+\cite{dwork2014algorithmic, zhou2010security}Differential privacy is a definition which ensures a strong guarantee for data privacy. The intuition is to keep the query results from a dataset close if one of the entry in the dataset changes, by adding some well designed random noise into the query result, so that little information on the raw data can be inferred by the query results. 
+\begin{defi}
+A randomized algorithm $\mathcal{M}$ is $(\epsilon, \delta)-$differentially private if for all $S\subset\text{range}(\mathcal{M})$, and for all $x$ and $y$, such that $|x-y|_1\le 1$:
+\begin{align}
+\text{Pr}(\mathcal{M}(x))\le exp(\epsilon)\text{Pr}(\mathcal{M}(y))+\delta.
+\end{align}
+\end{defi}
+
+\begin{defi}
+$l_1-$sensitivity of function $f$ is 
+\begin{align}
+\Delta f = \underset{\|x-y\|_1\le1}{max}\|f(x)-f(y)\|_1.
+\end{align}
+\end{defi}
+
+% Random noise added to the query. Variance is correlated to the DP guarantee. 
+% {\bf Laplace Mechanism} 
+% \begin{align}
+% \eta\sim\text{Lap}(\frac{\Delta f}{\epsilon})
+% \end{align}
+
+% ADMM sharing with differential privacy.
+% \begin{align}
+% & \text{For each local node} j\\
+% &x_j^{k+1}:=\underset{x_j}{\text{argmin}}\left(R_j(x_j)+\frac{\rho}{2}\|D_jx_j - D_jx_j^k - \overbar{z}^k + \overbar{Dx}'^k+ u^k\|_2^2\right)\\
+% & (D_jx_j^{k+1})' = D_jx_j^{k+1} + \mathcal{M}(\cdot)\\
+% & \text{On central node}\\
+% & \overbar{Dx}'^{k+1} = \frac{1}{m}\sum(D_jx_j^{k+1})' \\
+% &\overbar{z}^{k+1}:=\underset{\overbar{z}}{\text{argmin}}\left(1/(1+\text{exp}(-Y^i m \overbar{z})) + \frac{m\rho}{2}\sum_j \|\overbar{z} - \overbar{Dx}'^{k+1} + u^k\|_2^2\right)\\
+% &u^{k+1}:=u^k + \overbar{Dx}'^{k+1} - \overbar{z}^{k+1}.
+% \end{align}

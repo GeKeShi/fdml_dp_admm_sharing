@@ -1,0 +1,132 @@
+\input{sections/analysis_seq}
+
+
+\section{Analysis for Parallel Update Algorithm}
+\subsection{Convergence Analysis for Non-privacy ADMM Sharing Parallel Algorithm}
+The proof procedure is similar to it for the sequential case. We need slightly stronger assumptions to guarantee the convergence. 
+\begin{assume}\label{theo:assumptions_pal}
+Assumptions to guarantee the convergence. 
+\begin{enumerate}
+    \item There exists a positive constant $L>0$ such that 
+        \[
+            \|\nabla l(x)-\nabla l(z)\| \le L\|x-z\|\quad \forall x, z.
+        \]
+        Moreover, $X_j$'s are closed convex sets; each $D_j$ is full column rank so that the minimum eigenvalue $\sigma_{\text{min}}(D^T_jD_j)$ of matrix $D^T_jD_j$ is positive.\label{item:assum_1_pal}
+    \item The penalty parameter $\rho$ is chosen large enough such that
+    \begin{enumerate}
+        \item each $x_j$ subproblem~\eqref{eq:seq_algo_x} as well as the $z$ subproblem~\eqref{eq:seq_algo_z} is strongly convex, with modulus $\{\gamma_j(\rho)\}_{j=1}^m$ and $\gamma(\rho)$, respectively. \label{item:asusum_2_1_pal}
+        \item $\gamma_j(\rho)\ge 2\sigma_{\text{max}}(D^T_jD_j), \forall j$, where $\sigma_{\text{max}}(D^T_jD_j)$ is the maximum eigenvalue for matrix $D^T_jD_j$. 
+        \item $\rho\gamma(\rho)>2L^2$ and that $\rho\ge L$.
+    \end{enumerate}
+    \label{item:assum_2_pal}
+    \item The objective function $l\left(\sum_j D_jx_j\right) + \lambda\sum_j R_j(x_j)$ in Problem~\ref{eq:analysis_problem} is lower bounded over $\Pi_{i=1}^mX_i$ and we denote the lower bound as $\underline{f}$.\label{item:assum_3_pal}
+    \item $R_j$ is either smooth nonconvex or convex (possibly nonsmooth). For the former case, there exists $L_j>0$ such that $\|\nabla R_j(x_j) - \nabla R_j(z_j)\|\le L_j\|x_j-z_j\|$ for all $x_j, z_j\in X_j$.
+\end{enumerate}
+\end{assume}
+We have the same lemmas and theorems to those from the sequential update except for Lemma~\ref{lemma:L_iter_diff}. 
+\begin{lemma}\label{lemma:algebra_1}
+    We have the fact that
+    \begin{align}
+        & \big(\|\sum_k x_k^{t+1} - z\|^2 - \|\sum_k x_k^{t} - z\|^2\big) - \sum_j\big(\|\sum_{k\neq j} x_k^{t} + x_j^{t+1} - z\|^2 - \|\sum_k x_k^{t} - z\|^2\big)\nonumber\\
+        \le & \sum_j\|x_j^{t+1} - x_j^{t}\|^2. 
+    \end{align}
+\end{lemma}
+{\bf Proof.} 
+\begin{align}
+    \text{LHS} = & \big(\sum_k(x_k^{t+1} - x_k^{t}) - 2z\big)^T(\sum_j x_j^{t+1} - \sum_j x_j^t) - \sum_j\big(\sum_{k\neq j}2x_k^t + x_j^t + x_j^{t+1} -2z\big)^T(x_j^{t+1} - x_j^t)\nonumber\\
+    = & - \sum_j \sum_{k\neq j}(x_k^{t+1} - x_k^{t})^T(x_j^{t+1} - x_j^t)\nonumber\\
+    = & - \|\sum_j (x_j^{t+1} - x_j^{t})\|^2 + \sum_j\|x_j^{t+1} - x_j^{t}\|^2\nonumber\\
+    \le & \sum_j\|x_j^{t+1} - x_j^{t}\|^2.\nonumber
+\end{align}
+\hfill$\square$
+
+\begin{lemma}\label{lemma:L_iter_diff_pal}
+Suppose Assumption~\ref{theo:assumptions_seq} holds true. We have
+\begin{align}
+    & L(\{x_j^{t+1}\},z^{t+1};y^{t+1}) - L(\{x_j^{t}\},z^{t};y^{t})\nonumber\\
+    & \le \sum_j -\left(\frac{\gamma_j(\rho)}{2}-\sigma_{\text{max}}(D_j^T D_j)\right)\|x_j^{t+1} - x_j^t\|^2 - \left(\frac{\gamma(\rho)}{2} - \frac{L^2}{\rho}\right)\|z^{t+1} - z^t\|^2. \nonumber
+\end{align}
+\end{lemma}
+{\bf Proof.} The LFH can be decomposed into two parts as
+\begin{align}
+    & L(\{x_j^{t+1}\},z^{t+1};y^{t+1}) - L(\{x_j^{t}\},z^{t};y^{t})\nonumber\\
+    = & \big(L(\{x_j^{t+1}\},z^{t+1};y^{t+1}) - L(\{x_j^{t+1}\},z^{t+1};y^{t})\big)\nonumber\\
+    & + \big(L(\{x_j^{t+1}\},z^{t+1};y^{t}) - L(\{x_j^{t}\},z^{t};y^{t})\big). \label{eq:proof_diff_L_0_pal}
+\end{align}
+For the first term, we have
+\begin{align}
+    & L(\{x_j^{t+1}\},z^{t+1};y^{t+1}) - L(\{x_j^{t+1}\},z^{t+1};y^{t})\nonumber\\
+    = & \langle y^{t+1} - y^t , \sum_jD_jx_j^{t+1} - z^{t+1}\rangle\nonumber\\
+    = & \frac{1}{\rho}\|y^{t+1} - y^t\|^2\quad\text{(by \eqref{eq:seq_algo_y})}\nonumber\\
+    = & \frac{L^2}{\rho}\|z^{t+1} - z^t\|^2\quad\text{(Lemma~\ref{lemma:y_diff_bound})}\label{eq:proof_diff_L_1_pal}.
+\end{align}
+For the second term, we have
+\begin{align}
+    & L(\{x_j^{t+1}\},z^{t+1};y^{t}) - L(\{x_j^{t}\},z^{t};y^{t})\nonumber\\
+    = & L(\{x_j^{t+1}\},z^{t+1};y^{t}) - L(\{x_j^{t}\},z^{t+1};y^{t}) + L(\{x_j^{t}\},z^{t+1};y^{t}) - L(\{x_j^{t}\},z^{t};y^{t})\nonumber\\
+    \le & \sum_j\bigg(\big(\lambda R_j(x_j^{t+1}) + \langle y^t, D_jx_j^{t+1}\rangle + \frac{\rho}{2}\big\|\sum_{k\neq j}D_kx_k^{t} + D_jx_j^{t+1} - z^{t+1}\big\|^2\big)\nonumber\\
+    & - \big(\lambda R_j(x_j^{t}) + \langle y^t, D_jx_j^{t}\rangle + \frac{\rho}{2}\big\|\sum_{k}D_kx_k^{t} - z^{t+1}\big\|^2\big)\bigg)+\sum_j\|D_j(x_j^{t+1} - x_j^t)\|^2\nonumber\\
+    & + \bigg(\big(l(z^{t+1}) -\langle y^t, z^{t+1}\rangle + \frac{\rho}{2} \big\|\sum_jD_jx_j^{t+1} - z^{t+1}\big\|^2\big)\nonumber\\
+    & -\big(l(z^{t}) -\langle y^t, z^{t}\rangle+ \frac{\rho}{2} \big\|\sum_jD_jx_j^{t+1} - z^{t}\big\|^2\big)\bigg)\quad\text{(by Lemma~\ref{lemma:algebra_1})}\\
+    \le & \sum_j\big(g_j(x_j^{t+1}) - g_j(x_j^t)\big) + (h(z^{t+1}) - h(z^T)))+\sum_j\|D_j(x_j^{t+1} - x_j^t)\|^2\nonumber\\
+    \le & \sum_j \big(\langle \nabla g_j(x_j^{t+1}), x_j^{t+1}-x_j^t\rangle - \frac{\gamma_j(\rho)}{2}\|x_j^{t+1}-x_j^t\|^2\big) + \langle\nabla h(z^{t+1}, z^{t+1} - z^t)\rangle - \frac{\gamma(\rho)}{2}\|z^{t+1} - z^t\|^2\nonumber\\
+    & +\sum_j\|D_j(x_j^{t+1} - x_j^t)\|^2\quad\text{(by strongly convexity from Assumption~\ref{theo:assumptions_seq}.\ref{item:assum_2_seq})}\nonumber\\
+    \le & -\sum_j\frac{\gamma_j(\rho)}{2}\|x_j^{t+1}-x_j^t\|^2 - \frac{\gamma(\rho)}{2}\|z^{t+1} - z^t\|^2)+\sum_j\|D_j(x_j^{t+1} - x_j^t)\|^2\nonumber\\
+    & \text{(by optimality condition for subproblem in \eqref{eq:seq_algo_x} and \eqref{eq:seq_algo_z})}\nonumber\\
+    \le & \sum_j -\left(\frac{\gamma_j(\rho)}{2}-\sigma_{\text{max}}(D_j^T D_j)\right)\|x_j^{t+1} - x_j^t\|^2 - \frac{\gamma(\rho)}{2}\|z^{t+1} - z^t\|^2\label{eq:proof_diff_L_2_pal}
+\end{align}
+Note that we abuse the notation $\nabla g_j(x_j)$ and denote it as the subgradient when $g$ is nonsmooth but convex. 
+Combining \eqref{eq:proof_diff_L_0_pal}, \eqref{eq:proof_diff_L_1_pal} and \eqref{eq:proof_diff_L_2_pal}, the lemma is proved.\hfill$\square$
+
+\subsection{Iteration Complexity Analysis for Parallel Update Algorithm}
+We have the same conclusion in Theorem~\ref{theo:iter_complexity} for the parallel update algorithm. There is only minor difference in the proof. We provide the sketch for it. 
+
+{\bf Proof.} The proof is nearly the same to the proof in the sequential case, the only difference is the bound for $\tilde{\nabla}_{x_j} L(\{x^t_j\}, z^t; y^t)$. We provide it here.
+
+When $j\in\mathcal{J}$, from the optimality condition in \eqref{eq:seq_algo_x}, we have 
+\begin{align}
+    0 \in \lambda\partial_{x_j}R_j(x_j^{t+1}) + D^Ty^t + \rho D_j^T\big(\sum_{k\not=j} D_kx_k^{t} + D_jx_j^{t+1} - z^{t}\big).\nonumber
+\end{align}
+By some rearrangement, we have
+\begin{align}
+    \big(x_j^{t+1} - D^Ty^t - \rho D_j^T\big(\sum_{k\not=j} D_kx_k^{t}+ D_jx_j^{t+1} - z^{t}\big)\big) - x_j^{t+1} \in \lambda\partial_{x_j}R_j(x_j^{t+1}),\nonumber
+\end{align}
+which is equivalent to 
+\begin{align}
+    x_j^{t+1} = \text{prox}_{\lambda R_j}\big[x_j^{t+1} - D^Ty^t - \rho D_j^T\big(\sum_{k\not=j} D_kx_k^{t}+ D_jx_j^{t+1} - z^{t}\big)\big]. 
+\end{align}
+Therefore,
+\begin{align}
+    & \|x_j^t - \text{prox}_{\lambda R_j} \big[x_j^t-\nabla_{x_j}\big(L(\{x^t_j\}, z^t; y^t) - \lambda\sum_j R_j(x_j^t)\big)\big]\|\nonumber\\
+    = & \big\|x_j^t - x_j^{t+1} + x_j^{t+1} - \text{prox}_{\lambda R_j}\big[x_j^{t} - D^Ty^t - \rho D_j^T\big(\sum_{k} D_kx_k^{t} - z^{t}\big)\big]\big\|\nonumber\\
+    \le & \|x_j^t - x_j^{t+1}\| + \big\|  \text{prox}_{\lambda R_j}\big[x_j^{t+1} - D^Ty^t - \rho D_j^T\big( \sum_{k\not=j} D_kx_k^{t}+ D_jx_j^{t+1} - z^{t}\big)\big]\nonumber\\
+    &  - \text{prox}_{\lambda R_j}\big[x_j^{t} - D^Ty^t - \rho D_j^T\big(\sum_{k} D_kx_k^{t} - z^{t}\big)\big]\big\|\nonumber\\
+    & \le 2\|x_j^t - x_j^{t+1}\| + \rho\|D_j^TD_j(x_j^{t+1} - x_j^t)\|. \label{eq:proof_pal_bound_V_1}
+\end{align}
+When $j\not\in\mathcal{J}$, similarly, we have
+\begin{align}
+    \lambda\nabla_{x_j}R_j(x_j^{t+1}) + D^Ty^t + \rho D_j^T\big(\sum_{k\not=j} D_kx_k^{t}+ D_jx_j^{t+1} - z^{t}\big) = 0.
+\end{align}
+Therefore,
+\begin{align}
+    & \|\nabla_{x_j} L(\{x^t_j\}, z^t; y^t)\|\nonumber\\
+    = & \|\lambda\nabla_{x_j}R_j(x_j^{t}) + D^Ty^t + \rho D_j^T\big( \sum_{k} D_kx_k^{t} - z^{t}\big)\|\nonumber\\
+    = &  \|\lambda\nabla_{x_j}R_j(x_j^{t}) + D^Ty^t + \rho D_j^T\big( \sum_{k} D_kx_k^{t} - z^{t}\big)\nonumber\\
+     & - \big(\lambda\nabla_{x_j}R_j(x_j^{t+1}) + D^Ty^t + \rho D_j^T\big(\sum_{k\not=j} D_kx_k^{t}+ D_jx_j^{t+1} - z^{t}\big)\big)\|\nonumber\\
+    \le &  \lambda\|\nabla_{x_j}R_j(x_j^{t}) - \nabla_{x_j}R_j(x_j^{t+1}) \| + \rho\|D_j^TD_j(x_j^{t+1} - x_j^t)\|\nonumber\\
+    \le & L_j\| x_k^{t+1} - x_k^t \|  + \rho\|D_j^TD_j(x_j^{t+1} - x_j^t)\| \quad\text{(by Assumption~\ref{theo:assumptions_seq}.\ref{item:asssum_4_seq})}\label{eq:proof_pal_bound_V_2}
+\end{align}
+
+The remaining part is exactly the same to it in the sequential case. \hfill$\square$
+
+\subsection{TO DO's}
+Convergence.
+
+Convergence speed.
+
+Privacy guarantee.
+
+Better privacy guarantee taking correlation into account.
+
+Accuracy.
+
