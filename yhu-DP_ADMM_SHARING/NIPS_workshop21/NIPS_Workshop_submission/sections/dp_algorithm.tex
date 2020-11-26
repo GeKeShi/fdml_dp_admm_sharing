@@ -1,0 +1,138 @@
+\section{Differentially Private ADMM Sharing Algorithm}
+\label{sec:admmSharing}
+Differential privacy \cite{dwork2014algorithmic,zhou2010security} is a notion that ensures a strong guarantee for data privacy. The intuition is to keep the query results from a dataset relatively close if one of the entries in the dataset changes, by adding some well designed random noise into the query, so that little information on the raw data can be inferred from the query. Formally Formally speaking,
+%\begin{defi}\label{defi:DP}
+a randomized algorithm $\mathcal{M}$ is $(\varepsilon, \delta)-$differentially private if for all $S\subseteq\text{range}(\mathcal{M})$, and for all $x$ and $y$, such that $|x-y|_1\le 1$, we have
+$
+\text{Pr}(\mathcal{M}(x)\in S)\le \exp(\varepsilon)\text{Pr}(\mathcal{M}(y) \in S)+\delta.
+$
+%\end{defi}
+% Definition~\ref{defi:DP} provides a strong guarantee for privacy, where even if most entries of a dataset are leaked, little information about the remaining data can be inferred from the randomized output. Specifically, when $\varepsilon$ is small, $\exp(\varepsilon)$ is approximately $1+\varepsilon$. Here $x$ and $y$ denote two possible instances of some dataset. $|x-y|_1\le 1$ means that even if most of the data entries but one are leaked, the difference between the randomized outputs of $x$ and $y$ is at most $\varepsilon$ no matter what value the remaining single entry takes, preventing any adversary from inferring the value of that remaining entry. Moreover, $\delta$ allows the possibility that the above $\varepsilon$-guarantee may fail with probability $\delta$.
+We present an differentially private variant of ADMM sharing algorithm \cite{boyd2011distributed,hong2016convergence} to solve Problem~\eqref{eq:analysis_problem}. Our algorithm requires each party only share a single value to other parties in each iteration, thus requiring the minimum message passing. 
+
+In particular, Problem~\eqref{eq:analysis_problem} is equivalent to
+\begin{align}
+\underset{x}{\text{minimize}} &\quad l\left(z\right) + \lambda\sum_{m=1}^{M} R_m(x_m),\\
+\text{s.t.} &\quad \sum_{m=1}^{M} \mathcal{D}_m x_m - z = 0,\quad x_m\in X_M, m=1,\ldots,M,
+\end{align}
+where $z$ is an auxiliary variable. 
+The corresponding augmented Lagrangian is given by
+\begin{align}
+\mathcal{L}(\{x\}, z; y) =& l(z) + \lambda\sum_{m=1}^{M} R_m(x_m) + \langle y, \sum_{m=1}^{M}\mathcal{D}_m x_m - z\rangle + \frac{\rho}{2}\|\sum_{m=1}^{M} \mathcal{D}_m x_m - z\|^2, \label{eq:lagragian}
+\end{align}
+where $y$ is the dual variable and $\rho$ is the penalty factor. In the $t^{th}$ iteration of the algorithm, variables are updated according to
+% \begin{align}
+% &x_m^{t+1}:=\underset{x_m\in X_m}{\text{argmin}}\quad\lambda R_m(x_m) + \langle y^t, \mathcal{D}_mx_m\rangle\nonumber\\
+% & \quad\quad\quad\quad\quad\quad\quad+ \frac{\rho}{2}\big\|\sum_{\substack{k=1,~k\neq m}}^{M}\mathcal{D}_kx_k^{t} + \mathcal{D}_mx_m - z^t\big\|^2, \nonumber\\
+% &\hspace*{36pt} m=1,\cdots,M\label{eq:pal_algo_x}\\
+% &z^{t+1}:=\underset{z}{\text{argmin}}\quad l(z)  - \langle y^t, z \rangle + \frac{\rho}{2} \big\|\sum_{m=1}^{M}\mathcal{D}_mx_m^{t+1} - z\big\|^2\label{eq:pal_algo_z}\\
+% &y^{t+1}:=y^t + \rho\big(\sum_{m=1}^{M}\mathcal{D}_mx_m^{t+1} - z^{t+1}\big).\label{eq:pal_algo_y}
+% \end{align}
+\begin{align}
+% \nonumber % Remove numbering (before each equation)
+  &x_{m}^{t+1}:=\underset{x_m\in X_m}{\text{argmin}}\quad\lambda R_m(x_m) + \langle y^t, \mathcal{D}_mx_m\rangle + \frac{\rho}{2}\big\|\sum_{\substack{k=1,~k\neq m}}^{M}\mathcal{D}_k\tilde{x}_k^{t} + \mathcal{D}_mx_m - z^t\big\|^2,
+%%%  \arg\min_{x_m}\hat{\mathcal{L}}_{\rho,t}(x_m,\tilde{x}_m^t,z^t,y^t).
+  \label{eq:pal_algo_x}\\
+  % &\xi_m^{t+1}:=\mathcal{N}(0,\sigma_{m,t+1}^2
+  % (\mathcal{D}_m^\top\mathcal{D}_m)^{-1}
+  % )\nonumber\\
+  &\tilde{x}_m^{t+1}:= x_m^{t+1}+\mathcal{N}(0,\sigma_{m,t+1}^2),\quad m=1,\cdots,M,\label{eq:add_noise}\\
+  &z^{t+1}:=\underset{z}{\text{argmin}}\quad l(z)  - \langle y^t, z \rangle + \frac{\rho}{2} \big\|\sum_{m=1}^{M}\mathcal{D}_m\tilde{x}_m^{t+1} - z\big\|^2,\label{eq:pal_algo_z}\\
+&y^{t+1}:=y^t + \rho\big(\sum_{m=1}^{M}\mathcal{D}_m\tilde{x}_m^{t+1} - z^{t+1}\big),\label{eq:pal_algo_y}
+\end{align}
+where $\mathcal{N}(\mu, \sigma^2)$ represents Gaussian noise. Formally, in a distributed and fully parallel manner, the algorithm is described in Algorithm~\ref{alg:ADMM_sharing}. Note that each party $m$ needs the value $\sum_{k\neq m}\mathcal{D}_k\tilde{x}_k^{t} - z^{t}$ to complete the update, and Lines~\ref{alg:line_1}, \ref{alg:line_2} and \ref{alg:line_8} in Algorithm~\ref{alg:ADMM_sharing} present a trick to reduce communication overhead. On each local party , \eqref{eq:pal_algo_x} is computed where a proper $x_m$ is derived to simultaneously minimize the regularizer and bring the global prediction close to $z^t$, given the local predictions from other parties. When $R_m(\cdot)$ is $l_2$ norm, \eqref{eq:pal_algo_x} becomes a trivial quadratic program which can be efficiently solved. We perturb the shared value $\mathcal{D}_mx^{t+1}_m$ in Algorithm~\ref{alg:ADMM_sharing} with a carefully designed random noise in \ref{eq:add_noise} to provide differential privacy. On the central node, the global prediction $z$ is found in \eqref{eq:pal_algo_z} by minimizing the loss $l(\cdot)$ while bringing $z$ close to the aggregated local predictions from all local parties. Therefore, the computational complexity of \eqref{eq:pal_algo_z} is independent of the number of features, thus making the proposed algorithm scalable to a large number of features, as compared to SGD or Frank-Wolfe algorithms. 
+
+\begin{algorithm}[t]
+\caption{The ADMM Sharing Algorithm}
+\begin{algorithmic}[1]
+    \STATE -----\emph{Each party $m$ performs in parallel:}
+    % \bindent
+    \FOR {$t$ in $1, \ldots, T$}
+        \STATE Pull  $\sum_k\mathcal{D}_k\tilde{x}_k^{t} - z^{t}$  and $y^{t}$ from central node \label{alg:line_1}
+        \STATE Obtain $\sum_{k\neq m}\mathcal{D}_k\tilde{x}_k^{t} - z^{t}$ by subtracting the locally cached $\mathcal{D}_m\tilde{x}_m^{t}$ from  the pulled value $\sum_k\mathcal{D}_k
+        \tilde{x}_k^{t} - z^{t}$ \label{alg:line_2}
+        \STATE Compute $\tilde{x}_m^{t+1}$ according to \eqref{eq:pal_algo_x} and \eqref{eq:add_noise} \label{alg:line_3}
+        \STATE Push $\mathcal{D}_m\tilde{x}_m^{t+1}$ to the central node \label{alg:line_4}
+    \ENDFOR
+    % \eindent
+    \STATE -----\emph{Central node:}
+    % \bindent
+    \FOR{$t$ in $1, \ldots, T$}
+        \STATE Collect $\mathcal{D}_m\tilde{x}_m^{t+1}$ for all $m=1,\ldots,M$\label{alg:line_5}
+        \STATE Compute $z^{t+1}$ according to \eqref{eq:pal_algo_z}\label{alg:line_6}
+        \STATE Compute $y^{t+1}$ according to \eqref{eq:pal_algo_y}\label{alg:line_7}
+        \STATE Distribute $\sum_k\mathcal{D}_k\tilde{x}_k^{t+1} - z^{t+1}$  and $y^{t+1}$ to all the parties. \label{alg:line_8}
+    \ENDFOR
+    % \eindent
+\end{algorithmic}
+\label{alg:ADMM_sharing}
+\end{algorithm}
+
+
+\section{Analysis}
+We demonstrate that Algorithm~\ref{alg:ADMM_sharing} guarantees $(\varepsilon, \delta)$~differential privacy with outputs $\{\mathcal{D}_m\tilde{x}_m^{t+1}\}_{t=0,1,\cdots,T-1}$ for some carefully selected $\sigma_{m,t+1}$. We introduce a set of assumptions widely used by the literature.
+
+\begin{assume}\label{theo:assumptions_pri_added}
+  \begin{enumerate}
+    \item The feasible set $\{x,y\}$ and the dual variable $z$ are bounded; their $l_2$ norms have an upper bound $b_1$.\label{item:assum_5_pri}
+    \item The regularizer $R_m(\cdot)$ is doubly differentiable
+    with $|R_m^{\prime\prime}(\cdot)|\leq c_1$,  $c_1$ being a finite constant.\label{item:assum_6_pri}
+    \item Each row of $\mathcal{D}_m$ is normalized and has an $l_2$ norm of 1.\label{item:assum_7_pri}
+  \end{enumerate}
+\end{assume}
+Note that Assumption \ref{theo:assumptions_pri_added}.\ref{item:assum_5_pri} is adopted in \cite{sarwate2013signal} and \cite{wang2019global}. Assumption \ref{theo:assumptions_pri_added}.\ref{item:assum_6_pri} comes from \cite{zhang2017dynamic} and Assumption \ref{theo:assumptions_pri_added}.\ref{item:assum_7_pri} comes from \cite{zhang2017dynamic}
+and \cite{sarwate2013signal}. As a typical method in differential privacy analysis, we first study the $l_2$ sensitivity of
+$\mathcal{D}_mx_m^{t+1}$, which is defined by:
+\begin{defi}
+The $l_2$-norm sensitivity of $\mathcal{D}_mx_m^{t+1}$ is defined by:
+  \begin{eqnarray*}
+  % \nonumber % Remove numbering (before each equation)
+\Delta_{m,2}=\max_{\substack{\mathcal{D}_m,D_m^{\prime}\\
+\|\mathcal{D}_m-D_m^{\prime}\|\leq1
+}}\|\mathcal{D}_mx_{m,\mathcal{D}_m}^{t+1}
+-\mathcal{D}_m^{\prime}x_{m,\mathcal{D}_m^{\prime}}^{t+1}\|.
+  \end{eqnarray*}
+  where $\mathcal{D}_m$ and $\mathcal{D}_m^{\prime}$ are two neighbouring datasets differing in 
+  only one feature column, and 
+  $x_{m,\mathcal{D}_m}^{t+1}$ is the $x_m^{t+1}$ derived from the first line of equation~\eqref{eq:pal_algo_x} under dataset $\mathcal{D}_m$.
+\end{defi}
+We have Lemma~\ref{lemma:privacy} state the upper bound of the $l_2$-norm sensitivity of $\mathcal{D}_mx_m^{t+1}$.
+\begin{lemma}
+\label{lemma:privacy}
+Assume that Assumption~\ref{theo:assumptions_pri_added} hold.
+
+Then the $l_2$-norm sensitivity of $\mathcal{D}_mx_{m,\mathcal{D}_m}^{t+1}$ is upper bounded by $\mathbb{C}=\frac{3}{d_m\rho}\left[\lambda c_1+(1+M\rho)b_1\right]$.
+\end{lemma}
+
+We have Theorem~\ref{theo:DP} for differential privacy guarantee in each iteration.
+\begin{theorem}\label{theo:DP}
+  Assume assumptions \ref{theo:assumptions_pri_added}.\ref{item:assum_5_pri}-\ref{theo:assumptions_pri_added}.\ref{item:assum_7_pri} hold and $\mathbb{C}$ is the 
+  upper bound of $\Delta_{m,2}$. Let $\varepsilon\in(0,1]$ be an arbitrary constant and let
+  $\mathcal{D}_m\xi_m^{t+1}$ be sampled from zero-mean Gaussian distribution with variance $\sigma_{m,t+1}^2$,
+  where
+  \begin{eqnarray*}
+  % \nonumber % Remove numbering (before each equation)
+    \sigma_{m,t+1}=\frac{\sqrt{2\text{ln}(1.25/\delta)}\mathbb{C}}{\varepsilon}.
+  \end{eqnarray*}
+  Then each iteration guarantees $(\varepsilon,\delta)$-differential privacy. Specifically,
+  for any neighboring datasets $\mathcal{D}_m$ and $\mathcal{D}_m^{\prime}$, for any output
+  $\mathcal{D}_m\tilde{x}_{m,\mathcal{D}_m}^{t+1}$ and $\mathcal{D}_m^{\prime}\tilde{x}_{m,\mathcal{D}_m^{\prime}}^{t+1}$, the following inequality always holds:
+  \begin{eqnarray*}
+  % \nonumber % Remove numbering (before each equation)
+    P(\mathcal{D}_m\tilde{x}_{m,\mathcal{D}_m}^{t+1}|\mathcal{D}_m)\leq e^{\varepsilon}
+    P(\mathcal{D}_m^{\prime}\tilde{x}_{m,\mathcal{D}_m^{\prime}}^{t+1}|\mathcal{D}_m^{\prime})
+    +\delta.
+  \end{eqnarray*}
+\end{theorem}
+
+With an application of the composition theory in \cite{dwork2014algorithmic}, we come to a result stating the overall privacy guarantee for the training procedure.
+\begin{coro}\label{theorem:overall_privacy}
+  For any $\delta^{\prime}>0$, Algorithm~\ref{alg:ADMM_sharing} satisfies $(\varepsilon^{\prime}, T\delta+\delta^{\prime})-$differential privacy within $T$ epochs of updates, where
+  \begin{equation}
+    \varepsilon^{\prime}=\sqrt{2T\text{ln}(1/\delta^{\prime})}\varepsilon+T\varepsilon(e^\varepsilon - 1).
+  \end{equation}
+\end{coro}
+
+Without surprise, the overall differential privacy guarantee may drop dramatically if the number of epochs $T$ grows to a large value, since the number of exposed results grows linearly in $T$. However, as we will show in the experiments, the ADMM-sharing algorithm converges fast, taking much fewer epochs to converge than SGD when the number of features is relatively large. Therefore, it is of great advantage to use ADMM sharing for wide features as compared to SGD or Frank-Wolfe algorithms. When $T$ is confined to less than 20, the risk of privacy loss is also confined.
+
+

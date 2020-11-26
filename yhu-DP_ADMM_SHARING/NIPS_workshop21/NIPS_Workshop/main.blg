@@ -1,0 +1,49 @@
+This is BibTeX, Version 0.99d (TeX Live 2020)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: main.aux
+The style file: aaai.bst
+Database file #1: main.bib
+Warning--to sort, need author or key in Liblinear:2019
+Warning--empty year in Liblinear:2019
+You've used 42 entries,
+            2568 wiz_defined-function locations,
+            802 strings with 12814 characters,
+and the built_in function-call counts, 20569 in all, are:
+= -- 2251
+> -- 828
+< -- 23
++ -- 286
+- -- 282
+* -- 1563
+:= -- 3136
+add.period$ -- 222
+call.type$ -- 42
+change.case$ -- 308
+chr.to.int$ -- 42
+cite$ -- 45
+duplicate$ -- 835
+empty$ -- 1460
+format.name$ -- 358
+if$ -- 4426
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 39
+newline$ -- 267
+num.names$ -- 123
+pop$ -- 296
+preamble$ -- 1
+purify$ -- 349
+quote$ -- 0
+skip$ -- 704
+stack$ -- 0
+substring$ -- 1204
+swap$ -- 290
+text.length$ -- 23
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 336
+warning$ -- 2
+while$ -- 172
+width$ -- 47
+write$ -- 608
+(There were 2 warnings)

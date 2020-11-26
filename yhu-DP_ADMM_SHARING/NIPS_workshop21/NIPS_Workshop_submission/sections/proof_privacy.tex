@@ -1,0 +1,377 @@
+\subsection{Proof of Lemma~\ref{lemma:privacy}}
+From the optimality condition of the $x$ update procedure in (\ref{eq:add_noise}), we can get
+
+\begin{eqnarray*}
+% \nonumber % Remove numbering (before each equation)
+  \mathcal{D}_mx_{m,\mathcal{D}_m}^{t+1}&=&-\mathcal{D}_m(\rho \mathcal{D}_m^\top \mathcal{D}_m)^{-1}
+  \left[
+  \lambda R_m^{\prime}(x_{m,\mathcal{D}_m}^{t+1})+\mathcal{D}_m^\top y^t+\rho\mathcal{D}_m^\top(\sum_{\substack
+{k=1\\k\neq m}}^{M}\mathcal{D}_k\tilde{x}_k-z)
+  \right],\\
+    \mathcal{D}_m^{\prime}x_{m,\mathcal{D}_m^{\prime}}^{t+1}&=&-\mathcal{D}_m^{\prime}(\rho \mathcal{D}_m^{\prime\top} \mathcal{D}_m^{\prime})^{-1}
+  \left[
+  \lambda R_m^{\prime}(x_{m,\mathcal{D}_m^{\prime}}^{t+1})+\mathcal{D}_m^{\prime\top}y^t+\rho
+  \mathcal{D}_m^{\prime\top}(\sum_{\substack
+{k=1\\k\neq m}}^{M}\mathcal{D}_k\tilde{x}_k-z)
+  \right].
+\end{eqnarray*}
+
+
+%\begin{eqnarray*}
+%% \nonumber % Remove numbering (before each equation)
+%  x_{m,\mathcal{D}_m}^{t+1}&=&-(\rho \mathcal{D}_m^\top \mathcal{D}_m)^{-1}
+%  \left[
+%  \lambda R_m^{\prime}(x_{m,\mathcal{D}_m}^{t+1})+y^t\mathcal{D}_m+\rho(\sum_{\substack
+%{k=1\\k\neq m}}^{M}\mathcal{D}_kx_k-z)^\top \mathcal{D}_m
+%  \right],\\
+%    x_{m,\mathcal{D}_m^{\prime}}^{t+1}&=&-(\rho \mathcal{D}_m^{\prime\top} \mathcal{D}_m^{\prime})^{-1}
+%  \left[
+%  \lambda R_m^{\prime}(x_{m,\mathcal{D}_m^{\prime}}^{t+1})+y^t\mathcal{D}_m^{\prime}+\rho(\sum_{\substack
+%{k=1\\k\neq m}}^{M}\mathcal{D}_kx_k-z)^\top \mathcal{D}_m^{\prime}
+%  \right].
+%\end{eqnarray*}
+
+
+
+
+Therefore we have
+\begin{eqnarray*}
+% \nonumber % Remove numbering (before each equation)
+&&\mathcal{D}_mx_{m,\mathcal{D}_m}^{t+1}-\mathcal{D}_m^{\prime}x_{m,\mathcal{D}_m^{\prime}}^{t+1}
+\\
+&&=-\mathcal{D}_m(\rho \mathcal{D}_m^\top \mathcal{D}_m)^{-1}
+  \left[
+  \lambda R_m^{\prime}(x_{m,\mathcal{D}_m}^{t+1})+\mathcal{D}_m^\top y^t\mathcal{D}_m+\rho\mathcal{D}_m^\top(\sum_{\substack
+{k=1\\k\neq m}}^{M}\mathcal{D}_k\tilde{x}_k-z) 
+  \right]\\
+  &&~~~+\mathcal{D}_m^{\prime}(\rho \mathcal{D}_m^{\prime\top} \mathcal{D}_m^{\prime})^{-1}
+  \left[
+  \lambda R_m^{\prime}(x_{m,\mathcal{D}_m^{\prime}}^{t+1})+\mathcal{D}_m^{\prime\top}y^t+
+  \rho\mathcal{D}_m^{\prime\top}(\sum_{\substack
+{k=1\\k\neq m}}^{M}\mathcal{D}_k\tilde{x}_k-z)
+  \right]\\
+%% &&=[(\rho \mathcal{D}_m^\top \mathcal{D}_m)(\rho \mathcal{D}_m^{\prime\top} \mathcal{D}_m^{\prime})]^{-1}\\
+%% &&~~~\times\left[(\rho \mathcal{D}_m^\top \mathcal{D}_m)\left(
+%%\lambda R_m^{\prime}(x_{m,\mathcal{D}_m^{\prime}}^{t+1})+y^t\mathcal{D}_m^{\prime}+\rho(\sum_{\substack
+%%{k=1\\k\neq m}}^{M}\mathcal{D}_kx_k-z)^\top \mathcal{D}_m^{\prime}
+%% \right)\right.\\
+%%&&~~~~~~-\left.
+%%(\rho \mathcal{D}_m^{\prime\top} \mathcal{D}_m^{\prime})
+%%\left(
+%%\lambda R_m^{\prime}(x_{m,\mathcal{D}_m}^{t+1})+y^t\mathcal{D}_m+\rho(\sum_{\substack
+%%{k=1\\k\neq m}}^{M}\mathcal{D}_kx_k-z)^\top \mathcal{D}_m
+%%\right)
+%%\right]\\
+&&=\mathcal{D}_m(\rho \mathcal{D}_m^\top \mathcal{D}_m)^{-1}\\
+&&~~~~~~\times\left[
+\lambda (R_m^{\prime}(x_{m,\mathcal{D}_m^{\prime}}^{t+1})-R_m^{\prime}(x_{m,\mathcal{D}_m}^{t+1}))
++(\mathcal{D}_m^{\prime}-\mathcal{D}_m)^\top y^t+\rho(\mathcal{D}_m^{\prime}-\mathcal{D}_m)^\top(\sum_{\substack
+{k=1\\k\neq m}}^{M}\mathcal{D}_k\tilde{x}_k-z)
+\right]\\%%
+&&~~~+[\mathcal{D}_m^{\prime}(\rho \mathcal{D}_m^{\prime\top} \mathcal{D}_m^{\prime})^{-1}
+-
+\mathcal{D}_m(\rho \mathcal{D}_m^{\top} \mathcal{D}_m)^{-1}
+]\\
+&&~~~~~~\times\left(
+  \lambda R_m^{\prime}(x_{m,\mathcal{D}_m^{\prime}}^{t+1})+\mathcal{D}_m^{\prime\top} y^t+\rho\mathcal{D}_m^{\prime\top}(\sum_{\substack
+{k=1\\k\neq m}}^{M}\mathcal{D}_k\tilde{x}_k-z)
+\right).
+%%% &&=[(\rho \mathcal{D}_m^\top \mathcal{D}_m)(\rho \mathcal{D}_m^{\prime\top} \mathcal{D}_m^{\prime})]^{-1}\\
+%%%  &&~~~\times\left[\rho \mathcal{D}_m^\top \mathcal{D}_m\left(
+%%%\lambda R_m^{\prime}(x_{m,\mathcal{D}_m^{\prime}}^{t+1})+y^t\mathcal{D}_m^{\prime}+\rho(\sum_{\substack
+%%%{k=1\\k\neq m}}^{M}\mathcal{D}_kx_k-z)^\top \mathcal{D}_m^{\prime}
+%%% \right)\right.\\
+%%%&&~~~~~~-\left.
+%%%\rho \mathcal{D}_m^{\prime\top} \mathcal{D}_m^{\prime}
+%%%\left(
+%%%\lambda R_m^{\prime}(x_{m,\mathcal{D}_m}^{t+1})+y^t\mathcal{D}_m+\rho(\sum_{\substack
+%%%{k=1\\k\neq m}}^{M}\mathcal{D}_kx_k-z)^\top \mathcal{D}_m
+%%%\right)
+%%%\right]\\
+%%%&&~~~+[(\rho \mathcal{D}_m^\top \mathcal{D}_m)(\rho \mathcal{D}_m^{\prime\top} \mathcal{D}_m^{\prime})]^{-1}\\
+%%%&&~~~~~~\times \frac{1}{\eta_m^{t+1}}
+%%%\left(
+%%%y^t(\mathcal{D}_m^{\prime}-\mathcal{D}_m)+\rho(\sum_{\substack
+%%%{k=1\\k\neq m}}^{M}\mathcal{D}_kx_k-z)^\top (\mathcal{D}_m^{\prime}-\mathcal{D}_m)
+%%%\right)
+\end{eqnarray*}
+Denote
+\begin{eqnarray*}
+% \nonumber % Remove numbering (before each equation)
+&&\Phi_1=\mathcal{D}_m(\rho \mathcal{D}_m^\top \mathcal{D}_m)^{-1}\\
+&&~~~~~~\times\left[
+\lambda (R_m^{\prime}(x_{m,\mathcal{D}_m^{\prime}}^{t+1})-R_m^{\prime}(x_{m,\mathcal{D}_m}^{t+1}))
++(\mathcal{D}_m^{\prime}-\mathcal{D}_m)^\top y^t+\rho(\mathcal{D}_m^{\prime}-\mathcal{D}_m)^\top(\sum_{\substack
+{k=1\\k\neq m}}^{M}\mathcal{D}_k\tilde{x}_k-z)
+\right],\\
+%%%&&~~~~~~-
+%%%\rho \mathcal{D}_m^{\prime\top} \mathcal{D}_m^{\prime}
+%%%\left(
+%%%\lambda\sum_{m=1}^{M}R_m^{\prime}(\tilde{x}_m^t)+y^t\mathcal{D}_m+\rho(\sum_{\substack
+%%%{k=1\\k\neq m}}^{M}\mathcal{D}_kx_k-z)^\top \mathcal{D}_m-\frac{1}{\eta_m^{t+1}}\tilde{x}_m^t
+%%%\right)\\
+&&\Phi_2=[\mathcal{D}_m^{\prime}(\rho \mathcal{D}_m^{\prime\top} \mathcal{D}_m^{\prime})^{-1}
+-
+\mathcal{D}_m(\rho \mathcal{D}_m^{\top} \mathcal{D}_m)^{-1}
+]\\
+&&~~~~~~\times\left(
+  \lambda R_m^{\prime}(x_{m,\mathcal{D}_m^{\prime}}^{t+1})+\mathcal{D}_m^{\prime\top}y^t+
+  \rho\mathcal{D}_m^{\prime\top}(\sum_{\substack
+{k=1\\k\neq m}}^{M}\mathcal{D}_k\tilde{x}_k-z) 
+\right).
+\end{eqnarray*}
+As a result:
+\begin{eqnarray}
+% \nonumber % Remove numbering (before each equation)
+\label{l2norm}
+\mathcal{D}_mx_{m,\mathcal{D}_m}^{t+1}-\mathcal{D}_m^{\prime}x_{m,\mathcal{D}_m^{\prime}}^{t+1}=
+\Phi_1+\Phi_2.
+\end{eqnarray}
+In the following, we will analyze the components in (\ref{l2norm}) term by term. The object
+is to prove $\max_{\substack{\mathcal{D}_m,D_m^{\prime}\\
+\|\mathcal{D}_m-D_m^{\prime}\|\leq1
+}}
+\|x_{m,\mathcal{D}_m}^{t+1}-x_{m,\mathcal{D}_m^{\prime}}^{t+1}\|$ is bounded.
+To see this, notice that
+\begin{eqnarray*}
+% \nonumber % Remove numbering (before each equation)
+&&\max_{\substack{\mathcal{D}_m,D_m^{\prime}\\
+\|\mathcal{D}_m-D_m^{\prime}\|\leq1
+}}
+\|\mathcal{D}_mx_{m,\mathcal{D}_m}^{t+1}-\mathcal{D}_m^{\prime}x_{m,\mathcal{D}_m^{\prime}}^{t+1}\|\\
+&&\leq\max_{\substack{\mathcal{D}_m,D_m^{\prime}\\
+\|\mathcal{D}_m-D_m^{\prime}\|\leq1
+}}\|\Phi_1\|
++\max_{\substack{\mathcal{D}_m,D_m^{\prime}\\
+\|\mathcal{D}_m-D_m^{\prime}\|\leq1
+}}\|\Phi_2\|.
+\\
+%%%&&=\max_{\substack{\mathcal{D}_m,D_m^{\prime}\\
+%%%\|\mathcal{D}_m-D_m^{\prime}\|\leq1
+%%%}}\|\Xi\|^{-1}\times
+%%%\left(\max_{\substack{\mathcal{D}_m,D_m^{\prime}\\
+%%%\|\mathcal{D}_m-D_m^{\prime}\|\leq1
+%%%}}\|\Phi_1\|
+%%%+\max_{\substack{\mathcal{D}_m,D_m^{\prime}\\
+%%%\|\mathcal{D}_m-D_m^{\prime}\|\leq1
+%%%}}\|\Phi_2\|
+%%%\right)\\
+\end{eqnarray*}
+For $\max_{\substack{\mathcal{D}_m,D_m^{\prime}\\
+\|\mathcal{D}_m-D_m^{\prime}\|\leq1
+}}\|\Phi_2\|$,
+from assumption \ref{theo:assumptions_pri_added}.\ref{item:assum_7_pri},
+we have
+\begin{eqnarray*}
+% \nonumber % Remove numbering (before each equation)
+  &&\max_{\substack{\mathcal{D}_m,D_m^{\prime}\\
+\|\mathcal{D}_m-D_m^{\prime}\|\leq1
+}}\|\Phi_2\|\\
+  &&\leq
+\left|\left|\frac{2}{d_m\rho}
+\left(
+  \lambda R_m^{\prime}(x_{m,\mathcal{D}_m^{\prime}}^{t+1})+\mathcal{D}_m^{\prime\top}y^t+
+  \rho\mathcal{D}_m^{\prime\top}(\sum_{\substack
+{k=1\\k\neq m}}^{M}\mathcal{D}_k\tilde{x}_k-z)
+\right)\right|\right|.
+\end{eqnarray*}
+By mean value theorem, we have
+\begin{eqnarray*}
+% \nonumber % Remove numbering (before each equation)
+&&\left|\left|\frac{2}{d_m\rho}
+\left(
+  \lambda\mathcal{D}_m^{\prime\top} R_m^{\prime\prime}(x_{\ast})+\mathcal{D}_m^{\prime\top}y^t+\rho\mathcal{D}_m^{\prime\top}(\sum_{\substack
+{k=1\\k\neq m}}^{M}\mathcal{D}_k\tilde{x}_k-z)
+\right)\right|\right|\\
+&&\leq\frac{2}{d_m\rho}\left[\lambda\| R_m^{\prime\prime}(\cdot)\|
++\|y^t\|+\rho\|(\sum_{\substack
+{k=1\\k\neq m}}^{M}\mathcal{D}_k\tilde{x}_k-z)\|
+\right].
+\end{eqnarray*}
+
+For $\max_{\substack{\mathcal{D}_m,D_m^{\prime}\\
+\|\mathcal{D}_m-D_m^{\prime}\|\leq1
+}}\|\Phi_1\|$, we have
+
+\begin{eqnarray*}
+% \nonumber % Remove numbering (before each equation)
+&&\max_{\substack{\mathcal{D}_m,D_m^{\prime}\\
+\|\mathcal{D}_m-D_m^{\prime}\|\leq1
+}}\|
+\Phi_1
+\|
+\leq
+\left|\left|
+\mathcal{D}_m(\rho \mathcal{D}_m^\top \mathcal{D}_m)^{-1}\right.\right.\\
+&&\left.\left.\times\left[
+\lambda (R_m^{\prime}(x_{m,\mathcal{D}_m^{\prime}}^{t+1})-R_m^{\prime}(x_{m,\mathcal{D}_m}^{t+1}))
++(\mathcal{D}_m^{\prime}-\mathcal{D}_m)^\top y^t+\rho
+(\mathcal{D}_m^{\prime}-\mathcal{D}_m)^\top (\sum_{\substack
+{k=1\\k\neq m}}^{M}\mathcal{D}_k\tilde{x}_k-z)
+\right]
+\right|\right|\\
+&&\leq
+\rho^{-1}\|(\mathcal{D}_m^\top \mathcal{D}_m)^{-1}\|
+\left[\lambda \|R_m^{\prime\prime}(\cdot)\|+\|y^t\|+\rho\|(\sum_{\substack
+{k=1\\k\neq m}}^{M}\mathcal{D}_k\tilde{x}_k-z)^\top\|\right]\\
+&&=\frac{1}{d_m\rho}\left[\lambda \|R_m^{\prime\prime}(\cdot)\|+\|y^t\|+\rho\|(\sum_{\substack
+{k=1\\k\neq m}}^{M}\mathcal{D}_k\tilde{x}_k-z)\|\right].
+\end{eqnarray*}
+
+
+
+
+Thus by assumption \ref{theo:assumptions_pri_added}.\ref{item:assum_5_pri}-\ref{theo:assumptions_pri_added}.\ref{item:assum_6_pri}
+\begin{eqnarray*}
+% \nonumber % Remove numbering (before each equation)
+&&\max_{\substack{\mathcal{D}_m,D_m^{\prime}\\
+\|\mathcal{D}_m-D_m^{\prime}\|\leq1
+}}
+\|\mathcal{D}_mx_{m,\mathcal{D}_m}^{t+1}-\mathcal{D}_m^{\prime}x_{m,\mathcal{D}_m^{\prime}}^{t+1}\|\\
+&&\leq\frac{3}{d_m\rho}\left[\lambda c_1+\|y^t\|+\rho\|(\sum_{\substack
+{k=1\\k\neq m}}^{M}\mathcal{D}_k\tilde{x}_k-z)^\top\|\right]\\
+&&\leq\frac{3}{d_m\rho}\left[\lambda c_1+\|y^t\|+\rho\|z\|
++\rho\sum_{\substack
+{k=1\\k\neq m}}^{M}\|\tilde{x}_k\|\right]\\
+&&\leq\frac{3}{d_m\rho}\left[\lambda c_1+(1+M\rho)b_1\right]
+\end{eqnarray*}
+is bounded.
+\hfill$\square$
+
+\subsection{Proof of Theorem~\ref{theo:DP}}
+
+{\it Proof:} The privacy loss from $D_m\tilde{x}_m^{t+1}$ is calculated by:
+
+\begin{eqnarray*}
+% \nonumber % Remove numbering (before each equation)
+  \left|
+  \text{ln}\frac{P(\mathcal{D}_m\tilde{x}_m^{t+1}|\mathcal{D}_m)}{P(\mathcal{D}_m^{\prime}\tilde{x}_m^{t+1}|\mathcal{D}_m^{\prime})}
+  \right|=
+  \left|
+  \text{ln}\frac{P(\mathcal{D}_m\tilde{x}_{m,\mathcal{D}_m}^{t+1}+\mathcal{D}_m\xi_m^{t+1})}
+  {P(\mathcal{D}_m^{\prime}\tilde{x}_{m,\mathcal{D}_m^{\prime}}^{t+1}+\mathcal{D}_m^{\prime}\xi_m^{\prime,t+1})}
+  \right|=
+    \left|
+  \text{ln}\frac{P(\mathcal{D}_m\xi_m^{t+1})}
+  {P(\mathcal{D}_m^{\prime}\xi_m^{\prime,t+1})}
+  \right|.
+\end{eqnarray*}
+
+Since $\mathcal{D}_m\xi_m^{t+1}$ and $\mathcal{D}_m^{\prime}\xi_m^{\prime,t+1}$ are sampled from $\mathcal{N}(0,\sigma_{m,t+1}^2)$,
+combine with lemma \ref{lemma:privacy}, we have
+\begin{eqnarray*}
+% \nonumber % Remove numbering (before each equation)
+&&\left|
+  \text{ln}\frac{P(\mathcal{D}_m\xi_m^{t+1})}
+  {P(\mathcal{D}_m^{\prime}\xi_m^{\prime,t+1})}
+  \right|\\
+&&=\left|
+\frac{2\xi_m^{t+1}\|\mathcal{D}_mx_{m,\mathcal{D}_m}^{t+1}-\mathcal{D}_m^{\prime}x_{m,\mathcal{D}_m^{\prime}}^{t+1}\|+
+\|\mathcal{D}_mx_{m,\mathcal{D}_m}^{t+1}-\mathcal{D}_m^{\prime}x_{m,\mathcal{D}_m^{\prime}}^{t+1}\|^2}
+{2\sigma_{m,t+1}^2}
+\right|\\
+&&\leq
+\left|
+\frac{2\mathcal{D}_m\xi_m^{t+1}\mathbb{C}+\mathbb{C}^2}{2\frac{\mathbb{C}^2\cdot2\text{ln}(1.25/\sigma)}{\varepsilon^2}}
+\right|\\
+&&=\left|
+\frac{(2\mathcal{D}_m\xi_m^{t+1}+\mathbb{C})\varepsilon^2}{4\mathbb{C}\text{ln}(1.25/\sigma)}
+\right|.
+\end{eqnarray*}
+In order to make $\left|
+\frac{(2\mathcal{D}_m\xi_m^{t+1}+\mathbb{C})\varepsilon^2}{4\mathbb{C}\text{ln}(1.25/\sigma)}
+\right|\leq \varepsilon$, we need to make sure
+\begin{eqnarray*}
+% \nonumber % Remove numbering (before each equation)
+  \left|
+  \mathcal{D}_m\xi_m^{t+1}
+  \right|
+  \leq
+  \frac{2\mathbb{C}\text{ln}(1.25/\sigma)}{\varepsilon}-\frac{\mathbb{C}}{2}.
+\end{eqnarray*}
+
+In the following, we need to proof
+\begin{eqnarray}
+\label{prbinq}
+% \nonumber % Remove numbering (before each equation)
+  P(\left|
+  \mathcal{D}_m\xi_m^{t+1}
+  \right|
+  \geq
+  \frac{2\mathbb{C}\text{ln}(1.25/\sigma)}{\varepsilon}-\frac{\mathbb{C}}{2})
+  \leq\delta
+\end{eqnarray}
+holds. However, we will proof a stronger result that lead to
+(\ref{prbinq}). Which is
+\begin{eqnarray*}
+% \nonumber % Remove numbering (before each equation)
+   P(
+  \mathcal{D}_m\xi_m^{t+1}
+  \geq
+  \frac{2\mathbb{C}\text{ln}(1.25/\sigma)}{\varepsilon}-\frac{\mathbb{C}}{2})
+  \leq\frac{\delta}{2}.
+\end{eqnarray*}
+
+Since the tail bound of normal distribution $\mathcal{N}(0,\sigma_{m,t+1}^2)$ is:
+\begin{eqnarray*}
+% \nonumber % Remove numbering (before each equation)
+  P(\mathcal{D}_m\xi_m^{t+1}>r)\leq\frac{\sigma_{m,t+1}}{r\sqrt{2\pi}}e^{-\frac{r^2}{2\sigma_{m,t+1}^2}}.
+\end{eqnarray*}
+Let $r=\frac{2\mathbb{C}\text{ln}(1.25/\sigma)}{\varepsilon}-\frac{\mathbb{C}}{2}$, we then have
+\begin{eqnarray*}
+% \nonumber % Remove numbering (before each equation)
+  &&P(
+  \mathcal{D}_m\xi_m^{t+1}
+  \geq
+  \frac{2\mathbb{C}\text{ln}(1.25/\sigma)}{\varepsilon}-\frac{\mathbb{C}}{2})\\
+  &&\leq\frac{\mathbb{C}\sqrt{2\text{ln}(1.25/\sigma)}}{r\sqrt{2\pi}\varepsilon}
+  \exp\left[
+  -\frac{[4\text{ln}(1.25/\sigma)-\varepsilon]^2}{8\text{ln}(1.25/\sigma)}
+  \right].
+\end{eqnarray*}
+When $\delta$ is small and let $\varepsilon\leq 1$, we then have
+\begin{eqnarray}
+\label{interme1}
+% \nonumber % Remove numbering (before each equation)
+  \frac{\sqrt{2\text{ln}(1.25/\sigma)}2}{(4\text{ln}(1.25/\sigma)-\varepsilon)\sqrt{2\pi}}
+  \leq\frac{\sqrt{2\text{ln}(1.25/\sigma)}2}{(4\text{ln}(1.25/\sigma)-1)\sqrt{2\pi}}
+  <\frac{1}{\sqrt{2\pi}}.
+\end{eqnarray}
+As a result, we can proof that
+\begin{eqnarray*}
+% \nonumber % Remove numbering (before each equation)
+-\frac{[4\text{ln}(1.25/\sigma)-\varepsilon]^2}{8\text{ln}(1.25/\sigma)}<
+\text{ln}(\sqrt{2\pi}\frac{\delta}{2}
+)
+\end{eqnarray*}
+by equation (\ref{interme1}). Thus we have
+\begin{eqnarray*}
+% \nonumber % Remove numbering (before each equation)
+P(
+  \mathcal{D}_m\xi_m^{t+1}
+  \geq
+  \frac{2\mathbb{C}\text{ln}(1.25/\sigma)}{\varepsilon}-\frac{\mathbb{C}}{2})<
+  \frac{1}{\sqrt{2\pi}}\exp(\text{ln}(\sqrt{2\pi}\frac{\delta}{2})=\frac{\delta}{2}.
+\end{eqnarray*}
+
+Thus we proved (\ref{prbinq}) holds. Define
+\begin{eqnarray*}
+% \nonumber % Remove numbering (before each equation)
+&&\mathbb{A}_1=\{
+\mathcal{D}_m\xi_m^{t+1}:|\mathcal{D}_m\xi_m^{t+1}|\leq\frac{1}{\sqrt{2\pi}}\exp(\text{ln}(\sqrt{2\pi}\frac{\delta}{2}
+\},\\
+&&\mathbb{A}_2=\{
+\mathcal{D}_m\xi_m^{t+1}:|\mathcal{D}_m\xi_m^{t+1}|>\frac{1}{\sqrt{2\pi}}\exp(\text{ln}(\sqrt{2\pi}\frac{\delta}{2}
+\}.
+\end{eqnarray*}
+Thus we obtain the desired result:
+\begin{eqnarray*}
+% \nonumber % Remove numbering (before each equation)
+&&P(\mathcal{D}_m^{\prime}\tilde{x}_m^{t+1}|\mathcal{D}_m)\\
+&&=
+P(\mathcal{D}_mx_{m,\mathcal{D}_m}^{t+1}+\mathcal{D}_m\xi_m^{t+1}:\mathcal{D}_m\xi_m^{t+1}\in\mathbb{A}_1)\\
+&&+P(\mathcal{D}_mx_{m,\mathcal{D}_m}^{t+1}+\mathcal{D}_m\xi_m^{t+1}:\mathcal{D}_m\xi_m^{t+1}\in\mathbb{A}_2)\\
+&&<e^{\varepsilon}P(\mathcal{D}_mx_{m,\mathcal{D}_m^{\prime}}^{t+1}
++\mathcal{D}_m\xi_m^{\prime,t+1})+\delta=e^{\varepsilon}P(\mathcal{D}_m\tilde{x}_m^{t+1}|\mathcal{D}_m^{\prime})+\delta.
+\end{eqnarray*}
+\hfill$\square$ 

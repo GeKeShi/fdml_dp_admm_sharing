@@ -1,0 +1,65 @@
+Personalized and Private Peer-to-Peer Machine Learning
+	reviews author works and cited works
+
+
+	
+Further study the ADMM sharing scenario
+	1. mechanism to differentiate the important features some party
+	2. asynchronism of server and client
+	3. trade off between accurate local x and overall convergence time
+	4. mini batched version, proof of convergence
+
+Related to DP
+	1. what is a proper DP definition is here? 
+		pro: on each partition, the model weight is also private as well, which is strong in terms of protecting the local features
+		con: every sample need to output a value at each iteration, which could be a lot of information leak
+
+
+============
+applying the sparse vector technique by transmitting the difference 
+
+============
+Review all the related feature distributed machine learning works
+Review all the related privacy preserving machine learning works including different definitions for privacy and algorithm
+
+
+============
+solution of sharing
+applying sharing mechanism 
+differential privacy definition
+simple mechanism
+
+convergence
+
+=============
+2019 Mar 28
+1. Composition with high dimension. It seems that the existing works only considered about the norm rather than the full distribution of the output. 
+
+
+=============
+2019 April 7
+1. Derive the convergence for the sharing problem in scaled form. 
+2. Derive the convergence rate 
+3. Insert the noise and see the result
+
+=============
+2019 April 10
+Consider general additive models
+
+=============
+2019 April 30
+Compare to the SGD in terms of convergence speed. 
+
+=============
+2019 Spet. 2
+1. quickly see whether the epsilon, delta works
+2. writing issue
+3. include the fank-wolfie works
+
+============
+1. Frank-Wolfie to introduction and related
+2. Explain scalablity SGD vs ADMM
+3. Explain DP, Iteration complexity and SGD
+4. DP parameter explain in practise
+5. DP +  ADMM other work compare
+

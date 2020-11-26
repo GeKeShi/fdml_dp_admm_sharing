@@ -1,0 +1,267 @@
+\begin{thebibliography}{10}
+
+\bibitem{li2014communication}
+Mu~Li, David~G Andersen, Alexander~J Smola, and Kai Yu.
+\newblock Communication efficient distributed machine learning with the
+  parameter server.
+\newblock In {\em Advances in Neural Information Processing Systems}, pages
+  19--27, 2014.
+
+\bibitem{ho2013more}
+Qirong Ho, James Cipar, Henggang Cui, Seunghak Lee, Jin~Kyu Kim, Phillip~B
+  Gibbons, Garth~A Gibson, Greg Ganger, and Eric~P Xing.
+\newblock More effective distributed ml via a stale synchronous parallel
+  parameter server.
+\newblock In {\em Advances in neural information processing systems}, pages
+  1223--1231, 2013.
+
+\bibitem{zhang2018improving}
+Xueru Zhang, Mohammad~Mahdi Khalili, and Mingyan Liu.
+\newblock Improving the privacy and accuracy of admm-based distributed
+  algorithms.
+\newblock In {\em International Conference on Machine Learning}, pages
+  5791--5800, 2018.
+
+\bibitem{zhang2016dual}
+Tao Zhang and Quanyan Zhu.
+\newblock A dual perturbation approach for differential private admm-based
+  distributed empirical risk minimization.
+\newblock In {\em Proceedings of the 2016 ACM Workshop on Artificial
+  Intelligence and Security}, pages 129--137. ACM, 2016.
+
+\bibitem{huang2018dp}
+Zonghao Huang, Rui Hu, Yanmin Gong, and Eric Chan-Tin.
+\newblock Dp-admm: Admm-based distributed learning with differential privacy.
+\newblock {\em arXiv preprint arXiv:1808.10101}, 2018.
+
+\bibitem{vaidya2002privacy}
+Jaideep Vaidya and Chris Clifton.
+\newblock Privacy preserving association rule mining in vertically partitioned
+  data.
+\newblock In {\em Proceedings of the eighth ACM SIGKDD international conference
+  on Knowledge discovery and data mining}, pages 639--644. ACM, 2002.
+
+\bibitem{vaidya2003privacy}
+Jaideep Vaidya and Chris Clifton.
+\newblock Privacy-preserving k-means clustering over vertically partitioned
+  data.
+\newblock In {\em Proceedings of the ninth ACM SIGKDD international conference
+  on Knowledge discovery and data mining}, pages 206--215. ACM, 2003.
+
+\bibitem{lou2018uplink}
+Jian Lou and Yiu-ming Cheung.
+\newblock Uplink communication efficient differentially private sparse
+  optimization with feature-wise distributed data.
+\newblock In {\em Thirty-Second AAAI Conference on Artificial Intelligence},
+  2018.
+
+\bibitem{kenthapadi2013privacy}
+Krishnaram Kenthapadi, Aleksandra Korolova, Ilya Mironov, and Nina Mishra.
+\newblock Privacy via the johnson-lindenstrauss transform.
+\newblock {\em Journal of Privacy and Confidentiality}, 5, 2013.
+
+\bibitem{ying2018supervised}
+Bicheng Ying, Kun Yuan, and Ali~H Sayed.
+\newblock Supervised learning under distributed features.
+\newblock {\em IEEE Transactions on Signal Processing}, 67(4):977--992, 2018.
+
+\bibitem{hu2019fdml}
+Yaochen Hu, Di~Niu, Jianming Yang, and Shengping Zhou.
+\newblock Fdml: A collaborative machine learning framework for distributed
+  features.
+\newblock In {\em Proceedings of KDD '19}. ACM, 2019.
+
+\bibitem{heinze2017preserving}
+Christina Heinze-Deml, Brian McWilliams, and Nicolai Meinshausen.
+\newblock Preserving differential privacy between features in distributed
+  estimation.
+\newblock {\em stat}, 7:e189, 2018.
+
+\bibitem{dai2018privacy}
+Wenrui Dai, Shuang Wang, Hongkai Xiong, and Xiaoqian Jiang.
+\newblock Privacy preserving federated big data analysis.
+\newblock In {\em Guide to Big Data Applications}, pages 49--82. Springer,
+  2018.
+
+\bibitem{bellet2015distributed}
+Aur{\'e}lien Bellet, Yingyu Liang, Alireza~Bagheri Garakani, Maria-Florina
+  Balcan, and Fei Sha.
+\newblock A distributed frank-wolfe algorithm for communication-efficient
+  sparse learning.
+\newblock In {\em Proceedings of the 2015 SIAM International Conference on Data
+  Mining}, pages 478--486. SIAM, 2015.
+
+\bibitem{chaudhuri2011differentially}
+Kamalika Chaudhuri, Claire Monteleoni, and Anand~D Sarwate.
+\newblock Differentially private empirical risk minimization.
+\newblock {\em Journal of Machine Learning Research}, 12(Mar):1069--1109, 2011.
+
+\bibitem{dwork2008differential}
+Cynthia Dwork.
+\newblock Differential privacy: A survey of results.
+\newblock In {\em International Conference on Theory and Applications of Models
+  of Computation}, pages 1--19. Springer, 2008.
+
+\bibitem{dwork2014algorithmic}
+Cynthia Dwork, Aaron Roth, et~al.
+\newblock The algorithmic foundations of differential privacy.
+\newblock {\em Foundations and Trends{\textregistered} in Theoretical Computer
+  Science}, 9(3--4):211--407, 2014.
+
+\bibitem{chaudhuri2009privacy}
+Kamalika Chaudhuri and Claire Monteleoni.
+\newblock Privacy-preserving logistic regression.
+\newblock In {\em Advances in neural information processing systems}, pages
+  289--296, 2009.
+
+\bibitem{shokri2015privacy}
+Reza Shokri and Vitaly Shmatikov.
+\newblock Privacy-preserving deep learning.
+\newblock In {\em Proceedings of the 22nd ACM SIGSAC conference on computer and
+  communications security}, pages 1310--1321. ACM, 2015.
+
+\bibitem{abadi2016deep}
+Martin Abadi, Andy Chu, Ian Goodfellow, H~Brendan McMahan, Ilya Mironov, Kunal
+  Talwar, and Li~Zhang.
+\newblock Deep learning with differential privacy.
+\newblock In {\em Proceedings of the 2016 ACM SIGSAC Conference on Computer and
+  Communications Security}, pages 308--318. ACM, 2016.
+
+\bibitem{pathak2010multiparty}
+Manas Pathak, Shantanu Rane, and Bhiksha Raj.
+\newblock Multiparty differential privacy via aggregation of locally trained
+  classifiers.
+\newblock In {\em Advances in Neural Information Processing Systems}, pages
+  1876--1884, 2010.
+
+\bibitem{rajkumar2012differentially}
+Arun Rajkumar and Shivani Agarwal.
+\newblock A differentially private stochastic gradient descent algorithm for
+  multiparty classification.
+\newblock In {\em Artificial Intelligence and Statistics}, pages 933--941,
+  2012.
+
+\bibitem{zhang2019admm}
+Chunlei Zhang, Muaz Ahmad, and Yongqiang Wang.
+\newblock Admm based privacy-preserving decentralized optimization.
+\newblock {\em IEEE Transactions on Information Forensics and Security},
+  14(3):565--580, 2019.
+
+\bibitem{zhang2017dynamic}
+Tao Zhang and Quanyan Zhu.
+\newblock Dynamic differential privacy for admm-based distributed
+  classification learning.
+\newblock {\em IEEE Transactions on Information Forensics and Security},
+  12(1):172--187, 2017.
+
+\bibitem{gilad2016cryptonets}
+Ran Gilad-Bachrach, Nathan Dowlin, Kim Laine, Kristin Lauter, Michael Naehrig,
+  and John Wernsing.
+\newblock Cryptonets: Applying neural networks to encrypted data with high
+  throughput and accuracy.
+\newblock In {\em International Conference on Machine Learning}, pages
+  201--210, 2016.
+
+\bibitem{takabi2016privacy}
+Hassan Takabi, Ehsan Hesamifard, and Mehdi Ghasemi.
+\newblock Privacy preserving multi-party machine learning with homomorphic
+  encryption.
+\newblock In {\em 29th Annual Conference on Neural Information Processing
+  Systems (NIPS)}, 2016.
+
+\bibitem{kikuchi2018privacy}
+Hiroaki Kikuchi, Chika Hamanaga, Hideo Yasunaga, Hiroki Matsui, Hideki
+  Hashimoto, and Chun-I Fan.
+\newblock Privacy-preserving multiple linear regression of vertically
+  partitioned real medical datasets.
+\newblock {\em Journal of Information Processing}, 26:638--647, 2018.
+
+\bibitem{mohassel2017secureml}
+Payman Mohassel and Yupeng Zhang.
+\newblock Secureml: A system for scalable privacy-preserving machine learning.
+\newblock In {\em 2017 38th IEEE Symposium on Security and Privacy (SP)}, pages
+  19--38. IEEE, 2017.
+
+\bibitem{wan2007privacy}
+Li~Wan, Wee~Keong Ng, Shuguo Han, and Vincent Lee.
+\newblock Privacy-preservation for gradient descent methods.
+\newblock In {\em Proceedings of the 13th ACM SIGKDD international conference
+  on Knowledge discovery and data mining}, pages 775--783. ACM, 2007.
+
+\bibitem{bonte2018privacy}
+Charlotte Bonte and Frederik Vercauteren.
+\newblock Privacy-preserving logistic regression training.
+\newblock Technical report, IACR Cryptology ePrint Archive 233, 2018.
+
+\bibitem{gratton2018distributed}
+Cristiano Gratton, Venkategowda~Naveen KD, Reza Arablouei, and Stefan Werner.
+\newblock Distributed ridge regression with feature partitioning.
+\newblock In {\em 2018 52nd Asilomar Conference on Signals, Systems, and
+  Computers}, pages 1423--1427. IEEE, 2018.
+
+\bibitem{zhou2016convergence}
+Yi~Zhou, Yaoliang Yu, Wei Dai, Yingbin Liang, and Eric Xing.
+\newblock On convergence of model parallel proximal gradient algorithm for
+  stale synchronous parallel system.
+\newblock In {\em Artificial Intelligence and Statistics}, pages 713--722,
+  2016.
+
+\bibitem{dwork2004privacy}
+Cynthia Dwork and Kobbi Nissim.
+\newblock Privacy-preserving datamining on vertically partitioned databases.
+\newblock In {\em Annual International Cryptology Conference}, pages 528--544.
+  Springer, 2004.
+
+\bibitem{hamm2016learning}
+Jihun Hamm, Yingjun Cao, and Mikhail Belkin.
+\newblock Learning privately from multiparty data.
+\newblock In {\em International Conference on Machine Learning}, pages
+  555--563, 2016.
+
+\bibitem{zhou2010security}
+Minqi Zhou, Rong Zhang, Wei Xie, Weining Qian, and Aoying Zhou.
+\newblock Security and privacy in cloud computing: A survey.
+\newblock In {\em 2010 Sixth International Conference on Semantics, Knowledge
+  and Grids}, pages 105--112. IEEE, 2010.
+
+\bibitem{boyd2011distributed}
+Stephen Boyd, Neal Parikh, Eric Chu, Borja Peleato, Jonathan Eckstein, et~al.
+\newblock Distributed optimization and statistical learning via the alternating
+  direction method of multipliers.
+\newblock {\em Foundations and Trends{\textregistered} in Machine learning},
+  3(1):1--122, 2011.
+
+\bibitem{hong2016convergence}
+Mingyi Hong, Zhi-Quan Luo, and Meisam Razaviyayn.
+\newblock Convergence analysis of alternating direction method of multipliers
+  for a family of nonconvex problems.
+\newblock {\em SIAM Journal on Optimization}, 26(1):337--364, 2016.
+
+\bibitem{sarwate2013signal}
+Anand~D Sarwate and Kamalika Chaudhuri.
+\newblock Signal processing and machine learning with differential privacy:
+  Algorithms and challenges for continuous data.
+\newblock {\em IEEE signal processing magazine}, 30(5):86--94, 2013.
+
+\bibitem{wang2019global}
+Yu~Wang, Wotao Yin, and Jinshan Zeng.
+\newblock Global convergence of admm in nonconvex nonsmooth optimization.
+\newblock {\em Journal of Scientific Computing}, 78(1):29--63, 2019.
+
+\bibitem{Dua:2019}
+Dheeru Dua and Casey Graff.
+\newblock {UCI} machine learning repository, 2017.
+
+\bibitem{guyon2005result}
+Isabelle Guyon, Steve Gunn, Asa Ben-Hur, and Gideon Dror.
+\newblock Result analysis of the nips 2003 feature selection challenge.
+\newblock In {\em Advances in neural information processing systems}, pages
+  545--552, 2005.
+
+\bibitem{Liblinear:2019}
+Libsvm data: Classification (binary class).
+\newblock
+  \url{https://www.csie.ntu.edu.tw/~cjlin/libsvmtools/datasets/binary.html}.
+\newblock Accessed: 2019-05-23.
+
+\end{thebibliography}

@@ -1,0 +1,65 @@
+\section{Empirical Risk Minimization over Distributed Features}
+\label{sec:problem}
+
+Consider $N$ samples, each with $d$ features distributed on $M$ parties, which do not wish to share data with each other.
+The entire dataset $\mathcal D\in \mathbb{R}^N\times\mathbb{R}^{d}$ can be viewed as $M$ vertical partitions $\mathcal D_1,\ldots,\mathcal D_M$, where
+$\mathcal{D}_m\in\mathbb{R}^N\times\mathbb{R}^{d_m}$ denotes the data possessed by the $m$th party and $d_m$ is the dimension of features on party $m$. Clearly, $d=\sum_{m=1}^{M}d_m$. Let $\mathcal{D}^i$ denote the $i$th row of $\mathcal{D}$, and
+$\mathcal{D}_m^i$ be the $i$th row of $\mathcal{D}_m$ ($k=1,\cdots,N$). 
+% Then, we have
+% \begin{eqnarray*}
+% 	\mathcal{D} =
+% \left[
+% % \nonumber % Remove numbering (before each equation)
+%   \begin{array}{cccc}
+%     \mathcal{D}_1^1 & \mathcal{D}_2^1 & \cdots & \mathcal{D}_M^1 \\
+%     \mathcal{D}_1^2 & \mathcal{D}_2^2 &\cdots & \mathcal{D}_M^2 \\
+%     \vdots & \vdots & \ddots & \vdots \\
+%     \mathcal{D}_1^N & \mathcal{D}_2^N & \cdots & \mathcal{D}_M^N
+%   \end{array}
+% \right],
+% \end{eqnarray*}
+% where $\mathcal{D}_m^i\in\mathcal{A}_m\subset\mathbb{R}^{d_m}$, ($i=1,\cdots,N, m=1,\cdots,M$).
+Let $Y_i\in\{-1, 1\}^N$ be the label of sample $i$. %Then, $(\mathcal{D}_1, \mathcal{D}_2, \ldots, \mathcal{D}_M, Y)$ is the total training data.
+
+Let $x=(x_1^\top,\cdots,x_m^\top,\cdots,x_M^\top)^\top$ represent the model parameters, where $x_m\in\mathbb{R}^{d_m}$ are the local parameters associated with the $m$th party. The objective is to find a model $f(\mathcal{D}^i; x)$ with parameters $x$ %to predict the labels such that some predefined loss $l(f, Y)$ between the predicted labels and true labels is minimized, i.e.,
+to minimize the regularized empirical risk, i.e.,
+\[
+\underset{x \in X}{\text{minimize}} \quad\frac{1}{N}\sum_{i=1}^{N} l_i(f(\mathcal{D}^i; x), Y_i) + \lambda R(x),
+\]
+where $X\subset\mathbb{R}^d$ is a closed convex set and the regularizer $R(\cdot)$ prevents overfitting.
+% We consider \emph{generalized additive models}
+%We consider models that linearly depends on the features
+% \begin{align}
+% f(D_1^i, D_2^i, \ldots, D_m^i, x) = \sigma(\sum_j h_j(D_j^i, x_j)),
+% \end{align}
+
+Similar to recent literature on distributed machine learning \cite{ying2018supervised,zhou2016convergence}, ADMM \cite{zhang2016dual,zhang2018improving}, and privacy-preserving machine learning \cite{chaudhuri2011differentially,hamm2016learning}, we assume the loss has a form
+$
+\sum_{i=1}^{N}l_i(f(\mathcal{D}^i; x), Y_i) = \sum_{i=1}^{N}l_i(\mathcal{D}^i x, Y_i)
+=l\left(\sum_{m=1}^{M} \mathcal{D}_m^i x_m\right),
+$
+% where $h_j(\cdot, \cdot)$ is some local aggregation function for the features on party $j$
+where we have abused the notation of $l$ and in the second equality absorbed the label $Y_i$ into the loss $l$, which can be a non-convex function.
+This framework incorporates a wide range of commonly used models including support vector machines, Lasso, logistic regression, boosting, etc.
+
+
+
+
+%This class of functions include a wide range of realistic models such as lasso, logistic regression, SVM, etc.Taking logistic regress as example, we have
+%\begin{align}
+%f(\mathcal{D}_1^i, \mathcal{D}_2^i, \ldots, \mathcal{D}_M^i, x) = 1/(1+\text{exp}(-\sum_{m=1}^{M} \mathcal{D}_m^ix_m)), i=1,2,\cdots,N
+%\end{align}
+%and
+%\begin{align}
+%l_i(f_i, Y_i) = & \text{log}(1+\text{exp}(-Y_i\sum_{m=1}^{M} \mathcal{D}_m^ix_m)), i=1,2,\cdots,N.
+%\end{align}
+
+Therefore, the risk minimization over distributed features, or vertically partitioned datasets $\mathcal D_1,\ldots,\mathcal D_M$, can be written in the following compact form:
+\begin{align}
+\underset{x}{\text{minimize}}&\quad l\left(\sum_{m=1}^{M} \mathcal{D}_mx_m\right) + \lambda\sum_{m=1}^{M} R_m(x_m), \label{eq:analysis_problem}\\
+\text{subject to}&\quad x_m\in X_m, m=1,\ldots,M,
+\end{align}
+where  $X_m\subset\mathbb{R}^{d_m}$ is a closed convex set for all $m$.
+
+We have further assumed the regularizer is separable such that
+$R(x) = \sum_{m=1}^{M} R_m(x_m).$ This assumption is consistent with our algorithm design philosophy---under vertically partitioned data, we require each party focus on training and regularizing its local model $x_m$, without sharing any local model parameters or raw features to other parties at all. 
